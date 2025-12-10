@@ -1,0 +1,199 @@
+{%- comment -%}
+  SECTION: afs-blog-post-meta.liquid
+  Autor, meta-info, tags y caja “Compartir en” en un bloque plegable.  
+{%- endcomment -%}
+
+{%- liquid
+  assign author_ref = article.metafields.custom.author_ref.value
+  if author_ref
+    assign author_name  = author_ref.name
+    assign author_url   = author_ref.page_url | default: '#'
+    assign author_photo = author_ref.photo | img_url: '100x100', crop: 'center'
+    assign linkedin_url = author_ref.linkedin
+  else
+    assign author_name  = 'Sor Ibérica'
+    assign author_url   = 'https://monjamonymas.com/pages/author/sor-iberica'
+    assign author_photo = 'https://cdn.shopify.com/s/files/1/0251/6300/6033/files/ICONOS.png?v=1753079744'
+    assign linkedin_url = 'https://www.linkedin.com/company/107044055'
+  endif
+
+  assign share_url             = shop.url | append: article.url
+  assign share_url_encoded     = share_url | url_encode
+  assign twitter_text          = article.title | url_param_escape
+  assign pinterest_description = article.excerpt_or_content | strip_html | truncatewords: 15 | url_param_escape
+  assign pinterest_image       = article.image | img_url: '800x' | prepend: 'https:'
+-%}
+
+<section class="afs-blog-meta container"
+  style="
+    --meta-bg: {{ section.settings.bg_color }};
+    --meta-border: {{ section.settings.border_color }};
+    --meta-border-width: {% if section.settings.enable_shadow %}0{% else %}1px{% endif %};
+    --meta-shadow: {% if section.settings.enable_shadow %}0 4px 12px rgba(0,0,0,.12){% else %}none{% endif %};
+    --meta-radius: {{ section.settings.radius }}px;
+    --meta-padding: {{ section.settings.padding }}px;
+    --meta-mt: {{ section.settings.margin_top }}px;
+    --meta-mb: {{ section.settings.margin_bottom }}px;
+    --author-label-color: {{ section.settings.author_label_color }};
+    --author-bg: {{ section.settings.author_bg_color }};
+    --author-photo-size: {{ section.settings.photo_size }}px;
+    --tag-bg: {{ section.settings.tag_bg_color }};
+    --tag-color: {{ section.settings.tag_text_color }};
+    --summary-color: {{ section.settings.summary_color }};
+    max-width: {{ section.settings.max_width }}px;">
+
+  <details class="meta-details"{% unless section.settings.start_collapsed %} open{% endunless %}>
+    <summary class="meta-summary">
+      {{ section.settings.summary_label }}
+      <span class="meta-toggle-icon"></span>
+    </summary>
+
+    <div class="meta-inner">
+      <!-- Izquierda -->
+      <div class="meta-left">
+        <aside class="article-author" itemscope itemtype="http://schema.org/Person">
+          <div class="article-author__avatar">
+            <img src="{{ author_photo }}" alt="{{ author_name }}" width="100" height="100" loading="lazy">
+          </div>
+          <div class="article-author__text">
+            <p class="article-author-label">Escrito por:</p>
+            <h3 class="article-author__name" itemprop="name">{{ author_name }}</h3>
+            <div class="article-author__links">
+              <a href="{{ author_url }}" class="author-btn" rel="nofollow noopener">Ver más sobre el autor</a>
+              <a href="{{ linkedin_url }}" class="author-btn author-btn--icon" target="_blank" rel="nofollow noopener" aria-label="LinkedIn">
+                <img src="https://cdn.shopify.com/s/files/1/0251/6300/6033/files/icono-linkedin.png?v=1753184799" alt="LinkedIn" width="18" height="18" loading="lazy">
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <div class="article__meta-info">
+          {% if section.settings.show_date %}
+            <time class="article__date">{{ article.published_at | date: format: 'abbreviated_date' }}</time>
+          {% endif %}
+          {% if article.comments_enabled? and section.settings.show_comments and article.comments_count > 0 %}
+            <a href="#blog-post-{{ article.id }}-comments" rel="nofollow noopener" class="article__comments-count link">
+              {% render 'icon' with 'comment' %}{{ article.comments_count }}
+            </a>
+          {% endif %}
+        </div>
+
+        {% if article.tags.size > 0 and section.settings.show_tags %}
+          <div class="article__tags-box">
+            <span class="article__tags-label">{{ 'article.general.tags' | t }}</span>
+            <ul class="article__tags-list" role="list">
+              {% for tag in article.tags %}
+                <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}" rel="nofollow" class="link">{{ tag }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Compartir -->
+      {% if section.settings.show_share_buttons %}
+        <div class="author-share-box">
+          <span class="author-share-label">Compartir en:</span>
+          <div class="author-share-list" role="list">
+            <a class="author-share-item" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url_encoded }}" target="_blank" rel="nofollow noopener" aria-label="Facebook">
+              {% render 'icon' with 'facebook' %}
+            </a>
+            <a class="author-share-item" href="https://pinterest.com/pin/create/button/?url={{ share_url_encoded }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="nofollow noopener" aria-label="Pinterest">
+              {% render 'icon' with 'pinterest' %}
+            </a>
+            <a class="author-share-item" href="https://twitter.com/intent/tweet?url={{ share_url_encoded }}{% if twitter_text != blank %}&text={{ twitter_text }}{% endif %}" target="_blank" rel="nofollow noopener" aria-label="Twitter">
+              {% render 'icon' with 'twitter' %}
+            </a>
+            <a class="author-share-item" href="https://api.whatsapp.com/send?text={{ share_url_encoded }}" target="_blank" rel="nofollow noopener" aria-label="WhatsApp">
+              {% render 'icon' with 'whatsapp' %}
+            </a>
+            <a class="author-share-item author-share-item--share" href="{{ share_url }}" aria-label="Compartir">
+              {% render 'icon' with 'share' %}
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </details>
+</section>
+
+<!-- Web Share API soporte -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var shareBtn = document.querySelector('.author-share-item--share');
+    if (shareBtn && navigator.share) {
+      shareBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        navigator.share({
+          title: '{{ article.title | escape }}',
+          url: '{{ share_url }}'
+        });
+      });
+    }
+  });
+</script>
+
+<style>
+  .afs-blog-meta{margin:var(--meta-mt) auto var(--meta-mb);background:var(--meta-bg);border:var(--meta-border-width) solid var(--meta-border);box-shadow:var(--meta-shadow);border-radius:var(--meta-radius);padding:var(--meta-padding)}
+  .meta-summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:2.2rem;color:var(--summary-color)}
+  .meta-toggle-icon::before{content:'+';transition:.2s}
+  details[open] .meta-toggle-icon::before{content:'−'}
+  .meta-inner{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start}
+  .meta-left{flex:1 1 auto;display:flex;flex-direction:column;gap:.6rem}
+  .article-author{display:flex;gap:1rem;background:var(--author-bg);padding:.8rem;border-radius:4px}
+  .article-author-label{margin:0 0 .2rem;color:var(--author-label-color);font-size:1.2rem;font-weight:600}
+  .article-author__avatar img{width:var(--author-photo-size);height:var(--author-photo-size);border-radius:50%;object-fit:cover}
+  .article-author__name{margin:0;font-size:1.4rem;font-weight:600}
+  .article-author__links{display:flex;gap:.5rem;flex-wrap:wrap}
+  .author-btn{display:inline-flex;align-items:center;gap:.25rem;font-size:.82rem;padding:.23rem .65rem;border:1px solid #ccc;border-radius:4px;background:#fff;text-decoration:none;color:inherit}
+  .author-btn:hover{background:#f5f5f5}
+  .author-btn--icon{padding:.23rem .5rem;border:0}
+  .article__meta-info{display:flex;gap:.75rem;font-size:.9rem;flex-wrap:wrap}
+  .article__tags-box{padding:.5rem .6rem;border:1px solid var(--meta-border);border-radius:6px;background:var(--tag-bg)}
+  .article__tags-label{margin-right:.4rem;font-weight:600}
+  .article__tags-list{display:inline-flex;gap:.4rem;list-style:none;margin:0;padding:0}
+  .article__tags-list a{color:var(--tag-color)}
+  .author-share-box{margin-left:auto;display:flex;align-items:center;gap:.6rem}
+  .author-share-label{font-weight:600;font-size:.9rem}
+  .author-share-list{display:flex;gap:.4rem}
+  .author-share-item .icon{width:20px;height:20px}
+</style>
+
+{% schema %}
+{
+  "name": "AFS - Blog post Meta",
+  "tag": "section",
+  "enabled_on": { "templates": ["article"] },
+  "settings": [
+    { "type": "text",  "id": "summary_label", "label": "Título del bloque", "default": "Detalles del artículo" },
+    { "type": "color", "id": "summary_color", "label": "Color del título", "default": "#222222" },
+    { "type": "checkbox", "id": "start_collapsed", "label": "Iniciar colapsado", "default": false },
+
+    { "type": "checkbox", "id": "show_date", "label": "Mostrar fecha", "default": true },
+    { "type": "checkbox", "id": "show_comments", "label": "Mostrar contador de comentarios", "default": true },
+    { "type": "checkbox", "id": "show_tags", "label": "Mostrar etiquetas", "default": true },
+    { "type": "checkbox", "id": "show_share_buttons", "label": "Mostrar botones compartir", "default": true },
+
+    { "type": "range", "id": "max_width", "min": 240, "max": 800, "step": 10, "unit": "px", "label": "Ancho máximo", "default": 360 },
+    { "type": "range", "id": "margin_top", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margen superior", "default": 0 },
+    { "type": "range", "id": "margin_bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margen inferior", "default": 0 },
+    { "type": "range", "id": "padding", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding interno", "default": 24 },
+    { "type": "range", "id": "radius", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Radio de borde", "default": 6 },
+    { "type": "checkbox", "id": "enable_shadow", "label": "Usar sombra en lugar de borde", "default": false },
+
+    { "type": "range", "id": "photo_size", "min": 40, "max": 120, "step": 4, "unit": "px", "label": "Tamaño foto autor", "default": 60 },
+
+    { "type": "color", "id": "author_label_color", "label": "Color “Escrito por”", "default": "#666666" },
+    { "type": "color", "id": "author_bg_color", "label": "Fondo recuadro autor", "default": "#fafafa" },
+
+    { "type": "color", "id": "tag_bg_color", "label": "Fondo etiquetas", "default": "#ffffff" },
+    { "type": "color", "id": "tag_text_color", "label": "Color texto etiquetas", "default": "#555555" },
+
+    { "type": "color", "id": "bg_color", "label": "Fondo meta", "default": "#faf9f3" },
+    { "type": "color", "id": "border_color", "label": "Color borde meta", "default": "#dcdcdc" }
+  ],
+  "presets": [
+    { "name": "AFS - Blog post Meta" }
+  ]
+}
+{% endschema %}

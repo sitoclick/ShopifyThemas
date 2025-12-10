@@ -1,0 +1,49 @@
+{% style %}
+  html.js.smt-loadding {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+{% endstyle %}
+
+<link rel="preload" as="image" href="https://naviplus.b-cdn.net/naviplus/data/uploader/files/m-671a207dc41c5.png" />
+  {% style %}
+    
+    
+    a.header__icon-wrapper:active,  .shopify-pc__banner__btn-decline:active, .shopify-pc__banner__btn-accept:active, button.tap-area:active, a.tap-area:active, .header__icon-wrapper:active, .product__media-image-wrapper img:active {        
+      opacity: 0.9 !important;
+      transform: scale(0.98);
+      transition: transform 0.1s;
+    }
+    @media screen and (max-width: 900px) {
+      .product-item__primary-image:hover, .shopify-pc__banner__btn-decline:hover, .shopify-pc__banner__btn-accept:hover, button.tap-area:hover, a.tap-area:hover .header__icon-wrapper:hover, .product__media-image-wrapper img:hover {        
+        opacity: 0.9!important;
+      }
+    }
+    a.header__icon-wrapper:hover  {        
+        opacity: 0.9 !important;
+    }
+    [class*="video-modal-template-"] .swiper-wrapper{
+      width: 0 !important; 
+      height: 0 !important;
+    }
+    
+    [class*="video-modal-template-"].active .swiper-wrapper {
+      width: 100% !important; 
+      height: 100% !important; 
+    }
+    
+    .is-pointer-down, .combo-box.is-filled {        
+        opacity: 0.9 !important;
+    } 
+    .klaviyo-close-form:hover, .klaviyo-close-form:hover *, .header__inline-navigation:hover,  .shopify-pc__banner__wrapper:hover  {
+        opacity:0.9 !important;
+    }
+    .product-item__primary-image:active, .klaviyo-close-form:active, .klaviyo-close-form:active *, .header__inline-navigation:active,  .shopify-pc__banner__wrapper:active  {        
+        opacity: 0.9 !important;
+    }
+    div[role="dialog"].needsclick, div[role="dialog"].needsclick *, .shopify-pc__banner__wrapper {
+      animation-delay: 0.01s !important;
+      animation-duration: 0.01s !important;
+    }
+    
+  {% endstyle %}

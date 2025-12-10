@@ -1,0 +1,51 @@
+{% if customer %}
+  <!-- No mostrar formularios a clientes registrados --> 
+{% else %}
+  <!-- Mostrar formularios a clientes no registrados -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var currentURL = window.location.href.toLowerCase();
+      var blockedURLs = ['forocoches', 'account', 'cart', 'pages', 'checkouts', 'de-de', 'en-eu'];
+
+      // Verificar si URL está bloqueada
+      var isBlockedURL = blockedURLs.some(function(word) {
+        return currentURL.includes(word);
+      });
+
+      // Verificar si ya se mostró en esta sesión o si ya se envió antes
+      var formSubmitted = localStorage.getItem('klaviyoFormSubmitted');
+      var formShownThisSession = sessionStorage.getItem('klaviyoFormShown');
+
+      if (!isBlockedURL && !formSubmitted && !formShownThisSession) {
+        // Definir Klaviyo si no existe
+        window._klOnsite = window._klOnsite || [];
+
+        // Esperar 90 segundos
+        setTimeout(function() {
+          var isMobile = window.matchMedia("(max-width: 768px)").matches;
+          var formId = isMobile ? 'Y2JHLG' : 'VbMvTH';
+
+          // Mostrar formulario
+          window._klOnsite.push(['openForm', formId]);
+
+          // Guardar que ya se mostró esta sesión
+          sessionStorage.setItem('klaviyoFormShown', true);
+        }, 30000);
+
+        // Marcar como completado si se envía
+        window._klOnsite.push(['onFormSubmit', function(form) {
+          if (form.formId === 'Y2JHLG' || form.formId === 'VbMvTH') {
+            localStorage.setItem('klaviyoFormSubmitted', true);
+          }
+        }]);
+
+        // Marcar como completado si se hace clic en el botón del formulario
+        window._klOnsite.push(['onFormButtonClick', function(form, button) {
+          if (form.formId === 'Y2JHLG' || form.formId === 'VbMvTH') {
+            localStorage.setItem('klaviyoFormSubmitted', true);
+          }
+        }]);
+      }
+    });
+  </script>
+{% endif %}

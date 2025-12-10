@@ -1,0 +1,87 @@
+{%- comment -%}
+  Section: AFS – Simple FAQ (v1)
+  • Basado en ss-simple-faq, renombrado a AFS.
+  • Cada pregunta es ahora un <h2> para SEO (`rb-faq-question` envuelto en h2).
+{%- endcomment -%}
+
+{%- liquid
+  assign bg       = section.settings.bg_color
+  assign brd      = section.settings.border_color
+  assign radius   = section.settings.radius
+  assign shadow   = section.settings.enable_shadow
+  assign padding  = section.settings.padding
+  assign open_def = section.settings.open_by_default
+-%}
+
+{%- if section.blocks.size > 0 -%}
+<details class="rb-faq-shopify-section" {% if open_def %}open{% endif %}
+         style="--faq-bg: {{ bg }};--faq-border: {{ brd }};--faq-radius: {{ radius }}px;--faq-padding: {{ padding }}px;--faq-shadow:{% if shadow %}0 4px 12px rgba(0,0,0,.12){% else %}none{% endif %};">
+  <summary class="rb-faq-heading"><span>{{ section.settings.heading }}</span></summary>
+
+  <div class="rb-faq-container">
+    {% for block in section.blocks %}
+      <div class="rb-faq-container-item" {{ block.shopify_attributes }}>
+        <input type="checkbox" id="tab{{ forloop.index }}" class="tab-toggle" hidden>
+        <h2 class="rb-faq-h2">
+          <label for="tab{{ forloop.index }}" class="rb-faq-question">{{ block.settings.question }}</label>
+        </h2>
+        <div class="rb-faq-answer">{{ block.settings.answer }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</details>
+{%- endif -%}
+
+<style>
+  /* contenedor tarjeta */
+  details.rb-faq-shopify-section{background:var(--faq-bg,#faf9f3);border:1px solid var(--faq-border,#dcdcdc);border-radius:var(--faq-radius,6px);box-shadow:var(--faq-shadow,none);padding:var(--faq-padding,24px);margin:2rem auto;max-width:1000px}
+  details.rb-faq-shopify-section>summary{cursor:pointer;list-style:none;display:flex;justify-content:center;align-items:center;font-weight:700;font-size:1.8rem;position:relative;padding-right:2rem}
+  details.rb-faq-shopify-section>summary::after{content:"\276F";position:absolute;right:0;font-size:1.2rem;color:{{ section.settings.icon_color }};transition:transform .3s}
+  details[open].rb-faq-shopify-section>summary::after{transform:rotate(90deg)}
+
+  /* preguntas */
+  .rb-faq-h2{margin:0}
+  .rb-faq-question{display:flex;justify-content:space-between;align-items:center;background:{{ section.settings.background_color }};color:{{ section.settings.question_color }};padding:15px 20px;font-weight:700;border-radius:8px;font-size:{{ section.settings.questions-font-size }}rem;cursor:pointer;transition:background .2s;width:100%}
+  .rb-faq-question:hover{background:{{ section.settings.hover_color }}}
+  .rb-faq-question::after{content:"\276F";color:{{ section.settings.icon_color }};transition:transform .2s;margin-left:auto}
+  .tab-toggle:checked+ h2 .rb-faq-question::after{transform:rotate(90deg)}
+
+  /* respuesta */
+  .rb-faq-answer{padding:0 20px;height:0;opacity:0;overflow:hidden;visibility:hidden;transform:translateY(25px);transition:all .25s}
+  .tab-toggle:checked~.rb-faq-answer{padding:15px 20px;height:auto;opacity:1;visibility:visible;transform:translateY(0);background:{{ section.settings.answer_bg_color }};color:{{ section.settings.answer_color }};box-shadow:0 0 4px rgba(0,0,0,.08)}
+
+  .rb-faq-container-item{margin-bottom:10px}
+</style>
+
+{% schema %}
+{
+  "name": "AFS - Simple FAQ",
+  "settings": [
+    {"type":"text","id":"heading","label":"Heading","default":"Preguntas frecuentes"},
+    {"type":"checkbox","id":"open_by_default","label":"Abrir tarjeta por defecto","default":true},
+
+    {"type":"color","id":"bg_color","label":"Fondo tarjeta","default":"#faf9f3"},
+    {"type":"color","id":"border_color","label":"Color borde","default":"#dcdcdc"},
+    {"type":"range","id":"radius","label":"Radio de borde","min":0,"max":30,"step":2,"unit":"px","default":6},
+    {"type":"range","id":"padding","label":"Padding interno","min":0,"max":60,"step":4,"unit":"px","default":24},
+    {"type":"checkbox","id":"enable_shadow","label":"Sombra alrededor","default":false},
+
+    {"type":"color","id":"icon_color","label":"Color ícono flecha","default":"#ffffff"},
+    {"type":"color","id":"hover_color","label":"Hover pregunta","default":"#efefef"},
+    {"type":"color","id":"question_color","label":"Color texto pregunta","default":"#ffffff"},
+    {"type":"color","id":"background_color","label":"Fondo pregunta","default":"#d5caa6"},
+    {"type":"color","id":"answer_color","label":"Color texto respuesta","default":"#000000"},
+    {"type":"color","id":"answer_bg_color","label":"Fondo respuesta","default":"#ffffff"},
+    {"type":"range","id":"questions-font-size","label":"Tamaño fuente pregunta","min":0.8,"max":3,"step":0.1,"unit":"rem","default":1.5}
+  ],
+  "blocks": [
+    {"type":"text","name":"Pregunta/Respuesta","settings":[
+      {"type":"text","id":"question","label":"Pregunta","default":"Texto de la pregunta"},
+      {"type":"richtext","id":"answer","label":"Respuesta","default":"<p>Texto de respuesta</p>"}
+    ]}
+  ],
+  "presets": [
+    {"name":"AFS - Simple FAQ","blocks":[{"type":"text"},{"type":"text"}]}
+  ]
+}
+{% endschema %}

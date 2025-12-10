@@ -1,0 +1,90 @@
+{%- comment -%}
+  Section: SS – Leer Más Información
+  • Tarjeta colapsable (card‑style) igual que FAQ/TOC.
+  • Contiene uno o varios bloques Rich Text con: Sub‑heading, Heading, Contenido, Botón (opcional).
+{%- endcomment -%}
+
+{%- liquid
+  assign bg       = section.settings.bg_color
+  assign brd      = section.settings.border_color
+  assign radius   = section.settings.radius
+  assign shadow   = section.settings.enable_shadow
+  assign padding  = section.settings.padding
+  assign open_def = section.settings.open_by_default
+-%}
+
+{%- if section.blocks.size > 0 -%}
+<details class="readmore-card" {% if open_def %}open{% endif %}
+         style="--card-bg: {{ bg }};--card-border: {{ brd }};--card-radius: {{ radius }}px;--card-padding: {{ padding }}px;--card-shadow:{% if shadow %}0 4px 12px rgba(0,0,0,.12){% else %}none{% endif %};">
+  <summary class="readmore-heading"><span>{{ section.settings.heading }}</span></summary>
+
+  <div class="readmore-inner">
+    {%- for block in section.blocks -%}
+      <div class="readmore-block" {{ block.shopify_attributes }}>
+        {%- if block.settings.subheading != blank -%}
+          <p class="readmore-subheading">{{ block.settings.subheading }}</p>
+        {%- endif -%}
+        {%- if block.settings.title != blank -%}
+          <h3 class="readmore-title">{{ block.settings.title }}</h3>
+        {%- endif -%}
+        {%- if block.settings.content != blank -%}
+          <div class="readmore-content">{{ block.settings.content }}</div>
+        {%- endif -%}
+        {%- if block.settings.btn_label != blank and block.settings.btn_link != blank -%}
+          <a class="readmore-btn" href="{{ block.settings.btn_link }}">{{ block.settings.btn_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</details>
+{%- endif -%}
+
+<style>
+  details.readmore-card{background:var(--card-bg,#faf9f3);border:1px solid var(--card-border,#dcdcdc);border-radius:var(--card-radius,6px);box-shadow:var(--card-shadow,none);padding:var(--card-padding,24px);margin:2rem auto;max-width:1000px}
+  details.readmore-card>summary{cursor:pointer;list-style:none;display:flex;justify-content:center;align-items:center;font-weight:700;font-size:1.8rem;position:relative;padding-right:2rem}
+  details.readmore-card>summary::after{content:"\276F";position:absolute;right:0;font-size:1.2rem;color:{{ section.settings.icon_color }};transition:transform .3s}
+  details[open].readmore-card>summary::after{transform:rotate(90deg)}
+
+  .readmore-block{margin-top:1.5rem;text-align:left}
+  .readmore-subheading{margin:0 0 .3rem;font-size:1.2rem;font-weight:600;color:{{ section.settings.subheading_color }}}
+  .readmore-title{margin:0 0 .8rem;font-size:1.6rem;font-weight:700;color:{{ section.settings.title_color }}}
+  .readmore-content{color:{{ section.settings.content_color }}}
+  .readmore-btn{display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;border-radius:4px;background:{{ section.settings.button_bg }};color:{{ section.settings.button_color }};text-decoration:none;font-weight:600;transition:opacity .2s}
+  .readmore-btn:hover{opacity:.85}
+</style>
+
+{% schema %}
+{
+  "name": "SS - Leer Más Información",
+  "settings": [
+    {"type":"text","id":"heading","label":"Heading","default":"Leer Más Información"},
+    {"type":"checkbox","id":"open_by_default","label":"Abrir tarjeta por defecto","default":false},
+
+    {"type":"color","id":"bg_color","label":"Fondo tarjeta","default":"#faf9f3"},
+    {"type":"color","id":"border_color","label":"Color borde","default":"#dcdcdc"},
+    {"type":"range","id":"radius","label":"Radio de borde","min":0,"max":30,"step":2,"unit":"px","default":6},
+    {"type":"range","id":"padding","label":"Padding interno","min":0,"max":60,"step":4,"unit":"px","default":24},
+    {"type":"checkbox","id":"enable_shadow","label":"Sombra alrededor","default":false},
+    {"type":"color","id":"icon_color","label":"Color ícono flecha","default":"#333333"},
+
+    {"type":"color","id":"subheading_color","label":"Color sub‑heading","default":"#666666"},
+    {"type":"color","id":"title_color","label":"Color heading bloque","default":"#333333"},
+    {"type":"color","id":"content_color","label":"Color texto","default":"#000000"},
+
+    {"type":"color","id":"button_bg","label":"Fondo botón","default":"#d5caa6"},
+    {"type":"color","id":"button_color","label":"Color texto botón","default":"#ffffff"}
+  ],
+  "blocks": [
+    {"type":"rich","name":"Bloque info","settings":[
+      {"type":"text","id":"subheading","label":"Sub‑heading"},
+      {"type":"text","id":"title","label":"Heading"},
+      {"type":"richtext","id":"content","label":"Contenido"},
+      {"type":"text","id":"btn_label","label":"Texto botón"},
+      {"type":"url","id":"btn_link","label":"Link botón"}
+    ]}
+  ],
+  "presets": [
+    {"name":"SS - Leer Más","blocks":[{"type":"rich"}]}
+  ]
+}
+{% endschema %}

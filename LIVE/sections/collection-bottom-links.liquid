@@ -1,0 +1,105 @@
+{% comment %}
+  Section: Collection Bottom Links
+{% endcomment %}
+
+{% assign colls = collection.metafields.custom.collection_links_bottom | default: nil %}
+{% assign prods = collection.metafields.custom.designer_bottom_products | default: nil %}
+{% assign text  = collection.metafields.custom.designer_bottom_text | default: '' %}
+
+{%- assign colls_val = nil -%}
+{%- assign prods_val = nil -%}
+
+{%- if colls and colls.value -%}
+  {%- assign colls_val = colls.value -%}
+{%- endif -%}
+{%- if prods and prods.value -%}
+  {%- assign prods_val = prods.value -%}
+{%- endif -%}
+
+{%- assign total = 0 -%}
+{%- if colls_val -%}{%- assign total = total | plus: colls_val.size -%}{%- endif -%}
+{%- if prods_val -%}{%- assign total = total | plus: prods_val.size -%}{%- endif -%}
+
+{%- if total > 0 or text != '' -%}
+  <section id="section-{{ section.id }}" class="featured-designer shopify-section-collection-bottom-links">
+    <div class="featured-designer__content">
+
+      {%- if section.settings.show_heading and section.settings.heading != blank -%}
+        <h2 class="featured-designer__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if text != '' and section.settings.show_text -%}
+        <div class="featured-designer__text">
+          {{ text }}
+        </div>
+      {%- endif -%}
+
+      {%- if total > 0 -%}
+        <div class="featured-designer__links-block" role="navigation" aria-label="Enlaces relacionados">
+          {%- assign i = 0 -%}
+
+          {%- if colls_val -%}
+            {%- for bottom_collection in colls_val -%}
+              <a class="featured-designer__link" href="{{ bottom_collection.url }}">{{ bottom_collection.title }}</a>
+              {%- assign i = i | plus: 1 -%}
+              {%- unless i == total -%} | {%- endunless -%}
+            {%- endfor -%}
+          {%- endif -%}
+
+          {%- if prods_val -%}
+            {%- for bottom_product in prods_val -%}
+              <a class="featured-designer__link" href="{{ bottom_product.url }}">{{ bottom_product.title }}</a>
+              {%- assign i = i | plus: 1 -%}
+              {%- unless i == total -%} | {%- endunless -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Enlaces colección",
+  "tag": "section",
+  "class": "section-collection-bottom-links",
+  "templates": ["collection"],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Mostrar título",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "También te puede interesar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text",
+      "label": "Mostrar texto del metafield",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Enlaces colección",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.featured-designer { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.featured-designer__heading { margin: 0 0 0.75rem 0; font-size: 1.125rem; font-weight: 600; }
+.featured-designer__text { margin-bottom: 0.75rem; opacity: 0.9; }
+.featured-designer__links-block { display: flex; flex-wrap: wrap; gap: 0.25rem; align-items: center; line-height: 1.8; }
+.featured-designer__link { text-decoration: none; border-bottom: 1px solid transparent; }
+.featured-designer__link:hover,
+.featured-designer__link:focus { text-decoration: underline; }
+{% endstylesheet %}

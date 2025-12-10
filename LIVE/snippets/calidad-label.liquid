@@ -1,0 +1,67 @@
+{%- comment -%}
+  Este snippet define las variables calidad, calidad_descripcion y bg_color
+  para que puedan ser utilizadas en cualquier parte sin generar salida directa.
+{%- endcomment -%}
+
+{%- assign calidad_raw = product.metafields.custom.calidad -%}
+
+<!-- Limpiar el valor del metacampo -->
+{%- if calidad_raw -%}
+  {%- assign calidad_clean = calidad_raw | remove: '[' | remove: ']' | remove: '"' | strip -%}
+  {%- assign calidad_list = calidad_clean | split: ',' -%}
+  <!-- Dividir en una lista si hay múltiples valores -->
+{%- endif -%}
+
+<!-- Verificar si el metacampo tiene múltiples valores -->
+{%- if calidad_list and calidad_list.size > 1 -%}
+  {% assign calidad = 'Gourmet+' %}
+  {% assign calidad_descripcion = 'Este producto pertenece a múltiples categorías y se clasifica como Gourmet.' %}
+  {% assign bg_color = '#406ef5' %}
+{%- elsif calidad_list and calidad_list.size == 1 -%}
+  {% assign calidad = calidad_list[0] | strip %}
+  {%- case calidad -%}
+    {%- when 'Esencial' -%}
+      {% assign bg_color = '#eb5c27' %}
+      {% assign calidad_descripcion = 'Poducto de Calidad Esencial para el día a día.' %}
+    {%- when 'Gourmet' -%}
+      {% assign bg_color = '#406ef5' %}
+      {% assign calidad_descripcion = 'Poducto  Gourmet de la más alta calidad.' %}
+    {%- when 'Premium' -%}
+      {% assign bg_color = '#000000' %}
+      {% assign calidad_descripcion = 'Poducto de Calidad Premium, nuestro TOP.' %}
+    {%- else -%}
+      {% assign bg_color = '#cccccc' %}
+      {% assign calidad_descripcion = 'Información no disponible para este producto.' %}
+  {%- endcase -%}
+{%- else -%}
+  {% assign calidad = 'Gourmet' %}
+  {% assign calidad_descripcion = 'Poducto  Gourmet de la más alta calidad.' %}
+  {% assign bg_color = '#406ef5' %}
+{%- endif -%}
+
+<!-- Diseños dinámicos según el parámetro 'style' -->
+{%- case style -%}
+  {%- when 'fondores' -%}
+    <!-- Estilo original con fondo -->
+    <div
+      class="label"
+      style="background-color: {{ bg_color }}; color: #ffffff; padding: 2px; border-radius: 10px; text-align: center; font-size: 13px; margin-top: -10px;"
+      title="{{ calidad_descripcion }}"
+    >
+      {{ calidad }}
+    </div>
+  {%- when 'producto' -%}
+    <!-- Solo descripción con color de texto -->
+    <p style="color: {{ bg_color }}; font-size: 15px;margin-bottom:5px ;margin: 0;margin-top:-5px;font-weight: semi-bold;">
+      {{ calidad_descripcion }}
+    </p>
+  {%- else -%}
+    <!-- Fallback (por si no se pasa un 'style') -->
+    <div
+      class="label"
+      style="background-color: {{ bg_color }}; color: #ffffff; padding: 3px; border-radius: 10px; text-align: center; font-size: 13px; margin-top: -10px;"
+      title="{{ calidad_descripcion }}"
+    >
+      Calidad : {{ calidad }}
+    </div>
+{%- endcase -%}

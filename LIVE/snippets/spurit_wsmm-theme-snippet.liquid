@@ -1,0 +1,50 @@
+<script>
+    var SWPMMParams = {
+        "folderCss":   "https://cdn-spurit.com/shopify-apps/wholesale-pricing-membership-manager/",
+        "folderStore": "https://cdn-spurit.com/shopify-apps/wholesale-pricing-membership-manager/store/",
+        "id" : "8c6c03bd47c6210b1e504c480dde3dd9",
+        "app_id": "3",
+        "app_name": "Wholesale Pricing & Membership Manager",
+        "cdnHostPath": "https://cdn-spurit.com/",
+        "cdnJsLibsPath": "https://cdn-spurit.com/all-apps/",
+        "product" : {{ product | json }},
+        "moneyFormat" : '{{ shop.money_format }}',
+        "productView": "sub-json",
+        "items" : [
+            {%- for item in cart.items -%}
+            {
+                'id': {{item.id}},
+                'quantity': {{item.quantity}},
+                'product': { id:{{item.product_id}}, handle:'{{item.product.handle}}', title:{{item.product.title | json}},variant:{% for variant in item.product.variants %}{% if item.variant_id == variant.id %}{id:{{variant.id}},title:{{variant.title | json}},available:{{variant.available}},price:{{variant.price}},compare_at_price:{% if variant.compare_at_price %}{{variant.compare_at_price}}{% else %}{{variant.price}}{% endif %},inventory_quantity:{{variant.inventory_quantity}}}{% endif %}{% endfor %}},
+                'product_collections': {{item.product.collections | json}}
+            }{%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+        ],
+        {% if cart %}
+        "cartSubtotal": {{ cart.original_total_price }},
+        {% endif %}
+        "customer": {'id': {{ customer.id | json }}, 'name': {{ customer.name | json }}, 'tags': {{ customer.tags | json }}}
+        {%- if product -%},
+        "product_collections": {{product.collections | json}} || [],
+            "product": {
+            "price": {{ product.price }},
+            "compare_at": {{ product.compare_at_price_min }},
+            "variants": {{ product.variants | json }}
+        }
+        {%- endif -%}
+
+    };
+
+    if(typeof(Spurit) === 'undefined'){
+      Spurit = {};
+    }
+    if(typeof(Spurit.globalSnippet) === 'undefined'){
+      Spurit.globalSnippet = {
+        shop_currency: '{{ shop.currency }}',
+        money_format: '{{ shop.money_format }}',
+        cart: {{ cart | json }},
+        customer_id: '{{ customer.id }}'
+      };
+    }
+</script>
+<script defer="defer" src="https://cdn-spurit.com/shopify-apps/wholesale-pricing-membership-manager/common.js"></script>

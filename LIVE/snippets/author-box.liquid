@@ -1,0 +1,71 @@
+{%- comment -%}
+  Snippet: author-box.liquid (v5‑fix)
+  • Agrega caja “Compartir en” con iconos.
+  • Corrige sintaxis de render:  `{% render 'icon' with 'twitter' %}` etc.
+{%- endcomment -%}
+
+{%- liquid
+  assign author_ref = article.metafields.custom.author_ref.value
+  if author_ref
+    assign author_name   = author_ref.name
+    assign author_url    = author_ref.page_url | default: '#'
+    assign author_photo  = author_ref.photo | img_url: '100x100', crop: 'center'
+    assign linkedin_url  = author_ref.linkedin
+  else
+    assign author_name   = 'Sor Ibérica'
+    assign author_url    = 'https://monjamonymas.com/pages/author/sor-iberica'
+    assign author_photo  = 'https://cdn.shopify.com/s/files/1/0251/6300/6033/files/ICONOS.png?v=1753079744'
+    assign linkedin_url  = 'https://www.linkedin.com/company/107044055'
+  endif
+
+  assign share_url            = shop.url | append: article.url
+  assign twitter_text         = article.title | url_param_escape
+  assign pinterest_description = article.excerpt_or_content | strip_html | truncatewords: 15 | url_param_escape
+  assign pinterest_image      = article.image | img_url: '800x' | prepend: 'https:'
+-%}
+
+<p class="article-author-label">Escrito por:</p>
+
+<aside class="article-author" itemscope itemtype="http://schema.org/Person">
+  <div class="article-author__avatar" itemprop="image">
+    <img src="{{ author_photo }}" alt="{{ author_name }}" width="100" height="100" loading="lazy">
+  </div>
+
+  <div class="article-author__text">
+    <h3 class="article-author__name" itemprop="name">{{ author_name }}</h3>
+
+    <div class="article-author__links">
+      <a href="{{ author_url }}" class="author-btn" rel="nofollow noopener">Ver más sobre el autor</a>
+      <a href="{{ linkedin_url }}" class="author-btn author-btn--icon" target="_blank" rel="nofollow noopener" aria-label="LinkedIn">
+        <img src="https://cdn.shopify.com/s/files/1/0251/6300/6033/files/icono-linkedin.png?v=1753184799" alt="LinkedIn" width="18" height="18" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Caja de compartir -->
+    <div class="author-share-box">
+      <span class="author-share-label">Compartir en:</span>
+      <div class="author-share-list" role="list">
+        <a class="author-share-item" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="nofollow noopener" aria-label="Facebook">{%- render 'icon' with 'facebook' -%}</a>
+        <a class="author-share-item" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="nofollow noopener" aria-label="Pinterest">{%- render 'icon' with 'pinterest' -%}</a>
+        <a class="author-share-item" href="https://twitter.com/share?{% if twitter_text != blank %}text={{ twitter_text }}&{% endif %}url={{ share_url }}" target="_blank" rel="nofollow noopener" aria-label="Twitter">{%- render 'icon' with 'twitter' -%}</a>
+        <a class="author-share-item" href="mailto:?&subject={{ article.title | escape }}&body={{ share_url }}" aria-label="Email">{%- render 'icon' with 'share' -%}</a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .article-author-label{margin:2rem 0 .5rem;font-size:1.4rem;font-weight:600;color:#666}
+  .article-author{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding:1.5rem;border:1px solid #eee;border-radius:6px;background:#fafafa}
+  .article-author__avatar img{width:var(--author-photo-size,60px);height:var(--author-photo-size,60px);border-radius:50%;object-fit:cover;display:block}
+  .article-author__name{margin:0;font-size:1.6rem;font-weight:600}
+  .article-author__links{display:flex;gap:.6rem;margin-top:.4rem;flex-wrap:wrap}
+  .author-btn{display:inline-flex;align-items:center;gap:.25rem;font-size:.85rem;padding:.28rem .7rem;border:1px solid #ccc;border-radius:4px;background:#fff;text-decoration:none;color:inherit;transition:background .2s}
+  .author-btn:hover{background:#f5f5f5}
+  .author-btn--icon{padding:.25rem .5rem;border:0}
+  /* Compartir */
+  .author-share-box{margin-top:1rem;padding:.6rem;border:1px solid #ddd;border-radius:4px;background:#fff;display:inline-flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+  .author-share-label{font-weight:600;font-size:.85rem}
+  .author-share-list{display:flex;gap:.4rem}
+  .author-share-item .icon{width:20px;height:20px}
+</style>

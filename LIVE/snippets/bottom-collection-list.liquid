@@ -1,0 +1,56 @@
+{% assign metafield_text = collection.metafields.custom.designer_bottom_text %}
+{% assign metafield_text_array = metafield_text | split: ' ' %}
+
+{% if collection.metafields.custom.collection_links_bottom %}
+  <div id="section-{{ section.id }}" class="featured-designer shopify-section-collection-bottom-links">
+    <div class="featured-designer__content">
+      <div class="featured-designer__links-block">
+        {% assign bottom_collections = collection.metafields.custom.collection_links_bottom.value %}
+        {% assign bottom_products = collection.metafields.custom.designer_bottom_products.value %}
+        {% for bottom_collection in bottom_collections %}
+          <a class="featured-designer__link" href="{{ bottom_collection.url }}">
+            {{ bottom_collection.title }}
+
+          </a>
+          {% unless forloop.last %}
+            |
+          {% endunless %}
+        {% endfor %}
+
+        {% if bottom_products %}
+          {% for bottom_product in bottom_products %}
+            <a class="featured-designer__link" href="{{ bottom_product.url }}">
+              {{ bottom_product.title }}
+            </a>
+            {% unless forloop.last %} | {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+<style>
+  .featured-designer__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: grey;
+  }
+
+  .featured-designer__links-block {
+    display: inline-block;
+  }
+
+  .featured-designer__link {
+    color: grey;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+
+  .featured-designer__link:hover {
+    text-decoration: underline;
+  }
+</style>
