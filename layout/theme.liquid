@@ -17,6 +17,8 @@
 
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
   <head>
+ {%- if content_for_header contains 'tapita-seo-script-tags' -%}{%- include 'tapita-seo-schema' -%}{%- endif -%} 
+
     {% render 'cwv' %}
     <!-- Google Tag Manager -->
     <script>
