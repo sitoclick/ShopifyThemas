@@ -20,23 +20,23 @@
             "text": "A TIEMPO PARA NAVIDAD"
           }
         },
-        "text_ydxfga": {
-          "type": "text",
-          "settings": {
-            "text": "A tiempo para Navidad."
-          }
-        },
         "text_EnieXX": {
           "type": "text",
           "settings": {
             "text": "Palabra de Sor Ibérica."
           }
+        },
+        "text_ydxfga": {
+          "type": "text",
+          "settings": {
+            "text": "A TIEMPO PARA NAVIDAD"
+          }
         }
       },
       "block_order": [
         "text_JAKQXP",
-        "text_ydxfga",
-        "text_EnieXX"
+        "text_EnieXX",
+        "text_ydxfga"
       ],
       "name": "SS - Scrolling Announcement Bar",
       "settings": {
