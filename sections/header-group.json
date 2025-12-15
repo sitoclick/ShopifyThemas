@@ -1,1 +1,275 @@
-{"type":"header","name":"Header group","sections":{"ss_scrolling_announcement_bar_dxyUUN":{"type":"ss-scrolling-announcement-bar","blocks":{"text_JAKQXP":{"type":"text","settings":{"text":"CYBER MONDAY MONJAMÓN"}},"text_ydxfga":{"type":"text","settings":{"text":"HASTA 40% DESCUENTO"}},"text_EnieXX":{"type":"text","settings":{"text":"CYBER MONDAY MONJAMÓN"}}},"block_order":["text_JAKQXP","text_ydxfga","text_EnieXX"],"disabled":true,"name":"SS - Scrolling Announcement Bar","settings":{"insert_css_class_target":".header, .pageheader, .section-header, #announcement, .toolbar, .header__wrapper, .onboarding-header","text_size":16,"ss_font_family":"unbounded_n8","link":"shopify:\/\/collections\/cestas-navidad","animation_duration":200,"animation_direction":"right","pause_hover":false,"bg":"#03e700","text_color":"#ffffff","hover_opacity":26,"padding_horizontal":1.2,"padding_vertical":1.1}},"ss_scrolling_features_RCn6V3":{"type":"ss-scrolling-features","blocks":{"item_PUjhfN":{"type":"item","settings":{"icon":"none","text":"• HACEMOS 1 AÑO!","icon_color":"#ffffff","text_color":"#ffffff"}},"item_hH4r3U":{"type":"item","settings":{"icon":"none","text":"• ESTAMOS DE ANIVERSARIO!","icon_color":"#ffffff","text_color":"#ffffff"}},"item_hHhnkg":{"type":"item","settings":{"icon":"none","text":"•  15% OFF EN TODA LA PÁGINA!","icon_color":"#000000","text_color":"#ffffff"}},"item_MaE4k3":{"type":"item","settings":{"icon":"none","text":"• HASTA EL DIA 21","icon_color":"#000000","text_color":"#ffffff"}}},"block_order":["item_PUjhfN","item_hH4r3U","item_hHhnkg","item_MaE4k3"],"disabled":true,"settings":{"scroll_on_desktop":false,"scroll_speed":100,"scroll_speed_mobile":100,"scroll_direction":"right","scroll_pause":true,"items_gap":6,"items_gap_mobile":6,"border_bottom":false,"border_top":false,"text_custom":true,"text_font":"poppins_i7","text_size":16,"text_size_mobile":16,"text_height":50,"icon_size":19,"icon_margin":8,"background-color":"#eb5c27","border_color":"#000000","padding_top":0,"padding_bottom":0}},"announcement-bar":{"type":"announcement-bar","settings":{"announcement_bar_position":"sticky","announcement_text_size":"normal","autoplay":true,"cycle_speed":9,"background":"#eb5c27","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000434"}},"ss_scrolling_features_88UH3x":{"type":"ss-scrolling-features","blocks":{"item_P96wB8":{"type":"item","settings":{"icon":"none","text":"• A UN CLICK DEL MILAGRO","icon_color":"#ffffff","text_color":"#ffffff"}},"item_nrDHwb":{"type":"item","settings":{"icon":"none","text":"• ENVÍOS Y DEVOLUCIONES GRATUITAS*","icon_color":"#ffffff","text_color":"#ffffff"}},"item_tpK9jG":{"type":"item","settings":{"icon":"none","text":"• ¡ELEGIDOS PRODUCTO DEL AÑO 2025!","icon_color":"#000000","text_color":"#ffffff"}},"item_MtwepX":{"type":"item","settings":{"icon":"none","text":"• ATENCIÓN PERSONALIZADA","icon_color":"#000000","text_color":"#ffffff"}},"item_GMNKmQ":{"type":"item","settings":{"icon":"none","text":"• PAGO SEGURO","icon_color":"#000000","text_color":"#ffffff"}},"item_rdkxRj":{"type":"item","settings":{"icon":"none","text":"• CAE EN LA TENTACION","icon_color":"#af272f","text_color":"#ffffff"}}},"block_order":["item_P96wB8","item_nrDHwb","item_tpK9jG","item_MtwepX","item_GMNKmQ","item_rdkxRj"],"settings":{"scroll_on_desktop":true,"scroll_speed":100,"scroll_speed_mobile":100,"scroll_direction":"left","scroll_pause":true,"items_gap":6,"items_gap_mobile":6,"border_bottom":false,"border_top":false,"text_custom":true,"text_font":"poppins_i7","text_size":16,"text_size_mobile":16,"text_height":50,"icon_size":19,"icon_margin":8,"background-color":"#406ef5","border_color":"#000000","padding_top":0,"padding_bottom":0}},"header":{"type":"header","custom_css":[],"settings":{"enable_sticky_header":false,"logo":"shopify:\/\/shop_images\/LOGOTIPO_AZUL_3x_bf747935-15ce-4190-8975-9bbcece481b6.png","logo_max_width":170,"mobile_logo_max_width":120,"navigation_menu":"main-menu","sidebar_navigation_menu":"main-menu","header_layout":"drawer","show_icons":true,"reduce_desktop_padding":true,"show_locale_selector":true,"show_country_selector":true,"enable_transparent_header":false,"transparent_header_text_color":"#ffffff","search_menu":"main-menu"}},"breadcrumb_Wt7rih":{"type":"breadcrumb","custom_css":[".breadcrumbs {overflow-x: auto; white-space: nowrap; font-size: 12px; \/* Ajusta el tamaño de la fuente *\/ padding: 5px 0; \/* Reduce el padding vertical *\/ margin-bottom: 5px; \/* Reduce el margen inferior *\/ margin-left: 10 px;}"],"settings":{"breadcrumbs_home_icon_bool":true,"breadcrumb_delimeter":"angle_right","breadcrumb_bg_color":"#ffffff","breadcrumb_text_color":"#000000","breadcrumb_accent_color_bool":true,"breadcrumb_accent_color":"#eb5c27","enable_product_page":false,"enable_collection_page":false,"enable_complete_site":true}}},"order":["ss_scrolling_announcement_bar_dxyUUN","ss_scrolling_features_RCn6V3","announcement-bar","ss_scrolling_features_88UH3x","header","breadcrumb_Wt7rih"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "ss_scrolling_announcement_bar_dxyUUN": {
+      "type": "ss-scrolling-announcement-bar",
+      "blocks": {
+        "text_JAKQXP": {
+          "type": "text",
+          "settings": {
+            "text": "A TIEMPO PARA NAVIDAD"
+          }
+        },
+        "text_ydxfga": {
+          "type": "text",
+          "settings": {
+            "text": "A tiempo para Navidad."
+          }
+        },
+        "text_EnieXX": {
+          "type": "text",
+          "settings": {
+            "text": "Palabra de Sor Ibérica."
+          }
+        }
+      },
+      "block_order": [
+        "text_JAKQXP",
+        "text_ydxfga",
+        "text_EnieXX"
+      ],
+      "name": "SS - Scrolling Announcement Bar",
+      "settings": {
+        "insert_css_class_target": ".header, .pageheader, .section-header, #announcement, .toolbar, .header__wrapper, .onboarding-header",
+        "text_size": 16,
+        "ss_font_family": "unbounded_n8",
+        "link": "shopify://collections/cestas-navidad",
+        "animation_duration": 200,
+        "animation_direction": "right",
+        "pause_hover": false,
+        "bg": "#03e700",
+        "text_color": "#ffffff",
+        "hover_opacity": 26,
+        "padding_horizontal": 1.2,
+        "padding_vertical": 1.1
+      }
+    },
+    "ss_scrolling_features_RCn6V3": {
+      "type": "ss-scrolling-features",
+      "blocks": {
+        "item_PUjhfN": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• HACEMOS 1 AÑO!",
+            "icon_color": "#ffffff",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_hH4r3U": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• ESTAMOS DE ANIVERSARIO!",
+            "icon_color": "#ffffff",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_hHhnkg": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "•  15% OFF EN TODA LA PÁGINA!",
+            "icon_color": "#000000",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_MaE4k3": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• HASTA EL DIA 21",
+            "icon_color": "#000000",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "item_PUjhfN",
+        "item_hH4r3U",
+        "item_hHhnkg",
+        "item_MaE4k3"
+      ],
+      "disabled": true,
+      "settings": {
+        "scroll_on_desktop": false,
+        "scroll_speed": 100,
+        "scroll_speed_mobile": 100,
+        "scroll_direction": "right",
+        "scroll_pause": true,
+        "items_gap": 6,
+        "items_gap_mobile": 6,
+        "border_bottom": false,
+        "border_top": false,
+        "text_custom": true,
+        "text_font": "poppins_i7",
+        "text_size": 16,
+        "text_size_mobile": 16,
+        "text_height": 50,
+        "icon_size": 19,
+        "icon_margin": 8,
+        "background-color": "#eb5c27",
+        "border_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "announcement_bar_position": "sticky",
+        "announcement_text_size": "normal",
+        "autoplay": true,
+        "cycle_speed": 9,
+        "background": "#eb5c27",
+        "text_color": "#ffffff",
+        "button_background": "#ffffff",
+        "button_text_color": "#000434"
+      }
+    },
+    "ss_scrolling_features_88UH3x": {
+      "type": "ss-scrolling-features",
+      "blocks": {
+        "item_P96wB8": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• A UN CLICK DEL MILAGRO",
+            "icon_color": "#ffffff",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_nrDHwb": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• ENVÍOS Y DEVOLUCIONES GRATUITAS*",
+            "icon_color": "#ffffff",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_tpK9jG": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• ¡ELEGIDOS PRODUCTO DEL AÑO 2025!",
+            "icon_color": "#000000",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_MtwepX": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• ATENCIÓN PERSONALIZADA",
+            "icon_color": "#000000",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_GMNKmQ": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• PAGO SEGURO",
+            "icon_color": "#000000",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_rdkxRj": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• CAE EN LA TENTACION",
+            "icon_color": "#af272f",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "item_P96wB8",
+        "item_nrDHwb",
+        "item_tpK9jG",
+        "item_MtwepX",
+        "item_GMNKmQ",
+        "item_rdkxRj"
+      ],
+      "settings": {
+        "scroll_on_desktop": true,
+        "scroll_speed": 100,
+        "scroll_speed_mobile": 100,
+        "scroll_direction": "left",
+        "scroll_pause": true,
+        "items_gap": 6,
+        "items_gap_mobile": 6,
+        "border_bottom": false,
+        "border_top": false,
+        "text_custom": true,
+        "text_font": "poppins_i7",
+        "text_size": 16,
+        "text_size_mobile": 16,
+        "text_height": 50,
+        "icon_size": 19,
+        "icon_margin": 8,
+        "background-color": "#406ef5",
+        "border_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [],
+      "settings": {
+        "enable_sticky_header": false,
+        "logo": "shopify://shop_images/LOGOTIPO_AZUL_3x_bf747935-15ce-4190-8975-9bbcece481b6.png",
+        "logo_max_width": 170,
+        "mobile_logo_max_width": 120,
+        "navigation_menu": "main-menu",
+        "sidebar_navigation_menu": "main-menu",
+        "header_layout": "drawer",
+        "show_icons": true,
+        "reduce_desktop_padding": true,
+        "show_locale_selector": true,
+        "show_country_selector": true,
+        "enable_transparent_header": false,
+        "transparent_header_text_color": "#ffffff",
+        "search_menu": "main-menu"
+      }
+    },
+    "breadcrumb_Wt7rih": {
+      "type": "breadcrumb",
+      "custom_css": [
+        ".breadcrumbs {overflow-x: auto; white-space: nowrap; font-size: 12px; /* Ajusta el tamaño de la fuente */ padding: 5px 0; /* Reduce el padding vertical */ margin-bottom: 5px; /* Reduce el margen inferior */ margin-left: 10 px;}"
+      ],
+      "settings": {
+        "breadcrumbs_home_icon_bool": true,
+        "breadcrumb_delimeter": "angle_right",
+        "breadcrumb_bg_color": "#ffffff",
+        "breadcrumb_text_color": "#000000",
+        "breadcrumb_accent_color_bool": true,
+        "breadcrumb_accent_color": "#eb5c27",
+        "enable_product_page": false,
+        "enable_collection_page": false,
+        "enable_complete_site": true
+      }
+    }
+  },
+  "order": [
+    "ss_scrolling_announcement_bar_dxyUUN",
+    "ss_scrolling_features_RCn6V3",
+    "announcement-bar",
+    "ss_scrolling_features_88UH3x",
+    "header",
+    "breadcrumb_Wt7rih"
+  ]
+}
