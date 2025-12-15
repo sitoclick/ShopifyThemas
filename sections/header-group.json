@@ -20,10 +20,16 @@
             "text": "A TIEMPO PARA NAVIDAD"
           }
         },
+        "text_V8yHxB": {
+          "type": "text",
+          "settings": {
+            "text": "Free Shipping"
+          }
+        },
         "text_EnieXX": {
           "type": "text",
           "settings": {
-            "text": "Palabra de Sor Ibérica."
+            "text": "PALABRA DE SOR IBÉRICA"
           }
         },
         "text_ydxfga": {
@@ -35,6 +41,7 @@
       },
       "block_order": [
         "text_JAKQXP",
+        "text_V8yHxB",
         "text_EnieXX",
         "text_ydxfga"
       ],
@@ -47,7 +54,7 @@
         "animation_duration": 200,
         "animation_direction": "right",
         "pause_hover": false,
-        "bg": "#03e700",
+        "bg": "#af272f",
         "text_color": "#ffffff",
         "hover_opacity": 26,
         "padding_horizontal": 1.2,
