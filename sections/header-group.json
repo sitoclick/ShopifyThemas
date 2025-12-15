@@ -23,13 +23,7 @@
         "text_V8yHxB": {
           "type": "text",
           "settings": {
-            "text": "Free Shipping"
-          }
-        },
-        "text_EnieXX": {
-          "type": "text",
-          "settings": {
-            "text": "PALABRA DE SOR IBÉRICA"
+            "text": "PECA ANTES DE NAVIDAD"
           }
         },
         "text_ydxfga": {
@@ -37,13 +31,19 @@
           "settings": {
             "text": "A TIEMPO PARA NAVIDAD"
           }
+        },
+        "text_EnieXX": {
+          "type": "text",
+          "settings": {
+            "text": "PALABRA DE SOR IBÉRICA"
+          }
         }
       },
       "block_order": [
         "text_JAKQXP",
         "text_V8yHxB",
-        "text_EnieXX",
-        "text_ydxfga"
+        "text_ydxfga",
+        "text_EnieXX"
       ],
       "name": "SS - Scrolling Announcement Bar",
       "settings": {
