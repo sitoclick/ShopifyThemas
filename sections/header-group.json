@@ -17,7 +17,7 @@
         "text_JAKQXP": {
           "type": "text",
           "settings": {
-            "text": "A TIEMPO PARA AÑO NUEVO"
+            "text": "A TIEMPO PARA REYES"
           }
         },
         "text_V8yHxB": {
@@ -45,6 +45,7 @@
         "text_ydxfga",
         "text_EnieXX"
       ],
+      "disabled": true,
       "name": "SS - Scrolling Announcement Bar",
       "settings": {
         "insert_css_class_target": ".header, .pageheader, .section-header, #announcement, .toolbar, .header__wrapper, .onboarding-header",
