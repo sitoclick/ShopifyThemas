@@ -15241,3 +15241,56 @@ shopify-payment-terms {
   .product-sticky-form[hidden] {
     transform: translateY(-100%); /* cuando se oculte, que suba hacia arriba */
   }
+
+
+
+  /* --- FIX: MW Bundle / Addons Cantidad Móvil --- */
+@media screen and (max-width: 768px) {
+  /* 1. Forzar visibilidad del contenedor de cantidad en la sección addons */
+  #shopify-section-ss-product-addons-3 .product-form__item--quantity,
+  #shopify-section-ss-product-addons-3 .product-form__input.product-form__quantity,
+  .mw-bundle-quantity-selector {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 10px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* 2. Asegurar que los botones + y - se vean y sean grandes (dedo friendly) */
+  #shopify-section-ss-product-addons-3 button.quantity__button,
+  #shopify-section-ss-product-addons-3 .js-qty__adjust,
+  .mw-quantity-btn {
+    display: flex !important;
+    visibility: visible !important;
+    width: 44px !important; /* Tamaño mínimo recomendado UX móvil */
+    height: 44px !important;
+    background: #f4f4f4 !important; /* Fondo gris claro para contraste */
+    color: #000 !important;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e1e1e1 !important;
+    z-index: 10 !important;
+  }
+
+  /* 3. Ajustar el input del número para que no descuadre */
+  #shopify-section-ss-product-addons-3 input[type="number"],
+  #shopify-section-ss-product-addons-3 .quantity__input,
+  .mw-quantity-input {
+    width: 50px !important;
+    min-width: 50px !important;
+    text-align: center !important;
+    margin: 0 5px !important;
+    border: 1px solid #e1e1e1 !important;
+    height: 44px !important;
+  }
+
+  /* 4. Evitar que el contenedor padre corte el contenido */
+  #shopify-section-ss-product-addons-3 .product-addon-item,
+  .mw-bundle-item {
+    overflow: visible !important;
+  }
+}
