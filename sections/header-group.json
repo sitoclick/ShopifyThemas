@@ -235,6 +235,7 @@
     },
     "header": {
       "type": "header",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "enable_sticky_header": false,
