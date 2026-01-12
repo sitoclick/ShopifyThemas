@@ -47,7 +47,7 @@
     "product_add_to_cart": false,
     "show_product_rating": true,
     "discount_mode": "percentage",
-    "product_color_display": "hide",
+    "product_color_display": "swatch",
     "product_image_size": "tall",
     "cart_type": "drawer",
     "cart_icon": "shopping_cart",
