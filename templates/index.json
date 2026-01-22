@@ -229,7 +229,7 @@
           "settings": {
             "bubble_img": "shopify://shop_images/JAMON_PALETA.svg",
             "bubble_text": "Jamones y Paletas",
-            "bubble_link": "shopify://collections/jamon-iberico"
+            "bubble_link": "shopify://collections/jamon"
           }
         },
         "image_jDK9rb": {
@@ -547,7 +547,7 @@
             "typewriter_text": "el Jamón,la Paleta, lo Ibérico",
             "text": "",
             "button": "Descúbrelos",
-            "url": "shopify://collections/jamon-iberico",
+            "url": "shopify://collections/jamon",
             "stars_count": 0,
             "review": ""
           }
