@@ -389,29 +389,29 @@
         "disabled": false,
         "settings": {}
       },
-      "18408366429334172745": {
-        "type": "shopify://apps/pop-convert-pop-ups-banners/blocks/app-embed/ed587aec-4936-43ae-a1b3-1c9e0d08f185",
-        "disabled": false,
-        "settings": {}
-      },
-      "409951731435663064": {
-        "type": "shopify://apps/dakaas-store-effects/blocks/app-embed/bf1c5ad9-e345-428b-a2e7-cfde42309a53",
-        "disabled": false,
-        "settings": {}
-      },
       "4811963503060929178": {
         "type": "shopify://apps/redeemly/blocks/referral/fe55f451-e553-4131-a946-354ff46f9d85",
         "disabled": false,
         "settings": {}
       },
-      "6146500278089136509": {
-        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
-        "disabled": false,
-        "settings": {}
-      },
       "17868308261682785792": {
         "type": "shopify://apps/armex/blocks/armex-extension/7fd274f7-e6a1-4512-8228-f11c90d2ef69",
-        "disabled": false,
+        "disabled": true,
+        "settings": {}
+      },
+      "6146500278089136509": {
+        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
+        "disabled": true,
+        "settings": {}
+      },
+      "409951731435663064": {
+        "type": "shopify://apps/dakaas-store-effects/blocks/app-embed/bf1c5ad9-e345-428b-a2e7-cfde42309a53",
+        "disabled": true,
+        "settings": {}
+      },
+      "18408366429334172745": {
+        "type": "shopify://apps/pop-convert-pop-ups-banners/blocks/app-embed/ed587aec-4936-43ae-a1b3-1c9e0d08f185",
+        "disabled": true,
         "settings": {}
       }
     }
