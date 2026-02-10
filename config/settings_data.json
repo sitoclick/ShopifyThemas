@@ -288,16 +288,6 @@
         "disabled": false,
         "settings": {}
       },
-      "17868308261682785792": {
-        "type": "shopify://apps/armex/blocks/armex-extension/7fd274f7-e6a1-4512-8228-f11c90d2ef69",
-        "disabled": true,
-        "settings": {}
-      },
-      "6146500278089136509": {
-        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
-        "disabled": true,
-        "settings": {}
-      },
       "409951731435663064": {
         "type": "shopify://apps/dakaas-store-effects/blocks/app-embed/bf1c5ad9-e345-428b-a2e7-cfde42309a53",
         "disabled": true,
@@ -445,6 +435,16 @@
       },
       "1635590040bc3a9e35": {
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "6146500278089136509": {
+        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
+        "disabled": false,
+        "settings": {}
+      },
+      "17868308261682785792": {
+        "type": "shopify://apps/armex/blocks/armex-extension/7fd274f7-e6a1-4512-8228-f11c90d2ef69",
         "disabled": false,
         "settings": {}
       }
