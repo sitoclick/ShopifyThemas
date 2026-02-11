@@ -433,11 +433,6 @@
         "disabled": false,
         "settings": {}
       },
-      "6146500278089136509": {
-        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
-        "disabled": false,
-        "settings": {}
-      },
       "17868308261682785792": {
         "type": "shopify://apps/armex/blocks/armex-extension/7fd274f7-e6a1-4512-8228-f11c90d2ef69",
         "disabled": false,
@@ -466,6 +461,11 @@
       "5163884144194077907": {
         "type": "shopify://apps/sami-b2b-lock/blocks/app-embed/8d86a3b4-97b3-44ab-adc1-ec01c5a89da9",
         "disabled": false,
+        "settings": {}
+      },
+      "6146500278089136509": {
+        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
+        "disabled": true,
         "settings": {}
       }
     }
