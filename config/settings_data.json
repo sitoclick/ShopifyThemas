@@ -461,7 +461,7 @@
       },
       "11921513738595253157": {
         "type": "shopify://apps/navi-menu-builder/blocks/app-embed/723b0c57-cf35-4406-ba93-95040b25b37c",
-        "disabled": true,
+        "disabled": false,
         "settings": {
           "optimize_beclicked_CSSSelector": "button.header__icon-wrapper",
           "optimize_replacement_CSSSelector": "",
@@ -638,7 +638,8 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".ai-agent-chat-avatar-container {bottom: 50px !important; z-index: 9999 !important;}"
+      ".ai-agent-chat-avatar-container {bottom: 50px !important; z-index: 9999 !important;}",
+      ".product-item {opacity: 1 !important;}"
     ]
   }
 }
