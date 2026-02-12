@@ -454,11 +454,6 @@
         "disabled": false,
         "settings": {}
       },
-      "6146500278089136509": {
-        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
-        "disabled": false,
-        "settings": {}
-      },
       "11921513738595253157": {
         "type": "shopify://apps/navi-menu-builder/blocks/app-embed/723b0c57-cf35-4406-ba93-95040b25b37c",
         "disabled": false,
@@ -467,6 +462,11 @@
           "optimize_replacement_CSSSelector": "",
           "enable_cdn_fallback": false
         }
+      },
+      "6146500278089136509": {
+        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
+        "disabled": true,
+        "settings": {}
       }
     }
   },
