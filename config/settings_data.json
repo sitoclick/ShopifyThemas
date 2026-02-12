@@ -463,7 +463,7 @@
         "type": "shopify://apps/navi-menu-builder/blocks/app-embed/723b0c57-cf35-4406-ba93-95040b25b37c",
         "disabled": false,
         "settings": {
-          "optimize_beclicked_CSSSelector": "button.header__icon-wrapper",
+          "optimize_beclicked_CSSSelector": "nav.header__inline-navigation > div.header__icon-list",
           "optimize_replacement_CSSSelector": "",
           "enable_cdn_fallback": false
         }
