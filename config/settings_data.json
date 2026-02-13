@@ -639,7 +639,7 @@
   "platform_customizations": {
     "custom_css": [
       ".ai-agent-chat-avatar-container {bottom: 50px !important; z-index: 9999 !important;}",
-      ".product-item {opacity: 1 !important;}"
+      ".product-item, [reveal] {opacity: 1 !important;}"
     ]
   }
 }
