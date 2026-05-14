@@ -28,6 +28,7 @@
     },
     "rich_text_FYjTwe": {
       "type": "rich-text",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "subheading": "",
@@ -61,6 +62,7 @@
       "block_order": [
         "image_fKtrnL"
       ],
+      "disabled": true,
       "settings": {
         "slider_width": 100,
         "slider_gap": 14,
