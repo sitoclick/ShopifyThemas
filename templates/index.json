@@ -20,7 +20,7 @@
             "typewriter_text": "",
             "text": "<p><strong>Algunas veces un pecado es la entrada al paraíso</strong></p>",
             "button": "",
-            "url": "",
+            "url": "https://www.monjamonymas.com/apps/box-builder/sobres-sueltos",
             "stars_count": 5,
             "review": "<p>Palabra de Fiel</p>"
           }
@@ -208,6 +208,14 @@
     "ss_circle_menu_AxNY8x": {
       "type": "ss-circle-menu",
       "blocks": {
+        "image_qQDjnU": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/loncheado.svg",
+            "bubble_text": "Loncheado",
+            "bubble_link": "https://www.monjamonymas.com/apps/box-builder/sobres-sueltos"
+          }
+        },
         "image_KHN43F": {
           "type": "Image",
           "settings": {
@@ -282,6 +290,7 @@
         }
       },
       "block_order": [
+        "image_qQDjnU",
         "image_KHN43F",
         "image_QeMjFa",
         "image_acgP76",
