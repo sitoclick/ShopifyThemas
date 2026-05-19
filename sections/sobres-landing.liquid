@@ -1,0 +1,197 @@
+{% comment %}
+  SOBRES SUELTOS · Landing tipo Glovo para Monjamón y Más
+  Asignar a Page con template = page.sobres
+  - Reutiliza el header/footer del tema
+  - CSS + JS viven en assets/sobres-landing.css y assets/sobres-landing.js
+  - Iconos SVG en assets/sobres-*.svg
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+{{ 'sobres-landing.css' | asset_url | stylesheet_tag }}
+
+<div class="sobres-app">
+  <div class="app">
+
+    <div class="announce">A UN CLICK DEL MILAGRO · ENVÍO EN 24-48H<svg class="announce__waves" viewBox="0 0 480 12" preserveAspectRatio="none" aria-hidden="true"><path d="M0,0 Q24,12 48,0 T96,0 T144,0 T192,0 T240,0 T288,0 T336,0 T384,0 T432,0 T480,0 L480,12 L0,12 Z" fill="currentColor"/></svg></div>
+
+    <header class="topbar">
+      <div class="topbar__brand">
+        <span class="brand__seal" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 3l1.8 4 4.2.4-3.2 2.8 1 4.2L16 12.2l-3.8 2.2 1-4.2L10 7.4 14.2 7z"/>
+            <path d="M8 18c0 6 3.6 11 8 11s8-5 8-11"/>
+          </svg>
+        </span>
+        <div class="brand__txt">
+          <span class="brand__name">{{ section.settings.brand_name | default: 'Monjamón y Más' }}</span>
+          <span class="brand__sub">{{ section.settings.brand_sub | default: 'Categorías del Convento' }}</span>
+        </div>
+      </div>
+      <button class="iconbtn" aria-label="Buscar" id="searchToggle">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </header>
+
+    <div class="search" id="searchWrap" hidden>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="search__icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="searchInput" type="search" placeholder="Buscar jamón, lomo, salchichón..." autocomplete="off" />
+      <button class="search__clear" id="searchClear" aria-label="Limpiar" hidden>×</button>
+    </div>
+
+    <nav class="chips" id="chips" aria-label="Categorías">
+      <button class="chip is-active" data-cat="all">Todos</button>
+      <button class="chip" data-cat="jamon">Jamón</button>
+      <button class="chip" data-cat="paleta">Paleta</button>
+      <button class="chip" data-cat="embutido">Embutidos</button>
+    </nav>
+
+    <div class="filterbar">
+      <button class="filterbar__btn" id="filterToggle">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+        <span>Filtros</span>
+        <span class="filterbar__count" id="filterCount" hidden>0</span>
+        <svg class="filterbar__chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+    <div class="fpanel" id="filterPanel" hidden></div>
+    <div class="fpanel-foot" id="filterFoot" hidden>
+      <button class="btn btn--ghost" id="filterClear">Limpiar</button>
+      <button class="btn btn--primary" id="filterApply">Aplicar</button>
+    </div>
+
+    <main class="main">
+      <section class="section">
+        <header class="section__head">
+          <div>
+            <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'Caja de loncheados' }}</p>
+            <h2 class="section__title">{{ section.settings.title | default: 'Cae en la tentación' }}</h2>
+          </div>
+          <span class="section__sub" id="resultCount">— productos</span>
+        </header>
+        <div class="list" id="list"></div>
+        <div class="empty" id="emptyState" hidden>
+          <p class="empty__txt">No hay productos con esos filtros</p>
+          <button class="btn btn--ghost" id="emptyReset">Limpiar todo</button>
+        </div>
+      </section>
+
+      <p class="footnote">ENVASADO AL VACÍO · ORIGEN SALAMANCA · PAGO SEGURO</p>
+      <div class="spacer-cta"></div>
+    </main>
+
+    <aside class="cart-cta" id="cartCTA" hidden>
+      <div class="cart-cta__count" id="cartCount">0</div>
+      <div class="cart-cta__txt">
+        <strong>Ir al carrito</strong>
+        <span id="cartLabel">0 sobres · 0,00 €</span>
+      </div>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </aside>
+
+  </div>
+
+  <div class="sheet" id="sheet" hidden aria-hidden="true">
+    <div class="sheet__backdrop" data-close></div>
+    <div class="sheet__panel" role="dialog" aria-modal="true">
+      <button class="sheet__close" data-close aria-label="Cerrar">×</button>
+      <div class="sheet__body" id="sheetBody"></div>
+      <footer class="sheet__foot">
+        <div class="qty" id="sheetQty">
+          <button class="qty__btn" data-q="-1" aria-label="Restar">−</button>
+          <span class="qty__val">1</span>
+          <button class="qty__btn" data-q="+1" aria-label="Sumar">+</button>
+        </div>
+        <button class="btn btn--primary btn--block" id="sheetAdd">
+          <span>Añadir</span>
+          <span id="sheetTotal" class="btn__total">0,00 €</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script>
+  // URLs de assets resueltas por Liquid (Shopify CDN)
+  window.SOBRES_ASSETS = {
+    'jamon-bellota'  : "{{ 'sobres-jamon-bellota.svg'   | asset_url }}",
+    'paleta'         : "{{ 'sobres-paleta.svg'          | asset_url }}",
+    'pasion'         : "{{ 'sobres-pasion.svg'          | asset_url }}",
+    'gran-reserva'   : "{{ 'sobres-gran-reserva.svg'    | asset_url }}",
+    'lomonasterio'   : "{{ 'sobres-lomonasterio.svg'    | asset_url }}",
+    'salchichon'     : "{{ 'sobres-salchichon.svg'      | asset_url }}",
+    'esencial'       : "{{ 'sobres-esencial.svg'        | asset_url }}",
+    'gourmet'        : "{{ 'sobres-gourmet.svg'         | asset_url }}",
+    'premium'        : "{{ 'sobres-premium.svg'         | asset_url }}",
+    'mas-vendido'    : "{{ 'sobres-mas-vendido.svg'     | asset_url }}",
+    'novedad'        : "{{ 'sobres-novedad.svg'         | asset_url }}",
+    'oferta'         : "{{ 'sobres-oferta.svg'          | asset_url }}",
+    'top'            : "{{ 'sobres-top.svg'             | asset_url }}",
+    'regalo'         : "{{ 'sobres-regalo.svg'          | asset_url }}",
+    'meses-30'       : "{{ 'sobres-meses-30.svg'        | asset_url }}",
+    'meses-36'       : "{{ 'sobres-meses-36.svg'        | asset_url }}",
+    'meses-42'       : "{{ 'sobres-meses-42.svg'        | asset_url }}",
+    'meses-50'       : "{{ 'sobres-meses-50.svg'        | asset_url }}",
+    'alim-bellota'   : "{{ 'sobres-alim-bellota.svg'    | asset_url }}",
+    'alim-pienso'    : "{{ 'sobres-alim-pienso.svg'     | asset_url }}",
+    'corte-cuchillo' : "{{ 'sobres-corte-cuchillo.svg'  | asset_url }}",
+    'corte-maquina'  : "{{ 'sobres-corte-maquina.svg'   | asset_url }}",
+    'vela'           : "{{ 'sobres-vela.svg'            | asset_url }}"
+  };
+
+  // Toggle del buscador (igual que en standalone)
+  document.getElementById('searchToggle').addEventListener('click', () => {
+    const w = document.getElementById('searchWrap');
+    w.hidden = !w.hidden;
+    if (!w.hidden) document.getElementById('searchInput').focus();
+  });
+
+  // Mostrar el pie del panel de filtros sincronizado
+  (function() {
+    const fp = document.getElementById('filterPanel');
+    const ff = document.getElementById('filterFoot');
+    new MutationObserver(() => { ff.hidden = fp.hidden; })
+      .observe(fp, { attributes: true, attributeFilter: ['hidden'] });
+  })();
+</script>
+{{ 'sobres-landing.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Sobres Sueltos",
+  "tag": "section",
+  "class": "section-sobres-sueltos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Nombre de marca",
+      "default": "Monjamón y Más"
+    },
+    {
+      "type": "text",
+      "id": "brand_sub",
+      "label": "Subtítulo",
+      "default": "Categorías del Convento"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Caja de loncheados"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título principal",
+      "default": "Cae en la tentación"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sobres Sueltos"
+    }
+  ]
+}
+{% endschema %}
