@@ -501,13 +501,21 @@ function openSheet(id) {
       </div>`;
 
   refs.sheetBody.innerHTML = `
-    <div class="sheet__icon"><img src="${p.icon}" alt="${p.name}" /></div>
+    <div class="sheet__gallery" data-gallery>
+      <img src="${p.icon}" alt="${p.name}" data-gimg />
+    </div>
     ${flag}
     <h2 class="sheet__name">${p.name}</h2>
     <p class="sheet__line">${p.sub}</p>
     <p class="sheet__meta sheet__meta--top"><span>${p.weight}</span><span class="meta__sep">·</span><span>☘ Natural · ♻ Sostenible · ★ Cashback</span></p>
-    <p class="sheet__desc">${p.desc}</p>
     <ul class="sheet__pros">${pros}</ul>
+    <div class="sheet__desc-wrap" data-desc-wrap>
+      <p class="sheet__desc">${p.desc}</p>
+      <button class="sheet__more" data-desc-toggle type="button">
+        <span class="more__label">Ver más</span>
+        <span class="more__icon">▾</span>
+      </button>
+    </div>
     ${vSection}
     <div class="sheet__specs">
       <div class="spec"><img src="${CALIDAD[p.calidad].icon}" alt=""><div><small>Calidad</small><strong>${CALIDAD[p.calidad].label}</strong></div></div>
@@ -519,6 +527,56 @@ function openSheet(id) {
   refs.sheet.hidden = false;
   document.body.style.overflow = 'hidden';
   updateSheetTotal();
+  // Carga galería de fotos reales en background
+  loadGallery(p.shopifyHandle);
+}
+
+// ---------- Galería de fotos reales ----------
+const galleryCache = new Map();
+let galleryState = { images: [], index: 0 };
+async function loadGallery(handle) {
+  if (!handle) return;
+  try {
+    let images = galleryCache.get(handle);
+    if (!images) {
+      const res = await fetch(`/products/${handle}.js`);
+      if (!res.ok) return;
+      const data = await res.json();
+      images = (data.images || []).map(src => src.startsWith('//') ? 'https:' + src : src);
+      galleryCache.set(handle, images);
+    }
+    if (!images.length) return;
+    galleryState = { images, index: 0 };
+    renderGallery();
+  } catch (e) {
+    // sin internet o CORS: dejar SVG fallback
+  }
+}
+function renderGallery() {
+  const wrap = document.querySelector('[data-gallery]');
+  if (!wrap || !galleryState.images.length) return;
+  const imgs = galleryState.images;
+  const i = galleryState.index;
+  wrap.innerHTML = `
+    <img src="${imgs[i]}" alt="" data-gimg />
+    ${imgs.length > 1 ? `
+      <button class="gallery__nav gallery__nav--prev" data-gnav="-1" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="gallery__nav gallery__nav--next" data-gnav="1" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="gallery__dots">
+        ${imgs.map((_, idx) => `<span class="gallery__dot ${idx === i ? 'is-active' : ''}"></span>`).join('')}
+      </div>
+    ` : ''}
+  `;
+}
+function navGallery(delta) {
+  if (!galleryState.images.length) return;
+  const n = galleryState.images.length;
+  galleryState.index = (galleryState.index + delta + n) % n;
+  renderGallery();
 }
 function closeSheet() {
   refs.sheet.hidden = true;
@@ -640,6 +698,20 @@ function wire() {
       state.sheetVariant = vBtn.dataset.v;
       $$('[data-sheet-vtoggle] .vbtn', refs.sheet).forEach(b => b.classList.toggle('is-active', b === vBtn));
       updateSheetTotal();
+    }
+    // Galería: prev/next
+    const gNav = e.target.closest('[data-gnav]');
+    if (gNav) {
+      e.stopPropagation();
+      navGallery(parseInt(gNav.dataset.gnav, 10));
+    }
+    // Descripción: ver más / ver menos
+    const descToggle = e.target.closest('[data-desc-toggle]');
+    if (descToggle) {
+      const wrap = descToggle.closest('[data-desc-wrap]');
+      const expanded = wrap.classList.toggle('is-expanded');
+      const label = descToggle.querySelector('.more__label');
+      if (label) label.textContent = expanded ? 'Ver menos' : 'Ver más';
     }
   });
   refs.sheetQty.addEventListener('click', (e) => {
