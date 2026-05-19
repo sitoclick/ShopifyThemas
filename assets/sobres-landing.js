@@ -281,7 +281,7 @@ function rowHTML(p) {
   const flag = p.flag && FLAG[p.flag]
     ? `<span class="row__flag"><img src="${FLAG[p.flag].icon}" alt=""><span>${FLAG[p.flag].label}</span></span>`
     : '';
-  const calidadTag = `<span class="tag tag--calidad"><img src="${CALIDAD[p.calidad].icon}" alt=""> ${CALIDAD[p.calidad].label}</span>`;
+  const calidadTag = `<span class="tag tag--calidad tag--calidad--${p.calidad}"><img src="${CALIDAD[p.calidad].icon}" alt=""> ${CALIDAD[p.calidad].label}</span>`;
   const alimTag    = `<span class="tag"><img src="${ALIM[p.alimentacion].icon}" alt=""> ${ALIM[p.alimentacion].label}</span>`;
   const mesesTag   = `<span class="tag"><img src="${MESES[p.meses].icon}" alt=""> ${MESES[p.meses].label}</span>`;
   const saborTag   = `<span class="tag tag--sabor">${velasHTML(SABOR[p.sabor].velas)} <span>${SABOR[p.sabor].label}</span></span>`;
