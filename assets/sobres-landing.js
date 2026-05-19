@@ -643,13 +643,7 @@ function wire() {
 
   refs.searchInput.addEventListener('input', (e) => {
     state.q = e.target.value;
-    refs.searchClear.hidden = !state.q;
     render();
-  });
-  refs.searchClear.addEventListener('click', () => {
-    refs.searchInput.value = ''; state.q = '';
-    refs.searchClear.hidden = true; render();
-    refs.searchInput.focus();
   });
 
   refs.list.addEventListener('click', (e) => {

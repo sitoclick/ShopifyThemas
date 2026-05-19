@@ -1,47 +1,47 @@
 /* =====================================================
    LONCHEADOS · Monjamón y Más
-   TODO scopado dentro de .sobres-app para NO chocar con el tema.
-   Keyframes prefijados con sb- para evitar colisiones.
+   Paleta azul Monj: fondo azul, cards azules con borde naranja
+   Todo scopado dentro de .sobres-app + keyframes prefijados con sb-
    ===================================================== */
 
 .sobres-app {
-  /* Paleta oficial */
   --azul: #406ef5;
+  --azul-dark: #2d52d3;
+  --azul-soft: #5781f7;
   --naranja: #eb5c27;
   --naranja-dark: #c44a1d;
   --naranja-soft: #FDE7DC;
   --blanco: #fffbf8;
   --negro: #000000;
-  --ink: #000000;
+  --ink: #000000;           /* texto sobre fondos blancos (sheet) */
   --ink-2: #2a2a2a;
   --ink-3: #767676;
   --line: #ecebe8;
-  --bg: #fffbf8;
-  --bg-soft: #f7f3ee;
-  --bg-warm: #fcf6ef;
   --green: #00ab2d;
   --gold: #c9a86a;
 
-  --brand: var(--naranja);
-  --brand-dark: var(--naranja-dark);
-  --brand-soft: var(--naranja-soft);
-  --accent: var(--azul);
-  --card: #ffffff;
+  --bg: var(--azul);        /* fondo global azul */
+  --card: rgba(255,255,255,0.07); /* cards: azul translúcido sobre fondo azul */
+  --on-bg: #ffffff;         /* texto blanco sobre azul */
+  --on-bg-2: rgba(255,255,255,0.78);
+  --on-bg-3: rgba(255,255,255,0.55);
+  --line-on-bg: rgba(255,255,255,0.18);
 
   --radius: 14px;
   --radius-lg: 18px;
   --radius-pill: 999px;
-  --shadow-sm: 0 1px 4px rgba(20, 20, 20, 0.06);
-  --shadow-md: 0 8px 24px rgba(20, 20, 20, 0.09);
-  --shadow-lg: 0 16px 40px rgba(20, 20, 20, 0.14);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.20);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.25);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 
   --font-body: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --font-display: 'Maragsa Display', 'Bebas Neue', 'Poppins', sans-serif;
 
+  background: var(--bg);
+  color: var(--on-bg);
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--ink);
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,6 +64,7 @@
   font-family: var(--font-body);
   font-weight: 700;
   letter-spacing: -0.01em;
+  color: var(--on-bg);
 }
 .sobres-app [hidden] { display: none !important; }
 .sobres-app img { display: block; max-width: 100%; }
@@ -73,41 +74,14 @@
   margin: 0 auto;
   background: var(--bg);
   position: relative;
+  padding-bottom: 20px;
 }
 
-/* Search */
-.sobres-app .search-wrap-outer {
-  background: #fff;
-  padding: 14px 14px 8px;
-  border-bottom: 1px solid var(--line);
-}
-.sobres-app .search {
-  display: flex; align-items: center;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  padding: 0 12px 0 36px;
-  height: 42px; position: relative;
-}
-.sobres-app .search__icon { position: absolute; left: 14px; color: var(--ink-3); }
-.sobres-app .search input {
-  flex: 1; border: 0; background: transparent; outline: none;
-  height: 100%; font-size: 14px; color: var(--ink); font-family: var(--font-body);
-}
-.sobres-app .search input::placeholder { color: var(--ink-3); }
-.sobres-app .search__clear {
-  width: 24px; height: 24px; border-radius: 50%;
-  display: grid; place-items: center;
-  background: #fff; color: var(--ink-2);
-  font-size: 18px; line-height: 1; box-shadow: var(--shadow-sm);
-}
-
-/* Chips */
+/* ---------- Chips ---------- */
 .sobres-app .chips {
   display: flex; gap: 6px; overflow-x: auto;
-  padding: 10px 14px;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
+  padding: 14px 14px 10px;
+  background: var(--bg);
   -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .sobres-app .chips::-webkit-scrollbar { display: none; }
@@ -115,32 +89,40 @@
   flex: 0 0 auto;
   padding: 8px 18px;
   background: transparent;
-  border: 1.5px solid var(--line);
+  border: 1.5px solid rgba(255,255,255,0.4);
   border-radius: var(--radius-pill);
   font-size: 12.5px; font-weight: 600;
-  color: var(--ink-2); white-space: nowrap;
+  color: var(--on-bg); white-space: nowrap;
   transition: all 0.15s ease;
 }
-.sobres-app .chip:hover { border-color: var(--ink); }
-.sobres-app .chip.is-active { background: var(--negro); border-color: var(--negro); color: var(--blanco); }
+.sobres-app .chip:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+.sobres-app .chip.is-active {
+  background: var(--naranja);
+  border-color: var(--naranja);
+  color: #fff;
+}
 
-/* Filterbar */
-.sobres-app .filterbar {
-  padding: 0 14px 10px;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
+/* ---------- Toolbar (filtros + buscador colapsable) ---------- */
+.sobres-app .toolbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px 12px;
+  background: var(--bg);
 }
 .sobres-app .filterbar__btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 16px;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
+  padding: 9px 16px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.3);
   border-radius: var(--radius-pill);
   font-size: 12.5px; font-weight: 600;
-  color: var(--ink);
+  color: var(--on-bg);
   transition: all 0.15s;
+  flex-shrink: 0;
 }
-.sobres-app .filterbar__btn.is-open { background: var(--negro); color: #fff; border-color: var(--negro); }
+.sobres-app .filterbar__btn:hover { background: rgba(255,255,255,0.2); }
+.sobres-app .filterbar__btn.is-open {
+  background: var(--naranja); color: #fff; border-color: var(--naranja);
+}
 .sobres-app .filterbar__chev { transition: transform 0.2s; }
 .sobres-app .filterbar__btn.is-open .filterbar__chev { transform: rotate(180deg); }
 .sobres-app .filterbar__count {
@@ -151,11 +133,61 @@
   font-size: 11px; font-weight: 700;
   padding: 0 7px;
 }
+.sobres-app .filterbar__btn.is-open .filterbar__count {
+  background: #fff; color: var(--naranja);
+}
 
-/* Filter panel */
+/* Search pill colapsable */
+.sobres-app .search-pill {
+  display: flex; align-items: center;
+  margin-left: auto;
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1), background 0.15s;
+}
+.sobres-app .search-pill:hover { background: rgba(255,255,255,0.2); }
+.sobres-app .search-pill.is-open {
+  width: 100%; max-width: 280px;
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(255,255,255,0.6);
+}
+.sobres-app .search-pill__toggle {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  color: var(--on-bg);
+  transition: color 0.15s;
+}
+.sobres-app .search-pill.is-open .search-pill__toggle { color: var(--azul-dark); }
+.sobres-app .search-pill input {
+  flex: 1; min-width: 0;
+  border: 0; outline: none; background: transparent;
+  height: 100%;
+  font-size: 14px; color: var(--negro);
+  padding: 0 4px;
+  opacity: 0;
+  width: 0;
+  transition: opacity 0.2s 0.05s;
+  font-family: var(--font-body);
+}
+.sobres-app .search-pill input::placeholder { color: var(--ink-3); }
+.sobres-app .search-pill.is-open input { opacity: 1; width: auto; }
+.sobres-app .search-pill__clear {
+  width: 32px; height: 32px; flex-shrink: 0;
+  display: none;
+  place-items: center;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 22px; line-height: 1;
+}
+.sobres-app .search-pill.is-open .search-pill__clear { display: grid; }
+
+/* ---------- Filter panel ---------- */
 .sobres-app .fpanel {
-  background: var(--bg-warm);
-  border-bottom: 1px solid var(--line);
+  background: rgba(0,0,0,0.18);
   padding: 16px;
   display: flex; flex-direction: column; gap: 18px;
   animation: sb-panelDown 0.22s ease;
@@ -167,25 +199,24 @@
 .sobres-app .fgroup__title {
   margin: 0 0 10px;
   font-size: 11px; font-weight: 700;
-  color: var(--negro); letter-spacing: 0.14em;
+  color: var(--on-bg); letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .sobres-app .fgroup__chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .sobres-app .fchip {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 7px 11px;
-  background: #fff;
-  border: 1.5px solid var(--line);
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.25);
   border-radius: var(--radius-pill);
   font-size: 12px; font-weight: 600;
-  color: var(--ink-2);
+  color: var(--on-bg);
   transition: all 0.15s;
   white-space: nowrap;
 }
-.sobres-app .fchip img { width: 16px; height: 16px; object-fit: contain; }
-.sobres-app .fchip:hover { border-color: var(--negro); }
+.sobres-app .fchip img { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
+.sobres-app .fchip:hover { border-color: #fff; background: rgba(255,255,255,0.2); }
 .sobres-app .fchip.is-active { background: var(--naranja); border-color: var(--naranja); color: #fff; }
-.sobres-app .fchip.is-active img { filter: brightness(0) invert(1); }
 .sobres-app .fgroup--compact .fgroup__chips {
   flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
 }
@@ -195,13 +226,12 @@
 .sobres-app .fpanel-foot {
   display: flex; gap: 10px;
   padding: 0 16px 16px;
-  background: var(--bg-warm);
-  border-bottom: 1px solid var(--line);
+  background: rgba(0,0,0,0.18);
 }
 .sobres-app .fpanel-foot .btn { flex: 1; padding: 11px 14px; font-size: 13px; }
 
-/* Section */
-.sobres-app .section { padding: 16px 14px 8px; background: var(--bg-warm); }
+/* ---------- Section ---------- */
+.sobres-app .section { padding: 16px 14px 8px; background: var(--bg); }
 .sobres-app .section__head {
   display: flex; align-items: flex-end; justify-content: space-between;
   margin: 4px 2px 14px; gap: 8px;
@@ -215,25 +245,28 @@
 .sobres-app .section__title {
   font-family: var(--font-display);
   font-size: 32px; font-weight: 700;
-  color: var(--negro); letter-spacing: 0;
+  color: var(--on-bg); letter-spacing: 0;
   line-height: 1;
 }
-.sobres-app .section__sub { font-size: 11px; color: var(--ink-3); font-weight: 500; white-space: nowrap; }
+.sobres-app .section__sub { font-size: 11px; color: var(--on-bg-3); font-weight: 500; white-space: nowrap; }
 
-/* Lista */
+/* ---------- Lista de cards (azul con borde naranja) ---------- */
 .sobres-app .list { display: flex; flex-direction: column; gap: 12px; }
 .sobres-app .row {
-  background: var(--card);
+  background: var(--azul-dark);
   border-radius: var(--radius-lg);
-  border: 1.5px solid var(--line);
+  border: 2px solid var(--naranja);
   overflow: hidden;
-  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
   animation: sb-rowIn 0.25s ease both;
   position: relative;
   padding: 14px 14px 0;
+  color: var(--on-bg);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
 }
-.sobres-app .row:hover { border-color: var(--negro); box-shadow: var(--shadow-md); }
+.sobres-app .row:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.28); }
 .sobres-app .row:active { transform: scale(0.99); }
+
 .sobres-app .row__top {
   display: grid;
   grid-template-columns: 80px 1fr;
@@ -243,20 +276,24 @@
   width: 80px; height: 96px;
   display: grid; place-items: center;
   flex-shrink: 0;
+  background: rgba(255,255,255,0.96);
+  border-radius: 12px;
+  padding: 4px;
 }
 .sobres-app .row__icon img { width: 100%; height: 100%; object-fit: contain; }
+
 .sobres-app .row__info { min-width: 0; padding-top: 2px; }
 .sobres-app .row__head { margin-bottom: 6px; }
 .sobres-app .row__name {
   font-family: var(--font-display);
   font-size: 22px; font-weight: 700;
   letter-spacing: 0.005em; line-height: 1.05;
-  color: var(--negro);
+  color: var(--on-bg);
   margin: 4px 0 4px;
 }
 .sobres-app .row__sub {
   margin: 0;
-  font-size: 12.5px; color: var(--ink-2);
+  font-size: 12.5px; color: var(--on-bg-2);
   font-weight: 500; line-height: 1.3;
 }
 .sobres-app .row__meta {
@@ -264,19 +301,20 @@
   gap: 4px 6px;
   margin: 6px 0 0;
   font-size: 10.5px;
-  color: var(--ink-3);
+  color: var(--on-bg-3);
   font-weight: 500;
   line-height: 1.3;
 }
 .sobres-app .row__meta .meta__weight {
   font-weight: 700;
-  color: var(--negro);
-  background: var(--bg-soft);
+  color: #fff;
+  background: rgba(255,255,255,0.15);
   padding: 2px 7px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255,255,255,0.25);
 }
-.sobres-app .row__meta .meta__sep { color: var(--line); }
+.sobres-app .row__meta .meta__sep { color: rgba(255,255,255,0.25); }
+
 .sobres-app .row__flag {
   display: inline-flex; align-items: center; gap: 5px;
   font-size: 10px; font-weight: 700;
@@ -296,48 +334,50 @@
 .sobres-app .tag {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 7px 11px;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
   border-radius: 10px;
   font-size: 12px; font-weight: 600;
-  color: var(--ink-2);
+  color: var(--on-bg);
   white-space: nowrap;
   overflow: hidden; text-overflow: ellipsis;
 }
-.sobres-app .tag img { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+.sobres-app .tag img { width: 18px; height: 18px; object-fit: contain; filter: brightness(0) invert(1); flex-shrink: 0; }
 .sobres-app .tag--calidad {
-  background: var(--naranja-soft);
-  border-color: rgba(235,92,39,0.3);
-  color: var(--naranja-dark);
+  background: var(--naranja);
+  border-color: var(--naranja);
+  color: #fff;
   font-weight: 700;
 }
-.sobres-app .tag--sabor { background: #fff; gap: 8px; }
+.sobres-app .tag--calidad img { filter: brightness(0) invert(1); }
+.sobres-app .tag--sabor { background: #fff; color: var(--negro); border-color: #fff; gap: 8px; }
+.sobres-app .tag--sabor img { filter: none; }
 
 /* Velas */
 .sobres-app .velas { display: inline-flex; gap: 2px; align-items: center; }
 .sobres-app .vela { width: 11px; height: 16px; object-fit: contain; color: var(--naranja); }
 .sobres-app .vela.on { opacity: 1; }
-.sobres-app .vela.off { opacity: 0.18; filter: grayscale(1); }
+.sobres-app .vela.off { opacity: 0.25; filter: grayscale(1); }
 
-/* Single buy block */
+/* Single buy */
 .sobres-app .row__single {
   display: flex;
   align-items: center;
   gap: 10px;
-  border-top: 1px dashed var(--line);
+  border-top: 1px dashed rgba(255,255,255,0.2);
   margin: 0 -14px;
   padding: 12px 14px;
 }
 .sobres-app .row__corte {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11.5px; color: var(--ink-2); font-weight: 500;
+  font-size: 11.5px; color: var(--on-bg-2); font-weight: 500;
   flex: 1;
 }
-.sobres-app .row__corte img { width: 16px; height: 16px; object-fit: contain; }
+.sobres-app .row__corte img { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
 .sobres-app .row__price {
   font-family: var(--font-display);
   font-size: 22px; font-weight: 700;
-  color: var(--negro); letter-spacing: 0.01em;
+  color: #fff; letter-spacing: 0.01em;
   line-height: 1;
 }
 
@@ -347,7 +387,7 @@
   border-radius: 50%;
   background: var(--naranja); color: #fff;
   display: grid; place-items: center;
-  box-shadow: 0 3px 8px rgba(235, 92, 39, 0.35);
+  box-shadow: 0 3px 8px rgba(235, 92, 39, 0.45);
   transition: transform 0.12s, background 0.15s;
 }
 .sobres-app .qtyc--add:hover { background: var(--naranja-dark); }
@@ -359,7 +399,7 @@
   background: var(--naranja);
   border-radius: 999px;
   padding: 3px;
-  box-shadow: 0 3px 8px rgba(235, 92, 39, 0.35);
+  box-shadow: 0 3px 8px rgba(235, 92, 39, 0.45);
 }
 .sobres-app .qtyc--count button {
   width: 30px; height: 30px;
@@ -383,28 +423,33 @@
   gap: 8px;
   margin: 0 -14px;
   padding: 12px 14px 14px;
-  border-top: 1px dashed var(--line);
+  border-top: 1px dashed rgba(255,255,255,0.2);
 }
 .sobres-app .vbtn {
   display: flex; flex-direction: column;
   align-items: stretch;
   gap: 8px;
   padding: 10px 12px;
-  background: var(--bg-soft);
-  border: 1.5px solid var(--line);
+  background: rgba(0,0,0,0.18);
+  border: 1.5px solid rgba(255,255,255,0.2);
   border-radius: 12px;
   transition: all 0.15s;
   text-align: left;
+  color: var(--on-bg);
+}
+.sobres-app .vbtn:hover:not(.is-soldout) {
+  border-color: var(--naranja);
+  background: rgba(0,0,0,0.25);
 }
 .sobres-app .vbtn__head {
   display: flex; align-items: center; gap: 6px;
   font-size: 11px;
   font-weight: 600;
-  color: var(--ink-2);
+  color: var(--on-bg-2);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.sobres-app .vbtn__head img { width: 16px; height: 16px; object-fit: contain; }
+.sobres-app .vbtn__head img { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
 .sobres-app .vbtn__label { flex: 1; }
 .sobres-app .vbtn__foot {
   display: flex; align-items: center; gap: 6px;
@@ -413,7 +458,7 @@
 .sobres-app .vbtn__foot strong {
   font-family: var(--font-display);
   font-size: 20px; font-weight: 700;
-  color: var(--negro); letter-spacing: 0.01em;
+  color: #fff; letter-spacing: 0.01em;
   line-height: 1;
   white-space: nowrap;
 }
@@ -425,14 +470,14 @@
 .sobres-app .vbtn.is-soldout { opacity: 0.5; }
 .sobres-app .vbtn__sold {
   font-size: 9px; font-weight: 700;
-  background: var(--negro); color: #fff;
+  background: #fff; color: var(--negro);
   padding: 2px 6px; border-radius: 4px;
   margin-left: auto;
 }
 .sobres-app .vbtn__disabled {
   width: 30px; height: 30px;
   border-radius: 50%;
-  background: var(--line); color: var(--ink-3);
+  background: rgba(255,255,255,0.15); color: var(--on-bg-3);
   display: grid; place-items: center;
   font-size: 18px; font-weight: 700;
 }
@@ -444,11 +489,14 @@
 }
 .sobres-app .vbtn--sheet { padding: 14px; }
 .sobres-app .vbtn--sheet.is-active {
-  background: #fff;
+  background: var(--bg-warm, #fcf6ef);
   border-color: var(--naranja);
   border-width: 2px;
+  color: var(--ink);
 }
-.sobres-app .vbtn--sheet .vbtn__foot strong { font-size: 26px; }
+.sobres-app .vbtn--sheet.is-active .vbtn__head { color: var(--ink-2); }
+.sobres-app .vbtn--sheet.is-active .vbtn__head img { filter: none; }
+.sobres-app .vbtn--sheet.is-active .vbtn__foot strong { color: var(--ink); font-size: 26px; }
 
 /* Buttons */
 .sobres-app .btn {
@@ -464,12 +512,16 @@
 .sobres-app .btn:disabled { background: var(--ink-3); cursor: not-allowed; }
 .sobres-app .btn--primary { background: var(--naranja); color: #fff; text-transform: uppercase; }
 .sobres-app .btn--primary:hover { background: var(--naranja-dark); }
-.sobres-app .btn--ghost { background: #fff; color: var(--negro); border: 1.5px solid var(--negro); }
+.sobres-app .btn--ghost { background: transparent; color: #fff; border: 1.5px solid #fff; }
+
+/* Botones del sheet (sobre blanco) */
+.sobres-app .sheet__panel .btn--ghost { color: var(--negro); border-color: var(--negro); background: #fff; }
+
 .sobres-app .btn--block { width: 100%; }
 .sobres-app .btn__total { margin-left: auto; font-weight: 800; text-transform: none; letter-spacing: 0; }
 
 /* Empty */
-.sobres-app .empty { text-align: center; padding: 30px 20px; color: var(--ink-3); }
+.sobres-app .empty { text-align: center; padding: 30px 20px; color: var(--on-bg-2); }
 .sobres-app .empty__txt { font-size: 13px; margin-bottom: 10px; }
 
 /* CTA */
@@ -483,7 +535,7 @@
   padding: 13px 18px;
   border-radius: var(--radius-pill);
   display: flex; align-items: center; gap: 12px;
-  box-shadow: 0 12px 30px rgba(235, 92, 39, 0.4);
+  box-shadow: 0 12px 30px rgba(235, 92, 39, 0.5);
   z-index: 40;
   animation: sb-cartPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -506,11 +558,11 @@
 }
 .sobres-app .cart-cta__txt span { font-size: 11px; opacity: 0.92; }
 
-/* Sheet */
+/* Sheet (mantiene fondo claro para legibilidad del detalle) */
 .sobres-app .sheet { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: flex-end; justify-content: center; }
 .sobres-app .sheet__backdrop {
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.55);
   animation: sb-fade 0.2s ease;
 }
 @keyframes sb-fade { from { opacity: 0; } to { opacity: 1; } }
@@ -518,12 +570,16 @@
   position: relative;
   width: 100%; max-width: 480px;
   background: var(--blanco);
+  color: var(--ink);
   border-radius: 24px 24px 0 0;
   padding: 18px 18px calc(18px + var(--safe-bottom));
   max-height: 92vh;
   display: flex; flex-direction: column;
   animation: sb-sheetUp 0.28s cubic-bezier(0.32, 0.72, 0, 1);
 }
+.sobres-app .sheet__panel h1,
+.sobres-app .sheet__panel h2,
+.sobres-app .sheet__panel h3 { color: var(--negro); }
 @keyframes sb-sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 .sobres-app .sheet__panel::before {
   content: ""; display: block;
@@ -535,7 +591,7 @@
   position: absolute; top: 14px; right: 14px;
   width: 36px; height: 36px;
   border-radius: 50%;
-  background: var(--bg-soft);
+  background: #f3f0eb;
   border: 1px solid var(--line);
   display: grid; place-items: center;
   color: var(--ink-2);
@@ -543,14 +599,14 @@
 }
 .sobres-app .sheet__body { flex: 1; overflow-y: auto; padding-right: 4px; }
 
-/* GALERÍA fotos reales */
+/* GALERÍA */
 .sobres-app .sheet__gallery {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   max-height: 320px;
   border-radius: 16px;
-  background: var(--bg-warm);
+  background: #fcf6ef;
   border: 1px solid var(--line);
   overflow: hidden;
   margin: 0 auto 14px;
@@ -597,6 +653,7 @@
   font-size: 28px; font-weight: 700;
   letter-spacing: 0.005em; line-height: 1;
   text-align: center;
+  color: var(--negro);
 }
 .sobres-app .sheet__line {
   margin: 6px 0 6px;
@@ -613,7 +670,7 @@
 .sobres-app .sheet__meta--top > span:first-child {
   font-weight: 700;
   color: var(--negro);
-  background: var(--bg-soft);
+  background: #f3f0eb;
   padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid var(--line);
@@ -622,14 +679,14 @@
 
 .sobres-app .sheet__pros {
   list-style: none; padding: 14px 16px; margin: 0 0 12px;
-  background: var(--bg-warm);
+  background: #fcf6ef;
   border: 1px solid var(--line);
   border-radius: 12px;
   display: flex; flex-direction: column; gap: 8px;
 }
 .sobres-app .sheet__pros li {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: 13px; color: var(--ink); font-weight: 500;
+  font-size: 13px; color: var(--negro); font-weight: 500;
 }
 .sobres-app .sheet__pros li::before {
   content: "✓";
@@ -639,7 +696,6 @@
   font-size: 10px; font-weight: 800; flex-shrink: 0; margin-top: 1px;
 }
 
-/* Descripción colapsable */
 .sobres-app .sheet__desc-wrap {
   margin: 0 0 14px;
   position: relative;
@@ -662,7 +718,7 @@
   display: inline-flex; align-items: center; gap: 4px;
   margin-top: 8px;
   padding: 6px 12px;
-  background: var(--bg-soft);
+  background: #f3f0eb;
   border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 11.5px; font-weight: 600;
@@ -683,11 +739,21 @@
 .sobres-app .vsingle--big {
   display: flex; align-items: center; gap: 10px;
   padding: 14px;
-  background: var(--bg-warm); border: 1.5px solid var(--azul);
+  background: #fcf6ef; border: 1.5px solid var(--azul);
   color: var(--azul); border-radius: 12px;
   font-size: 13.5px; font-weight: 600;
 }
 .sobres-app .vsingle--big img { width: 18px; height: 18px; }
+
+/* En el sheet, los .vbtn son sobre fondo blanco (no azul) */
+.sobres-app .sheet__panel .vbtn {
+  background: #f3f0eb;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.sobres-app .sheet__panel .vbtn__head { color: var(--ink-2); }
+.sobres-app .sheet__panel .vbtn__head img { filter: none; }
+.sobres-app .sheet__panel .vbtn__foot strong { color: var(--negro); }
 
 .sobres-app .sheet__specs {
   display: grid;
@@ -711,7 +777,7 @@
 }
 .sobres-app .spec strong {
   display: flex; align-items: center; gap: 4px;
-  font-size: 13px; color: var(--ink);
+  font-size: 13px; color: var(--negro);
   font-weight: 700; margin-top: 2px;
 }
 
@@ -722,7 +788,7 @@
 }
 .sobres-app .qty {
   display: flex; align-items: center;
-  background: var(--bg-soft);
+  background: #f3f0eb;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
   padding: 3px; flex-shrink: 0;
@@ -735,7 +801,7 @@
   box-shadow: var(--shadow-sm);
 }
 .sobres-app .qty__btn:active { transform: scale(0.92); }
-.sobres-app .qty__val { min-width: 28px; text-align: center; font-weight: 800; font-size: 14px; }
+.sobres-app .qty__val { min-width: 28px; text-align: center; font-weight: 800; font-size: 14px; color: var(--ink); }
 
 @keyframes sb-rowIn {
   from { opacity: 0; transform: translateY(4px); }
@@ -744,9 +810,7 @@
 
 /* Desktop */
 @media (min-width: 720px) {
-  .sobres-app .app {
-    max-width: 580px;
-  }
+  .sobres-app .app { max-width: 580px; }
   .sobres-app .cart-cta {
     position: fixed;
     bottom: 36px;
