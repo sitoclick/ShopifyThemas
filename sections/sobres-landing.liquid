@@ -1,5 +1,5 @@
 {% comment %}
-  SOBRES SUELTOS · Landing tipo Glovo para Monjamón y Más
+  SOBRES SUELTOS � Landing tipo Glovo para Monjam�n y M�s
   Asignar a Page con template = page.sobres
   - Reutiliza el header/footer del tema
   - CSS + JS viven en assets/sobres-landing.css y assets/sobres-landing.js
@@ -14,9 +14,9 @@
 <div class="sobres-app">
   <div class="app">
 
-    <nav class="chips" id="chips" aria-label="Categorías">
+    <nav class="chips" id="chips" aria-label="Categor�as">
       <button class="chip is-active" data-cat="all">Todos</button>
-      <button class="chip" data-cat="jamon">Jamón</button>
+      <button class="chip" data-cat="jamon">Jam�n</button>
       <button class="chip" data-cat="paleta">Paleta</button>
       <button class="chip" data-cat="embutido">Embutidos</button>
     </nav>
@@ -34,7 +34,7 @@
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         </button>
         <input id="searchInput" type="search" placeholder="Buscar..." autocomplete="off" />
-        <button class="search-pill__clear" id="searchClear" aria-label="Cerrar">×</button>
+        <button class="search-pill__clear" id="searchClear" aria-label="Cerrar">�</button>
       </div>
     </div>
     <div class="fpanel" id="filterPanel" hidden></div>
@@ -48,9 +48,9 @@
         <header class="section__head">
           <div>
             <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'Caja de loncheados' }}</p>
-            <h2 class="section__title">{{ section.settings.title | default: 'Cae en la tentación' }}</h2>
+            <h2 class="section__title">{{ section.settings.title | default: 'Cae en la tentaci�n' }}</h2>
           </div>
-          <span class="section__sub" id="resultCount">— productos</span>
+          <span class="section__sub" id="resultCount">- productos</span>
         </header>
         <div class="list" id="list"></div>
         <div class="empty" id="emptyState" hidden>
@@ -66,7 +66,7 @@
       <div class="cart-cta__count" id="cartCount">0</div>
       <div class="cart-cta__txt">
         <strong>Ir al carrito</strong>
-        <span id="cartLabel">0 sobres · 0,00 €</span>
+        <span id="cartLabel">0 sobres � 0,00 ?</span>
       </div>
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </aside>
@@ -76,17 +76,17 @@
   <div class="sheet" id="sheet" hidden aria-hidden="true">
     <div class="sheet__backdrop" data-close></div>
     <div class="sheet__panel" role="dialog" aria-modal="true">
-      <button class="sheet__close" data-close aria-label="Cerrar">×</button>
+      <button class="sheet__close" data-close aria-label="Cerrar">�</button>
       <div class="sheet__body" id="sheetBody"></div>
       <footer class="sheet__foot">
         <div class="qty" id="sheetQty">
-          <button class="qty__btn" data-q="-1" aria-label="Restar">−</button>
+          <button class="qty__btn" data-q="-1" aria-label="Restar">?</button>
           <span class="qty__val">1</span>
           <button class="qty__btn" data-q="+1" aria-label="Sumar">+</button>
         </div>
         <button class="btn btn--primary btn--block" id="sheetAdd">
-          <span>Añadir</span>
-          <span id="sheetTotal" class="btn__total">0,00 €</span>
+          <span>A�adir</span>
+          <span id="sheetTotal" class="btn__total">0,00 ?</span>
         </button>
       </footer>
     </div>
@@ -118,10 +118,12 @@
     'alim-pienso'    : "{{ 'sobres-alim-pienso.svg'     | asset_url }}",
     'corte-cuchillo' : "{{ 'sobres-corte-cuchillo.svg'  | asset_url }}",
     'corte-maquina'  : "{{ 'sobres-corte-maquina.svg'   | asset_url }}",
-    'vela'           : "{{ 'sobres-vela.svg'            | asset_url }}"
+    'vela'           : "{{ 'sobres-vela.svg'            | asset_url }}",
+    'choricielo'     : "{{ 'sobres-choricielo.svg'      | asset_url }}",
+    'coppa'          : "{{ 'sobres-coppa.svg'           | asset_url }}"
   };
 
-  // Ocultar breadcrumb y título de página del tema (fallback si :has() no soportado)
+  // Ocultar breadcrumb y t�tulo de p�gina del tema (fallback si :has() no soportado)
   (function() {
     const selectors = [
       '.breadcrumb', '.breadcrumbs', 'nav[aria-label="breadcrumb" i]',
@@ -177,13 +179,13 @@
       "type": "text",
       "id": "brand_name",
       "label": "Nombre de marca",
-      "default": "Monjamón y Más"
+      "default": "Monjam�n y M�s"
     },
     {
       "type": "text",
       "id": "brand_sub",
-      "label": "Subtítulo",
-      "default": "Categorías del Convento"
+      "label": "Subt�tulo",
+      "default": "Categor�as del Convento"
     },
     {
       "type": "text",
@@ -194,8 +196,8 @@
     {
       "type": "text",
       "id": "title",
-      "label": "Título principal",
-      "default": "Cae en la tentación"
+      "label": "T�tulo principal",
+      "default": "Cae en la tentaci�n"
     }
   ],
   "presets": [

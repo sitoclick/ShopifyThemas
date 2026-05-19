@@ -1,0 +1,39 @@
+<svg viewBox="0 0 48 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Rayos de luz -->
+  <g stroke="#eb5c27" stroke-width="2" stroke-linecap="round" opacity="0.85">
+    <line x1="24" y1="2"  x2="24"  y2="10"/>
+    <line x1="14" y1="6"  x2="17"  y2="12"/>
+    <line x1="34" y1="6"  x2="31"  y2="12"/>
+    <line x1="8"  y1="14" x2="13"  y2="16"/>
+    <line x1="40" y1="14" x2="35"  y2="16"/>
+  </g>
+  <!-- Llama -->
+  <path d="M24 10c-3 3-5 6-5 10 0 3.5 2.2 6 5 6s5-2.5 5-6c0-4-2-7-5-10z" fill="#eb5c27"/>
+  <path d="M24 14c-1.5 2-2.5 4-2.5 6 0 1.8 1.1 3 2.5 3s2.5-1.2 2.5-3c0-2-1-4-2.5-6z" fill="#ffce4d"/>
+  <!-- Mecha -->
+  <line x1="24" y1="26" x2="24" y2="30" stroke="#000" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Cuerpo de cera -->
+  <rect x="12" y="30" width="24" height="38" rx="1.5" fill="#fffbf8" stroke="#000" stroke-width="1.6"/>
+  <!-- Goteo superior -->
+  <path d="M14 33c0 4-1 5-1 7 M34 33c0 4 1 5 1 7" stroke="#000" stroke-width="1" stroke-linecap="round" opacity="0.55" fill="none"/>
+  <!-- Motas azules -->
+  <g fill="#406ef5" opacity="0.65">
+    <circle cx="18" cy="42" r="0.9"/>
+    <circle cx="22" cy="46" r="0.8"/>
+    <circle cx="28" cy="44" r="0.9"/>
+    <circle cx="30" cy="50" r="0.8"/>
+    <circle cx="20" cy="54" r="0.8"/>
+    <circle cx="26" cy="58" r="0.9"/>
+    <circle cx="16" cy="60" r="0.7"/>
+    <circle cx="32" cy="62" r="0.7"/>
+  </g>
+  <!-- Cuerda enrollada en la base -->
+  <g stroke="#eb5c27" stroke-width="2.2" stroke-linecap="round" fill="none">
+    <path d="M10 68 Q14 64 18 68 T26 68 T34 68 T38 68"/>
+    <path d="M10 70 Q14 74 18 70 T26 70 T34 70 T38 70"/>
+    <!-- nudo -->
+    <path d="M22 70 Q24 76 26 70 M21 71 Q24 78 27 71" stroke-width="2"/>
+  </g>
+  <!-- Sombra base -->
+  <ellipse cx="24" cy="75" rx="14" ry="2" fill="#000" opacity="0.18"/>
+</svg>
