@@ -1,8 +1,8 @@
 /* =====================================================
-   LONCHEADOS � Monjam�n y M�s
+   LONCHEADOS · Monjamón y Más
    - Productos agrupados por familia (variantes de corte)
-   - Velas para sabor (1=Suave, 2=Arom�tico, 3=Intenso, 4=Intenso+)
-   - Filtros simplificados (Calidad, Alimentaci�n, Sabor, Meses incl. +6)
+   - Velas para sabor (1=Suave, 2=Aromático, 3=Intenso, 4=Intenso+)
+   - Filtros simplificados (Calidad, Alimentación, Sabor, Meses incl. +6)
    - Contador inline (- N +) en cada producto/variante
    ===================================================== */
 
@@ -18,7 +18,7 @@ const ALIM = {
 };
 const SABOR = {
   suave:          { label: 'Suave',     velas: 1 },
-  aromatico:      { label: 'Arom�tico', velas: 2 },
+  aromatico:      { label: 'Aromático', velas: 2 },
   intenso:        { label: 'Intenso',   velas: 3 },
   'intenso-plus': { label: 'Intenso+',  velas: 4 },
 };
@@ -30,23 +30,23 @@ const MESES = {
   24: { label: '+24 meses', icon: window.SOBRES_ASSETS['meses-30'], noFilter: true },
 };
 const CORTE = {
-  maquina:  { label: 'A m�quina',  icon: window.SOBRES_ASSETS['corte-maquina'] },
+  maquina:  { label: 'A máquina',  icon: window.SOBRES_ASSETS['corte-maquina'] },
   cuchillo: { label: 'A cuchillo', icon: window.SOBRES_ASSETS['corte-cuchillo'] },
 };
 const FLAG = {
   top:     { label: 'TOP VENTAS',  icon: window.SOBRES_ASSETS['top'] },
-  vendido: { label: 'M�S VENDIDO', icon: window.SOBRES_ASSETS['mas-vendido'] },
+  vendido: { label: 'MÁS VENDIDO', icon: window.SOBRES_ASSETS['mas-vendido'] },
   novedad: { label: 'NUEVO',       icon: window.SOBRES_ASSETS['novedad'] },
   oferta:  { label: 'OFERTA',      icon: window.SOBRES_ASSETS['oferta'] },
   regalo:  { label: 'PARA REGALAR',icon: window.SOBRES_ASSETS['regalo'] },
 };
 
-// ---------- Cat�logo ----------
+// ---------- Catálogo ----------
 const PRODUCTS = [
   {
     id: 'sacro-puntas',
-    name: 'Sacro Puntas de Monjam�n',
-    sub: 'Taquitos � Calidad 100% Ib�rica',
+    name: 'Sacro Puntas de Monjamón',
+    sub: 'Taquitos · Calidad 100% Ibérica',
     icon: window.SOBRES_ASSETS['jamon-bellota'],
     cat: 'jamon', flag: 'novedad',
     weight: '80 g/ud',
@@ -54,13 +54,13 @@ const PRODUCTS = [
     price: 7.50,
     shopifyHandle: 'sacro-puntas-monjamon',
     shopifyId: 6549905342545,
-    pros: ['Taquitos cargados de sabor', 'Nuevo formato 100% Ib�rico', 'Placer divino'],
-    desc: 'Las Sacro Puntas de Monjam�n son taquitos de jam�n ib�rico cargados de sabor. Cada bocado es un placer divino que elevar� cualquier aperitivo. Nuevo formato, calidad 100% Ib�rica.',
+    pros: ['Taquitos cargados de sabor', 'Nuevo formato 100% Ibérico', 'Placer divino'],
+    desc: 'Las Sacro Puntas de Monjamón son taquitos de jamón ibérico cargados de sabor. Cada bocado es un placer divino que elevará cualquier aperitivo. Nuevo formato, calidad 100% Ibérica.',
   },
   {
     id: 'gr-36',
-    name: 'Jam�n Gran Reserva',
-    sub: '+36 meses � Esencial � Fuera de norma',
+    name: 'Jamón Gran Reserva',
+    sub: '+36 meses · Esencial · Fuera de norma',
     icon: window.SOBRES_ASSETS['gran-reserva'],
     cat: 'jamon',
     weight: '80 g/ud',
@@ -69,13 +69,13 @@ const PRODUCTS = [
       { key: 'maquina',  price: 8.00, shopifyHandle: 'sobres-gran-reserva-fetas',    shopifyId: 8721620894041 },
       { key: 'cuchillo', price: 8.50, shopifyHandle: 'sobres-gran-reserva-cuchillo', shopifyId: 15116882248025 },
     ],
-    pros: ['Fuera de la norma ib�rica', 'Criado en libertad', 'Piensos y pastos naturales'],
-    desc: 'Al ser un jam�n fuera de la norma del ib�rico, a h�bito descubierto, �aqu� la calidad la marcamos nosotros! El jam�n que recomendamos a todos los fieles: fuera de norma con nuestros est�ndares de calidad, mejor precio imposible. WIN-WIN de manual que mejora el cebo de campo del mercado. Criado en libertad y alimentado de los mejores piensos y pastos.',
+    pros: ['Fuera de la norma ibérica', 'Criado en libertad', 'Piensos y pastos naturales'],
+    desc: 'Al ser un jamón fuera de la norma del ibérico, a hábito descubierto, ¡aquí la calidad la marcamos nosotros! El jamón que recomendamos a todos los fieles: fuera de norma con nuestros estándares de calidad, mejor precio imposible. WIN-WIN de manual que mejora el cebo de campo del mercado. Criado en libertad y alimentado de los mejores piensos y pastos.',
   },
   {
     id: 'bel-36-arom',
-    name: 'Jam�n Bellota 100% +36m',
-    sub: 'Arom�tico � solo a m�quina',
+    name: 'Jamón Bellota 100% +36m',
+    sub: 'Aromático · solo a máquina',
     icon: window.SOBRES_ASSETS['jamon-bellota'],
     cat: 'jamon', flag: 'vendido',
     weight: '80 g/ud',
@@ -83,13 +83,13 @@ const PRODUCTS = [
     price: 8.50,
     shopifyHandle: 'sobre-80gr-jamon-de-bellota-100-iberico-36-meses-a-maquina',
     shopifyId: 16215045669209,
-    pros: ['100% Ib�rico Bellota', 'Aroma a dehesa', 'Equilibrado'],
-    desc: 'Jam�n de Bellota 100% Ib�rico curado +36 meses. Sabor arom�tico y equilibrado, perfecto para iniciarse en el sabor del bellota. Loncheado fino a m�quina.',
+    pros: ['100% Ibérico Bellota', 'Aroma a dehesa', 'Equilibrado'],
+    desc: 'Jamón de Bellota 100% Ibérico curado +36 meses. Sabor aromático y equilibrado, perfecto para iniciarse en el sabor del bellota. Loncheado fino a máquina.',
   },
   {
     id: 'bel-42-int',
-    name: 'Jam�n Bellota 100% +42m',
-    sub: '? Producto del A�o 2025 � Superior Taste ???',
+    name: 'Jamón Bellota 100% +42m',
+    sub: '★ Producto del Año 2025 · Superior Taste ★★★',
     icon: window.SOBRES_ASSETS['jamon-bellota'],
     cat: 'jamon', flag: 'top',
     weight: '80 g/ud',
@@ -98,13 +98,13 @@ const PRODUCTS = [
       { key: 'maquina',  price: 10.00, shopifyHandle: 'sobres-jamon-monjamon-bellota-100-fetas',    shopifyId: 15113115533657 },
       { key: 'cuchillo', price: 12.00, shopifyHandle: 'sobres-jamon-monjamon-bellota-100-cuchillo', shopifyId: 14926720401753 },
     ],
-    pros: ['Cerdos viejos en libertad', 'Curaci�n tradicional +42m', 'Superior Taste Awards ???'],
-    desc: '�ELEGIDO PRODUCTO DEL A�O 2025! El elegido entre los elegidos, el �nico y verdadero Monjam�n. Si quieres alcanzar la plenitud, nuestro Monjam�n liberar� en ti todas las buenas sensaciones que te llevar�n directo al para�so. Cerdos viejos en libertad alimentados a base de bellotas. Salado y curaci�n tradicional +42 meses. Producto galardonado Superior Taste Awards ???.',
+    pros: ['Cerdos viejos en libertad', 'Curación tradicional +42m', 'Superior Taste Awards ★★★'],
+    desc: '¡ELEGIDO PRODUCTO DEL AÑO 2025! El elegido entre los elegidos, el único y verdadero Monjamón. Si quieres alcanzar la plenitud, nuestro Monjamón liberará en ti todas las buenas sensaciones que te llevarán directo al paraíso. Cerdos viejos en libertad alimentados a base de bellotas. Salado y curación tradicional +42 meses. Producto galardonado Superior Taste Awards ★★★.',
   },
   {
     id: 'sagrada-paleta',
     name: 'Sagrada Paleta',
-    sub: '? Producto del A�o 2025 � Edici�n limitada',
+    sub: '★ Producto del Año 2025 · Edición limitada',
     icon: window.SOBRES_ASSETS['paleta'],
     cat: 'paleta', flag: 'top',
     weight: '80 g/ud',
@@ -113,13 +113,13 @@ const PRODUCTS = [
       { key: 'maquina',  price: 9.90,  meses: 24, soldout: true, shopifyHandle: 'sobre-sagrada-paleta-fetas',   shopifyId: 15112668479833 },
       { key: 'cuchillo', price: 12.50, meses: 30, shopifyHandle: 'sobres-sagrada-paleta-cuchillo', shopifyId: 15112723431769 },
     ],
-    pros: ['Producto muy limitado', 'Sabor m�s fuerte que el jam�n', 'Superior Taste Awards ???'],
-    desc: '�ELEGIDO PRODUCTO DEL A�O 2025! Nuestra Sagrada Paleta es un producto muy limitado que cada a�o se agota. Conserva un sabor exclusivo digno de aquellos que quieran transformar sus aperitivos y descubrir un placer sin igual. Cerdos viejos en libertad alimentados a base de bellotas. Salado y curaci�n tradicional +30 meses. Sabor m�s fuerte que el jam�n. Producto galardonado Superior Taste Awards ???.',
+    pros: ['Producto muy limitado', 'Sabor más fuerte que el jamón', 'Superior Taste Awards ★★★'],
+    desc: '¡ELEGIDO PRODUCTO DEL AÑO 2025! Nuestra Sagrada Paleta es un producto muy limitado que cada año se agota. Conserva un sabor exclusivo digno de aquellos que quieran transformar sus aperitivos y descubrir un placer sin igual. Cerdos viejos en libertad alimentados a base de bellotas. Salado y curación tradicional +30 meses. Sabor más fuerte que el jamón. Producto galardonado Superior Taste Awards ★★★.',
   },
   {
     id: 'pasion-50',
-    name: 'Monjam�n Pasi�n +50m',
-    sub: 'Premium � Sin precinto � Oleico ~60%',
+    name: 'Monjamón Pasión +50m',
+    sub: 'Premium · Sin precinto · Oleico ~60%',
     icon: window.SOBRES_ASSETS['pasion'],
     cat: 'jamon', flag: 'top',
     weight: '80 g/ud',
@@ -127,14 +127,14 @@ const PRODUCTS = [
     price: 15.00,
     shopifyHandle: 'sobres-monjamon-pasion-cuchillo',
     shopifyId: 15116854755673,
-    pros: ['Sin precinto: calidad superior', 'Cerdos +2 a�os en libertad', 'Oleico cerca del 60%'],
-    desc: 'Jam�n fuera de la norma del ib�rico, a h�bito descubierto. No lleva precinto: su calidad es m�s alta que la que otorga cualquiera de ellos. Cerdos de m�s de dos a�os, viejos y en libertad, alimentados de manera natural y tradicional. Salado y curaci�n tradicional (+50 meses). �cidos Oleicos cercanos al 60%.',
+    pros: ['Sin precinto: calidad superior', 'Cerdos +2 años en libertad', 'Oleico cerca del 60%'],
+    desc: 'Jamón fuera de la norma del ibérico, a hábito descubierto. No lleva precinto: su calidad es más alta que la que otorga cualquiera de ellos. Cerdos de más de dos años, viejos y en libertad, alimentados de manera natural y tradicional. Salado y curación tradicional (+50 meses). Ácidos Oleicos cercanos al 60%.',
   },
   // ----- Embutidos -----
   {
     id: 'choricielo',
     name: 'Choricielo',
-    sub: 'Chorizo de Bellota 100% Ib�rico',
+    sub: 'Chorizo de Bellota 100% Ibérico',
     icon: window.SOBRES_ASSETS['choricielo'],
     cat: 'embutido', flag: 'novedad',
     weight: '50 g/ud',
@@ -142,13 +142,13 @@ const PRODUCTS = [
     price: 6.90,
     shopifyHandle: 'sobre-choricielo',
     shopifyId: 15112615166297,
-    pros: ['Piment�n ahumado', '100% Ib�rico Bellota', 'Sabor intenso+'],
-    desc: 'Chorizo de Bellota 100% Ib�rico con piment�n ahumado natural. Curaci�n 6 meses en bodega.',
+    pros: ['Pimentón ahumado', '100% Ibérico Bellota', 'Sabor intenso+'],
+    desc: 'Chorizo de Bellota 100% Ibérico con pimentón ahumado natural. Curación 6 meses en bodega.',
   },
   {
     id: 'san-chichon',
-    name: 'San Chich�n',
-    sub: 'Salchich�n de Bellota 100% Ib�rico',
+    name: 'San Chichón',
+    sub: 'Salchichón de Bellota 100% Ibérico',
     icon: window.SOBRES_ASSETS['salchichon'],
     cat: 'embutido', flag: 'novedad',
     weight: '50 g/ud',
@@ -156,13 +156,13 @@ const PRODUCTS = [
     price: 6.50,
     shopifyHandle: 'sobre-san-chichon',
     shopifyId: 15112627945817,
-    pros: ['Pimienta natural', '100% Ib�rico Bellota', 'Sabor arom�tico'],
-    desc: 'Salchich�n de Bellota 100% Ib�rico con pimienta natural en grano. Curaci�n 6 meses.',
+    pros: ['Pimienta natural', '100% Ibérico Bellota', 'Sabor aromático'],
+    desc: 'Salchichón de Bellota 100% Ibérico con pimienta natural en grano. Curación 6 meses.',
   },
   {
     id: 'lomonasterio',
     name: 'Lomonasterio',
-    sub: 'Lomo de Bellota 100% Ib�rico',
+    sub: 'Lomo de Bellota 100% Ibérico',
     icon: window.SOBRES_ASSETS['lomonasterio'],
     cat: 'embutido',
     weight: '50 g/ud',
@@ -170,22 +170,22 @@ const PRODUCTS = [
     price: 8.50,
     shopifyHandle: 'sobre-lomonasterio',
     shopifyId: 15112623227225,
-    pros: ['Embuchado tradicional', '100% Ib�rico Bellota', 'Sabor intenso'],
-    desc: 'Lomo embuchado de Bellota 100% Ib�rico, especiado al estilo tradicional.',
+    pros: ['Embuchado tradicional', '100% Ibérico Bellota', 'Sabor intenso'],
+    desc: 'Lomo embuchado de Bellota 100% Ibérico, especiado al estilo tradicional.',
   },
   {
     id: 'divina-coppa',
     name: 'Divina Coppa',
-    sub: 'Coppa de Bellota 100% Ib�rica',
-    icon: window.SOBRES_ASSETS['coppa'],
+    sub: 'Coppa de Bellota 100% Ibérica',
+    icon: window.SOBRES_ASSETS['lomonasterio'],
     cat: 'embutido',
     weight: '50 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'suave', meses: 6, cut: 'maquina',
     price: 9.20,
     shopifyHandle: 'sobre-divina-coppa-de-bellota-100-iberica',
     shopifyId: 15112646525273,
-    pros: ['Cabezada de lomo', '100% Ib�rico Bellota', 'Sabor suave'],
-    desc: 'Coppa elaborada con la cabezada del cerdo 100% Ib�rico de Bellota. Sabor suave y equilibrado.',
+    pros: ['Cabezada de lomo', '100% Ibérico Bellota', 'Sabor suave'],
+    desc: 'Coppa elaborada con la cabezada del cerdo 100% Ibérico de Bellota. Sabor suave y equilibrado.',
   },
 ];
 
@@ -232,7 +232,7 @@ const refs = {
   filterApply: $('#filterApply'),
 };
 
-const fmt = n => n.toFixed(2).replace('.', ',') + ' ?';
+const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
 
 // ---------- Carrito ----------
 function cartKey(id, vKey) { return vKey ? `${id}:${vKey}` : id; }
@@ -260,19 +260,19 @@ function passesFilters(p) {
   return true;
 }
 
-// ---------- Control de compra (bot�n + o contador - N +) ----------
+// ---------- Control de compra (botón + o contador - N +) ----------
 function buyControlHTML(id, vKey, price) {
   const qty = getCartQty(id, vKey);
   const dataV = vKey ? `data-v="${vKey}"` : '';
   if (qty === 0) {
-    return `<button class="qtyc qtyc--add" data-buy="add" data-id="${id}" ${dataV} aria-label="A�adir">
+    return `<button class="qtyc qtyc--add" data-buy="add" data-id="${id}" ${dataV} aria-label="Añadir">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
     </button>`;
   }
   return `<span class="qtyc qtyc--count">
-    <button class="qtyc__minus" data-buy="sub" data-id="${id}" ${dataV} aria-label="Quitar">?</button>
+    <button class="qtyc__minus" data-buy="sub" data-id="${id}" ${dataV} aria-label="Quitar">−</button>
     <span class="qtyc__num">${qty}</span>
-    <button class="qtyc__plus" data-buy="add" data-id="${id}" ${dataV} aria-label="A�adir">+</button>
+    <button class="qtyc__plus" data-buy="add" data-id="${id}" ${dataV} aria-label="Añadir">+</button>
   </span>`;
 }
 
@@ -299,7 +299,7 @@ function rowHTML(p) {
             </span>
             <span class="vbtn__foot">
               <strong>${fmt(v.price)}</strong>
-              ${v.soldout ? '<span class="vbtn__disabled">-</span>' : `<span class="vbtn__action" data-buy-wrap="${p.id}:${v.key}">${buyControlHTML(p.id, v.key, v.price)}</span>`}
+              ${v.soldout ? '<span class="vbtn__disabled">—</span>' : `<span class="vbtn__action" data-buy-wrap="${p.id}:${v.key}">${buyControlHTML(p.id, v.key, v.price)}</span>`}
             </span>
           </div>
         `).join('')}
@@ -324,7 +324,7 @@ function rowHTML(p) {
           ${flag}
           <h3 class="row__name">${p.name}</h3>
           <p class="row__sub">${p.sub}</p>
-          <p class="row__meta"><span class="meta__weight">${p.weight}</span><span class="meta__sep">�</span><span class="meta__promesa">? Natural � ? Sostenible � ? Cashback</span></p>
+          <p class="row__meta"><span class="meta__weight">${p.weight}</span><span class="meta__sep">·</span><span class="meta__promesa">☘ Natural · ♻ Sostenible · ★ Cashback</span></p>
         </div>
       </div>
       <div class="row__tags">
@@ -368,7 +368,7 @@ function totalCart() {
 function refreshCart() {
   const { qty, eur } = totalCart();
   refs.cartCount.textContent = qty;
-  refs.cartLabel.textContent = `${qty} sobre${qty === 1 ? '' : 's'} � ${fmt(eur)}`;
+  refs.cartLabel.textContent = `${qty} sobre${qty === 1 ? '' : 's'} · ${fmt(eur)}`;
   refs.cartCTA.hidden = qty === 0;
 }
 function modifyCart(id, vKey, delta) {
@@ -394,8 +394,8 @@ function modifyCart(id, vKey, delta) {
 }
 
 // ---------- Shopify ----------
-// Cache de variant IDs (por handle) - los IDs que tenemos pueden ser product_id, no variant_id;
-// resolvemos al primer uso via /products/<handle>.js (s�lo funciona en mismo dominio que la tienda).
+// Cache de variant IDs (por handle) — los IDs que tenemos pueden ser product_id, no variant_id;
+// resolvemos al primer uso via /products/<handle>.js (sólo funciona en mismo dominio que la tienda).
 const variantCache = new Map();
 async function resolveVariantId(handle, fallbackId) {
   if (variantCache.has(handle)) return variantCache.get(handle);
@@ -424,7 +424,7 @@ function isShopifyHost() {
 
 async function checkoutShopify() {
   const entries = [...state.cart.values()];
-  // Si no estamos en Shopify, no resolvemos via /products/.js (CORS) - usamos directamente el shopifyId
+  // Si no estamos en Shopify, no resolvemos via /products/.js (CORS) — usamos directamente el shopifyId
   let items;
   if (isShopifyHost()) {
     items = await Promise.all(
@@ -438,15 +438,15 @@ async function checkoutShopify() {
   }
   const validItems = items.filter(it => it.id != null);
   if (validItems.length === 0) {
-    alert('No hay productos v�lidos en la cesta.');
+    alert('No hay productos válidos en la cesta.');
     return;
   }
-  // Preview local ? muestra demo JSON
+  // Preview local → muestra demo JSON
   if (!isShopifyHost()) {
-    alert('?? Modo demo (fuera de Shopify).\n\nEn producci�n har�a:\nPOST https://www.monjamonymas.com/cart/add.js\n\nCon items:\n' + JSON.stringify(validItems, null, 2));
+    alert('🛒 Modo demo (fuera de Shopify).\n\nEn producción haría:\nPOST https://www.monjamonymas.com/cart/add.js\n\nCon items:\n' + JSON.stringify(validItems, null, 2));
     return;
   }
-  // Producci�n: POST real
+  // Producción: POST real
   try {
     const res = await fetch('/cart/add.js', {
       method: 'POST',
@@ -457,7 +457,7 @@ async function checkoutShopify() {
       window.location.href = '/cart';
     } else {
       const err = await res.json().catch(() => ({}));
-      alert('Error al a�adir al carrito:\n' + (err.description || err.message || res.statusText));
+      alert('Error al añadir al carrito:\n' + (err.description || err.message || res.statusText));
     }
   } catch (e) {
     alert('Error de red: ' + e.message);
@@ -507,31 +507,34 @@ function openSheet(id) {
     ${flag}
     <h2 class="sheet__name">${p.name}</h2>
     <p class="sheet__line">${p.sub}</p>
-    <p class="sheet__meta sheet__meta--top"><span>${p.weight}</span><span class="meta__sep">�</span><span>? Natural � ? Sostenible � ? Cashback</span></p>
+    <p class="sheet__meta sheet__meta--top"><span>${p.weight}</span><span class="meta__sep">·</span><span>☘ Natural · ♻ Sostenible · ★ Cashback</span></p>
     <ul class="sheet__pros">${pros}</ul>
     <div class="sheet__desc-wrap" data-desc-wrap>
       <p class="sheet__desc">${p.desc}</p>
       <button class="sheet__more" data-desc-toggle type="button">
-        <span class="more__label">Ver m�s</span>
-        <span class="more__icon">?</span>
+        <span class="more__label">Ver más</span>
+        <span class="more__icon">▾</span>
       </button>
     </div>
     ${vSection}
     <div class="sheet__specs">
       <div class="spec"><img src="${CALIDAD[p.calidad].icon}" alt=""><div><small>Calidad</small><strong>${CALIDAD[p.calidad].label}</strong></div></div>
-      <div class="spec"><img src="${ALIM[p.alimentacion].icon}" alt=""><div><small>Alimentaci�n</small><strong>${ALIM[p.alimentacion].label}</strong></div></div>
-      <div class="spec"><img src="${MESES[p.meses].icon}" alt=""><div><small>Curaci�n</small><strong>${MESES[p.meses].label}</strong></div></div>
+      <div class="spec"><img src="${ALIM[p.alimentacion].icon}" alt=""><div><small>Alimentación</small><strong>${ALIM[p.alimentacion].label}</strong></div></div>
+      <div class="spec"><img src="${MESES[p.meses].icon}" alt=""><div><small>Curación</small><strong>${MESES[p.meses].label}</strong></div></div>
       <div class="spec spec--noicon"><div><small>Sabor</small><strong>${velasHTML(SABOR[p.sabor].velas)} ${SABOR[p.sabor].label}</strong></div></div>
     </div>
   `;
   refs.sheet.hidden = false;
   document.body.style.overflow = 'hidden';
   updateSheetTotal();
-  // Carga galer�a de fotos reales en background
-  loadGallery(p.shopifyHandle);
+  // Carga galería de fotos reales en background (variants → handle de variante activa o primera)
+  const galleryHandle = p.shopifyHandle
+    || p.variants?.find(v => v.key === state.sheetVariant)?.shopifyHandle
+    || p.variants?.[0]?.shopifyHandle;
+  loadGallery(galleryHandle);
 }
 
-// ---------- Galer�a de fotos reales ----------
+// ---------- Galería de fotos reales ----------
 const galleryCache = new Map();
 let galleryState = { images: [], index: 0 };
 async function loadGallery(handle) {
@@ -614,9 +617,9 @@ function filterPanelHTML() {
       </div>
     </div>`;
   return group('calidad', CALIDAD, 'Calidad', { compact: true })
-       + group('alimentacion', ALIM, 'Alimentaci�n')
+       + group('alimentacion', ALIM, 'Alimentación')
        + group('sabor', SABOR, 'Sabor', { compact: true })
-       + group('meses', MESES, 'Meses de curaci�n');
+       + group('meses', MESES, 'Meses de curación');
 }
 function renderFilterPanel() {
   refs.filterPanel.innerHTML = filterPanelHTML();
@@ -692,20 +695,24 @@ function wire() {
       state.sheetVariant = vBtn.dataset.v;
       $$('[data-sheet-vtoggle] .vbtn', refs.sheet).forEach(b => b.classList.toggle('is-active', b === vBtn));
       updateSheetTotal();
+      // Recarga galería con el handle de la variante seleccionada
+      const _p = PRODUCTS.find(x => x.id === state.sheetId);
+      const _h = _p?.variants?.find(v => v.key === state.sheetVariant)?.shopifyHandle || _p?.shopifyHandle;
+      if (_h) loadGallery(_h);
     }
-    // Galer�a: prev/next
+    // Galería: prev/next
     const gNav = e.target.closest('[data-gnav]');
     if (gNav) {
       e.stopPropagation();
       navGallery(parseInt(gNav.dataset.gnav, 10));
     }
-    // Descripci�n: ver m�s / ver menos
+    // Descripción: ver más / ver menos
     const descToggle = e.target.closest('[data-desc-toggle]');
     if (descToggle) {
       const wrap = descToggle.closest('[data-desc-wrap]');
       const expanded = wrap.classList.toggle('is-expanded');
       const label = descToggle.querySelector('.more__label');
-      if (label) label.textContent = expanded ? 'Ver menos' : 'Ver m�s';
+      if (label) label.textContent = expanded ? 'Ver menos' : 'Ver más';
     }
   });
   refs.sheetQty.addEventListener('click', (e) => {
