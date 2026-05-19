@@ -121,6 +121,19 @@
     'vela'           : "{{ 'sobres-vela.svg'            | asset_url }}"
   };
 
+  // Ocultar breadcrumb y título de página del tema (fallback si :has() no soportado)
+  (function() {
+    const selectors = [
+      '.breadcrumb', '.breadcrumbs', 'nav[aria-label="breadcrumb" i]',
+      '[class*="breadcrumb" i]:not(.sobres-app *)',
+      '.page-title', '.page__title', '.main-page-title',
+      '.shopify-section--main-page > .page-width > h1',
+    ];
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      if (!el.closest('.sobres-app')) el.style.display = 'none';
+    });
+  })();
+
   // Buscador colapsable (lupa expandible)
   (function() {
     const pill = document.getElementById('searchPill');

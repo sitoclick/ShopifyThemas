@@ -4,6 +4,24 @@
    Todo scopado dentro de .sobres-app + keyframes prefijados con sb-
    ===================================================== */
 
+/* ============================================
+   Ocultar breadcrumb y título de la página del
+   tema cuando esta section está presente.
+   Reglas globales (fuera de .sobres-app) porque
+   esos elementos viven en el layout del tema.
+   ============================================ */
+.shopify-section--main-page:has(.sobres-app) .page-width > h1,
+.shopify-section--main-page:has(.sobres-app) .main-page-title,
+body:has(.sobres-app) .breadcrumb,
+body:has(.sobres-app) .breadcrumbs,
+body:has(.sobres-app) nav[aria-label="breadcrumb"],
+body:has(.sobres-app) nav[aria-label="Breadcrumb"],
+body:has(.sobres-app) [class*="breadcrumb"]:not(.sobres-app *),
+body:has(.sobres-app) .page__title,
+body:has(.sobres-app) .page-title {
+  display: none !important;
+}
+
 .sobres-app {
   --azul: #406ef5;
   --azul-dark: #2d52d3;
@@ -231,7 +249,7 @@
 .sobres-app .fpanel-foot .btn { flex: 1; padding: 11px 14px; font-size: 13px; }
 
 /* ---------- Section ---------- */
-.sobres-app .section { padding: 16px 14px 8px; background: var(--bg); }
+.sobres-app .section { padding: 4px 14px 8px; background: var(--bg); }
 .sobres-app .section__head {
   display: flex; align-items: flex-end; justify-content: space-between;
   margin: 4px 2px 14px; gap: 8px;
@@ -244,27 +262,30 @@
 }
 .sobres-app .section__title {
   font-family: var(--font-display);
-  font-size: 32px; font-weight: 700;
-  color: var(--on-bg); letter-spacing: 0;
+  font-size: 36px; font-weight: 700;
+  letter-spacing: 0;
   line-height: 1;
+  color: var(--naranja);
+  -webkit-text-stroke: 2px #fff;
+  paint-order: stroke fill;
 }
 .sobres-app .section__sub { font-size: 11px; color: var(--on-bg-3); font-weight: 500; white-space: nowrap; }
 
-/* ---------- Lista de cards (azul con borde naranja) ---------- */
-.sobres-app .list { display: flex; flex-direction: column; gap: 12px; }
+/* ---------- Lista de cards (azul Monj con borde blanco) ---------- */
+.sobres-app .list { display: flex; flex-direction: column; gap: 14px; }
 .sobres-app .row {
-  background: var(--azul-dark);
+  background: var(--azul);
   border-radius: var(--radius-lg);
-  border: 2px solid var(--naranja);
+  border: 4px solid #fff;
   overflow: hidden;
   transition: transform 0.15s, box-shadow 0.15s;
   animation: sb-rowIn 0.25s ease both;
   position: relative;
   padding: 14px 14px 0;
   color: var(--on-bg);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.18);
 }
-.sobres-app .row:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.28); }
+.sobres-app .row:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,0.32), 0 2px 6px rgba(0,0,0,0.20); }
 .sobres-app .row:active { transform: scale(0.99); }
 
 .sobres-app .row__top {
@@ -286,34 +307,37 @@
 .sobres-app .row__head { margin-bottom: 6px; }
 .sobres-app .row__name {
   font-family: var(--font-display);
-  font-size: 22px; font-weight: 700;
+  font-size: 24px; font-weight: 700;
   letter-spacing: 0.005em; line-height: 1.05;
-  color: var(--on-bg);
   margin: 4px 0 4px;
+  color: var(--naranja);
+  -webkit-text-stroke: 1.5px #fff;
+  paint-order: stroke fill;
 }
 .sobres-app .row__sub {
   margin: 0;
-  font-size: 12.5px; color: var(--on-bg-2);
+  font-size: 12.5px; color: #fff;
   font-weight: 500; line-height: 1.3;
 }
 .sobres-app .row__meta {
   display: flex; flex-wrap: wrap; align-items: center;
   gap: 4px 6px;
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   font-size: 10.5px;
-  color: var(--on-bg-3);
+  color: #fff;
   font-weight: 500;
   line-height: 1.3;
 }
 .sobres-app .row__meta .meta__weight {
   font-weight: 700;
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  padding: 2px 7px;
+  color: var(--azul);
+  background: #fff;
+  padding: 3px 9px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid #fff;
 }
-.sobres-app .row__meta .meta__sep { color: rgba(255,255,255,0.25); }
+.sobres-app .row__meta .meta__sep { color: rgba(255,255,255,0.5); }
+.sobres-app .row__meta .meta__promesa { color: #fff; font-weight: 600; }
 
 .sobres-app .row__flag {
   display: inline-flex; align-items: center; gap: 5px;
@@ -334,15 +358,15 @@
 .sobres-app .tag {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 7px 11px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.18);
+  background: #fff;
+  border: 1px solid #fff;
   border-radius: 10px;
   font-size: 12px; font-weight: 600;
-  color: var(--on-bg);
+  color: var(--negro);
   white-space: nowrap;
   overflow: hidden; text-overflow: ellipsis;
 }
-.sobres-app .tag img { width: 18px; height: 18px; object-fit: contain; filter: brightness(0) invert(1); flex-shrink: 0; }
+.sobres-app .tag img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; filter: none; }
 .sobres-app .tag--calidad {
   background: var(--naranja);
   border-color: var(--naranja);
@@ -350,8 +374,7 @@
   font-weight: 700;
 }
 .sobres-app .tag--calidad img { filter: brightness(0) invert(1); }
-.sobres-app .tag--sabor { background: #fff; color: var(--negro); border-color: #fff; gap: 8px; }
-.sobres-app .tag--sabor img { filter: none; }
+.sobres-app .tag--sabor { gap: 8px; }
 
 /* Velas */
 .sobres-app .velas { display: inline-flex; gap: 2px; align-items: center; }
@@ -369,15 +392,24 @@
   padding: 12px 14px;
 }
 .sobres-app .row__corte {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11.5px; color: var(--on-bg-2); font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: #fff; font-weight: 600;
   flex: 1;
 }
-.sobres-app .row__corte img { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
+.sobres-app .row__corte img {
+  width: 22px; height: 22px; object-fit: contain;
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+}
 .sobres-app .row__price {
   font-family: var(--font-display);
   font-size: 22px; font-weight: 700;
-  color: #fff; letter-spacing: 0.01em;
+  background: #fff;
+  color: var(--azul);
+  padding: 5px 14px;
+  border-radius: 10px;
+  letter-spacing: 0.01em;
   line-height: 1;
 }
 
@@ -428,28 +460,34 @@
 .sobres-app .vbtn {
   display: flex; flex-direction: column;
   align-items: stretch;
-  gap: 8px;
-  padding: 10px 12px;
-  background: rgba(0,0,0,0.18);
-  border: 1.5px solid rgba(255,255,255,0.2);
+  gap: 10px;
+  padding: 12px;
+  background: #fff;
+  border: 1.5px solid #fff;
   border-radius: 12px;
   transition: all 0.15s;
   text-align: left;
-  color: var(--on-bg);
+  color: var(--negro);
 }
 .sobres-app .vbtn:hover:not(.is-soldout) {
   border-color: var(--naranja);
-  background: rgba(0,0,0,0.25);
+  transform: translateY(-1px);
 }
 .sobres-app .vbtn__head {
   display: flex; align-items: center; gap: 6px;
   font-size: 11px;
-  font-weight: 600;
-  color: var(--on-bg-2);
+  font-weight: 700;
+  color: var(--azul);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.sobres-app .vbtn__head img { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
+.sobres-app .vbtn__head img {
+  width: 22px; height: 22px; object-fit: contain;
+  background: var(--azul);
+  border-radius: 50%;
+  padding: 3px;
+  filter: brightness(0) invert(1);
+}
 .sobres-app .vbtn__label { flex: 1; }
 .sobres-app .vbtn__foot {
   display: flex; align-items: center; gap: 6px;
@@ -457,8 +495,8 @@
 }
 .sobres-app .vbtn__foot strong {
   font-family: var(--font-display);
-  font-size: 20px; font-weight: 700;
-  color: #fff; letter-spacing: 0.01em;
+  font-size: 22px; font-weight: 700;
+  color: var(--azul); letter-spacing: 0.01em;
   line-height: 1;
   white-space: nowrap;
 }
@@ -467,17 +505,17 @@
 .sobres-app .vbtn .qtyc--count { padding: 2px; }
 .sobres-app .vbtn .qtyc--count button { width: 26px; height: 26px; font-size: 16px; }
 .sobres-app .vbtn .qtyc__num { min-width: 18px; font-size: 13px; padding: 0 2px; }
-.sobres-app .vbtn.is-soldout { opacity: 0.5; }
+.sobres-app .vbtn.is-soldout { opacity: 0.55; }
 .sobres-app .vbtn__sold {
   font-size: 9px; font-weight: 700;
-  background: #fff; color: var(--negro);
-  padding: 2px 6px; border-radius: 4px;
+  background: var(--negro); color: #fff;
+  padding: 3px 7px; border-radius: 4px;
   margin-left: auto;
 }
 .sobres-app .vbtn__disabled {
   width: 30px; height: 30px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.15); color: var(--on-bg-3);
+  background: var(--line); color: var(--ink-3);
   display: grid; place-items: center;
   font-size: 18px; font-weight: 700;
 }
