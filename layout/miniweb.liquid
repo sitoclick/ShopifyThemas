@@ -32,6 +32,12 @@
       body.miniweb-body [class*="naviplus" i],
       body.miniweb-body [id*="navi-plus" i],
       body.miniweb-body [class*="navi-plus" i],
+      body.miniweb-body [class*="naviItem" i],
+      body.miniweb-body [class*="STICKY_TABBAR" i],
+      body.miniweb-body [class*="navimain_layout" i],
+      body.miniweb-body [name="Bottom Bar"],
+      body.miniweb-body [name^="Bottom Bar"],
+      body.miniweb-body [id^="SF-"],
       body.miniweb-body [id*="easify" i],
       body.miniweb-body [class*="easify" i],
       body.miniweb-body [id*="monster-cart" i],
@@ -44,8 +50,10 @@
       body.miniweb-body [class*="launcher_widget" i],
       body.miniweb-body [id*="referral_widget" i],
       body.miniweb-body [class*="referral_widget" i],
-      body.miniweb-body [id*="floating" i]:not(.cart-cta),
-      body.miniweb-body [class*="floating" i]:not(.cart-cta),
+      body.miniweb-body [id*="jotform" i],
+      body.miniweb-body [class*="jotform" i],
+      body.miniweb-body [id*="floating" i]:not(.cart-cta):not(.cart-fab),
+      body.miniweb-body [class*="floating" i]:not(.cart-cta):not(.cart-fab),
       body.miniweb-body [id*="chat-widget" i],
       body.miniweb-body [class*="chat-widget" i],
       body.miniweb-body [id*="chatbot" i],
@@ -53,7 +61,8 @@
       body.miniweb-body iframe[src*="shopify.com/extensions"]:not([src*="loader"]),
       body.miniweb-body iframe[src*="naviplus"],
       body.miniweb-body iframe[src*="flov.b-cdn"],
-      body.miniweb-body iframe[src*="judgeme"] {
+      body.miniweb-body iframe[src*="judgeme"],
+      body.miniweb-body iframe[src*="jotform"] {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
@@ -85,6 +94,12 @@
           '[class*="judgeme" i]:not(.miniweb-app *)',
           '[id*="naviplus" i]',
           '[class*="naviplus" i]',
+          '[class*="naviItem" i]',
+          '[class*="STICKY_TABBAR" i]',
+          '[class*="navimain_layout" i]',
+          '[name="Bottom Bar"]',
+          '[name^="Bottom Bar"]',
+          '[id^="SF-"]',
           '[id*="easify" i]:not(.miniweb-app *)',
           '[class*="easify" i]:not(.miniweb-app *)',
           '[id*="monster-cart" i]',
@@ -97,13 +112,16 @@
           '[class*="launcher_widget" i]',
           '[id*="referral_widget" i]',
           '[class*="referral_widget" i]',
+          '[id*="jotform" i]',
+          '[class*="jotform" i]',
           '[id*="chat-widget" i]',
           '[class*="chat-widget" i]',
           '[id*="chatbot" i]',
           '[class*="chatbot" i]',
           'iframe[src*="naviplus"]',
           'iframe[src*="flov.b-cdn"]',
-          'iframe[src*="judgeme"]'
+          'iframe[src*="judgeme"]',
+          'iframe[src*="jotform"]'
         ];
         function purge() {
           for (var i = 0; i < WIDGET_SELECTORS.length; i++) {

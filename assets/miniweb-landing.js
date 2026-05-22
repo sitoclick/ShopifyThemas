@@ -493,6 +493,95 @@ const PRODUCTS = [
     pros: ['D.O.Ca. Rioja', 'Tinto crianza', 'Maridaje con jamón'],
     desc: 'Viña Muriel Crianza D.O.Ca. Rioja. Tinto equilibrado con 12 meses en barrica. Maridaje clásico con jamón ibérico.',
   },
+
+  // ----- OTROS (salsas, aceites, cervezas) -----
+  {
+    id: 'o-chipotle',
+    name: 'Salsa Chile Chipotle',
+    sub: 'Seco y pipas · Picante nivel 2',
+    icon: A['oferta'],
+    category: 'otros', type: 'Salsa',
+    weight: '~250 g',
+    calidad: 'gourmet',
+    price: 10.95,
+    shopifyHandle: 'salsa-2-picor-chile-chipotle-seco-y-pipas',
+    shopifyId: 54151859143001,
+    pros: ['Picante nivel 2', 'Con chipotle seco y pipas', 'Artesanal'],
+    desc: 'Salsa de chile chipotle seco con pipas. Picante nivel 2/5 — un toque moderado para acompañar tablas de ibéricos.',
+  },
+  {
+    id: 'o-morita',
+    name: 'Salsa Chile Morita',
+    sub: 'Picante nivel 5 · Para valientes',
+    icon: A['top'],
+    category: 'otros', type: 'Salsa',
+    weight: '~250 g',
+    calidad: 'gourmet',
+    price: 10.95,
+    shopifyHandle: 'salsa-chile-morita',
+    shopifyId: 54151889092953,
+    pros: ['Picante nivel 5 (máximo)', 'Chile morita ahumado', 'Para auténticos picantes'],
+    desc: 'Salsa de chile morita ahumado. Picante nivel 5/5 — para quienes buscan intensidad de verdad.',
+  },
+  {
+    id: 'o-bravoleum',
+    name: 'Bravoleum Picual AOVE',
+    sub: 'Aceite de Oliva Virgen Extra · Cosecha 24-25',
+    icon: A['premium'],
+    category: 'otros', type: 'Aceite',
+    weight: '100/250/500 ml',
+    calidad: 'premium',
+    variants: [
+      { key: 'maquina',  label: '100 ml', price: 5.00,  shopifyId: 55620172808537 },
+      { key: 'cuchillo', label: '250 ml', price: 10.00, shopifyId: 55620172841305 },
+      { key: 'xl',       label: '500 ml', price: 17.00, shopifyId: 55620172874073 },
+    ],
+    shopifyHandle: 'bravoleum-picual',
+    pros: ['AOVE Picual', 'Cosecha 2024-2025', '3 formatos disponibles'],
+    desc: 'Aceite de Oliva Virgen Extra variedad Picual. Cosecha 2024-2025. Disponible en 100ml, 250ml y 500ml.',
+  },
+  {
+    id: 'o-bestiator',
+    name: 'Bestiator Charra con Miel',
+    sub: 'Cerveza artesana con miel · Salamanca',
+    icon: A['novedad'],
+    category: 'otros', type: 'Cerveza',
+    weight: '33 cl',
+    calidad: 'gourmet',
+    price: 4.50,
+    shopifyHandle: 'bestiator-cerveza-charra-con-miel',
+    shopifyId: 49239514120537,
+    pros: ['Artesana de Salamanca', 'Notas dulces de miel', 'Cuerpo medio'],
+    desc: 'Cerveza Bestiator de la marca Charra (Salamanca), elaborada con miel. Cuerpo medio con notas dulces.',
+  },
+  {
+    id: 'o-barbier',
+    name: 'Barbier Pilsner Charra',
+    sub: 'Pilsner artesana · Salamanca',
+    icon: A['gourmet'],
+    category: 'otros', type: 'Cerveza',
+    weight: '33 cl',
+    calidad: 'gourmet',
+    price: 4.00,
+    shopifyHandle: 'barbier-pilsner-charra',
+    shopifyId: 49239597678937,
+    pros: ['Estilo Pilsner', 'Artesana de Salamanca', 'Refrescante'],
+    desc: 'Barbier, pilsner artesana de la cervecera Charra de Salamanca. Refrescante y de cuerpo ligero.',
+  },
+  {
+    id: 'o-verraco',
+    name: 'Verraco Cerveza de Trigo',
+    sub: 'Trigo Charro · Salamanca',
+    icon: A['gourmet'],
+    category: 'otros', type: 'Cerveza',
+    weight: '33 cl',
+    calidad: 'gourmet',
+    price: 4.00,
+    shopifyHandle: 'verraco-cerveza-de-trigo-charro',
+    shopifyId: 49235260965209,
+    pros: ['Trigo Charro', 'Cuerpo cremoso', 'Salamanca'],
+    desc: 'Verraco, cerveza de trigo de la marca Charra (Salamanca). Cuerpo cremoso con notas de cereal.',
+  },
 ];
 
 // ---------- Estado ----------
@@ -526,9 +615,13 @@ const refs = {
   soonState: $('#soonState'),
   searchInput: $('#searchInput'),
   searchClear: $('#searchClear'),
-  cartCTA: $('#cartCTA'),
+  cartCTA: $('#cartFab'),                 // alias mantenido (era cartCTA)
   cartCount: $('#cartCount'),
   cartLabel: $('#cartLabel'),
+  cartDrawer: $('#cartDrawer'),
+  cartDrawerList: $('#cartDrawerList'),
+  cartDrawerTotal: $('#cartDrawerTotal'),
+  cartCheckout: $('#cartCheckout'),
   mwCartCount: $('#mwCartCount'),
   sheet: $('#sheet'),
   sheetBody: $('#sheetBody'),
@@ -742,26 +835,60 @@ function totalCart() {
   for (const item of state.cart.values()) { qty += item.qty; eur += item.qty * item.price; }
   return { qty, eur };
 }
-// Construye el texto rico de la pill del carrito: muestra hasta 2 nombres, luego "+ N más"
-function cartPreviewText() {
-  const items = [...state.cart.values()];
-  if (items.length === 0) return '';
-  // Recoger nombres + qty (ej: "Sacro Puntas ×2")
-  const labels = items.map(it => it.qty > 1 ? `${it.name} ×${it.qty}` : it.name);
-  if (labels.length === 1) return labels[0];
-  if (labels.length === 2) return labels.join(' · ');
-  return `${labels[0]} + ${labels.length - 1} más`;
-}
-
 function refreshCart() {
   const { qty, eur } = totalCart();
+  // FAB compacto: badge + total
   refs.cartCount.textContent = qty;
-  const preview = cartPreviewText();
-  refs.cartLabel.textContent = preview ? `${preview} · ${fmt(eur)}` : `${qty} producto · ${fmt(eur)}`;
+  refs.cartLabel.textContent = fmt(eur);
   refs.cartCTA.hidden = qty === 0;
   // Contador en mini-header
   refs.mwCartCount.textContent = qty;
   refs.mwCartCount.hidden = qty === 0;
+  // Drawer (re-render si está abierto, mantén actualizado el total siempre)
+  refs.cartDrawerTotal.textContent = fmt(eur);
+  if (!refs.cartDrawer.hidden) renderCartDrawer();
+  // Si vaciamos el carrito mientras el drawer está abierto, ciérralo
+  if (qty === 0 && !refs.cartDrawer.hidden) closeCartDrawer();
+}
+
+// ---------- Cart drawer ----------
+function cartItemHTML(item, key) {
+  return `
+    <article class="ci" data-cikey="${key}">
+      <div class="ci__info">
+        <h4 class="ci__name">${item.name}</h4>
+        <p class="ci__price"><strong>${fmt(item.price * item.qty)}</strong><span>·</span><span>${fmt(item.price)} c/u</span></p>
+      </div>
+      <div class="ci__qty">
+        <button data-ci-mod="sub" data-cikey="${key}" aria-label="Quitar">−</button>
+        <span class="ci__qty-num">${item.qty}</span>
+        <button data-ci-mod="add" data-cikey="${key}" aria-label="Sumar">+</button>
+      </div>
+    </article>
+  `;
+}
+function renderCartDrawer() {
+  const html = [];
+  for (const [key, item] of state.cart.entries()) {
+    html.push(cartItemHTML(item, key));
+  }
+  refs.cartDrawerList.innerHTML = html.join('');
+}
+function openCartDrawer() {
+  if (state.cart.size === 0) return;
+  renderCartDrawer();
+  refs.cartDrawer.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeCartDrawer() {
+  refs.cartDrawer.hidden = true;
+  document.body.style.overflow = '';
+}
+// Modifica el carrito por key (id:vKey) — usado dentro del drawer
+function modifyCartByKey(key, delta) {
+  const [id, vRaw] = key.split(':');
+  const vKey = vRaw && vRaw.length ? vRaw : null;
+  modifyCart(id, vKey, delta);
 }
 function modifyCart(id, vKey, delta) {
   const p = PRODUCTS.find(x => x.id === id);
@@ -1133,11 +1260,27 @@ function wire() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (!refs.sheet.hidden) closeSheet();
+      else if (!refs.cartDrawer.hidden) closeCartDrawer();
       else if (state.showFilters) toggleFilterPanel(false);
     }
   });
 
-  refs.cartCTA.addEventListener('click', checkoutShopify);
+  // FAB carrito → abre el drawer
+  refs.cartCTA.addEventListener('click', openCartDrawer);
+
+  // Drawer: cerrar (backdrop / X) y manipular qty / checkout
+  refs.cartDrawer.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) { closeCartDrawer(); return; }
+    const qBtn = e.target.closest('[data-ci-mod]');
+    if (qBtn) {
+      e.stopPropagation();
+      const key = qBtn.dataset.cikey;
+      const delta = qBtn.dataset.ciMod === 'add' ? 1 : -1;
+      modifyCartByKey(key, delta);
+      pop(qBtn);
+    }
+  });
+  refs.cartCheckout.addEventListener('click', checkoutShopify);
 }
 function pop(el) {
   el.animate(
