@@ -79,12 +79,41 @@ const CATEGORIES = {
 //   category: una de las 6 top-level
 //   sub: solo presente si category === 'loncheados' (jamon|paleta|embutido)
 const PRODUCTS = [
+  // ----- PACK FOROCOCHERO (BUNDLE VIRTUAL) -----
+  // Al añadir al carrito expande a sus bundleItems × packMultiplier.
+  // El descuento se aplica vía Shopify Discount Automático cuando detecta
+  // esta combinación exacta en el carrito (configurar en Shopify admin).
+  {
+    id: 'pack-forocochero',
+    name: 'Pack JAMÓN Forocochero',
+    sub: '5×Jamón Bellota 100% +42m + 4 sobres embutidos',
+    icon: A['p-pack-forocochero'] || A['regalo'],
+    category: 'loncheados', subcat: 'jamon', flag: 'top',
+    weight: 'Pack 9 sobres',
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
+    isVirtualBundle: true,
+    // Items que se añaden al carrito real (por 1 pack)
+    bundleItems: [
+      { shopifyId: 15113115533657, shopifyHandle: 'sobres-jamon-monjamon-bellota-100-fetas', qty: 5, label: 'Jamón Bellota 100% +42m máquina' },
+      { shopifyId: 15112623227225, shopifyHandle: 'sobre-lomonasterio',                       qty: 1, label: 'Lomonasterio' },
+      { shopifyId: 15112646525273, shopifyHandle: 'sobre-divina-coppa-de-bellota-100-iberica',qty: 1, label: 'Divina Coppa' },
+      { shopifyId: 15112615166297, shopifyHandle: 'sobre-choricielo',                          qty: 1, label: 'Choricielo' },
+      { shopifyId: 15112627945817, shopifyHandle: 'sobre-san-chichon',                         qty: 1, label: 'San Chichón' },
+    ],
+    variants: [
+      { key: '1pack',  label: '1 PACK',  price: 56.00, compare: 81.10, packMultiplier: 1 },
+      { key: '2packs', label: '2 PACKS', price: 95.00, compare: 162.20, packMultiplier: 2 },
+    ],
+    pros: ['5 sobres Jamón Bellota 100% +42m a máquina', '1 sobre Lomo + 1 Coppa + 1 Chorizo + 1 Salchichón', 'Producto del Año 2025 · Superior Taste ★★★', 'Ahorras 25,10€ vs comprar suelto'],
+    desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses cortado a máquina + 1 sobre Lomonasterio + 1 sobre Divina Coppa + 1 sobre Choricielo + 1 sobre San Chichón. Producto del Año 2025 y Superior Taste Award ★★★. Sale 25,10€ más barato que comprar los 9 sobres por separado.',
+  },
+
   // ----- LONCHEADOS -----
   {
     id: 'sacro-puntas',
     name: 'Sacro Puntas de Monjamón',
     sub: 'Taquitos · Calidad 100% Ibérica',
-    icon: A['clean-jamon-bellota'] || A['jamon-bellota'],
+    icon: A['p-lon-sacro-puntas'] || A['clean-jamon-bellota'] || A['jamon-bellota'],
     category: 'loncheados', subcat: 'jamon', flag: 'novedad',
     weight: '80 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 30, cut: 'cuchillo',
@@ -98,7 +127,7 @@ const PRODUCTS = [
     id: 'gr-36',
     name: 'Jamón Gran Reserva',
     sub: '+36 meses · Esencial · Fuera de norma',
-    icon: A['clean-gran-reserva'] || A['gran-reserva'],
+    icon: A['p-lon-gr-36'] || A['clean-gran-reserva'] || A['gran-reserva'],
     category: 'loncheados', subcat: 'jamon',
     weight: '80 g/ud',
     calidad: 'esencial', alimentacion: 'pienso', sabor: 'suave', meses: 30,
@@ -113,7 +142,7 @@ const PRODUCTS = [
     id: 'bel-36-arom',
     name: 'Jamón Bellota 100% +36m',
     sub: 'Aromático · solo a máquina',
-    icon: A['clean-jamon-bellota'] || A['jamon-bellota'],
+    icon: A['p-lon-bel-36-arom'] || A['clean-jamon-bellota'] || A['jamon-bellota'],
     category: 'loncheados', subcat: 'jamon', flag: 'vendido',
     weight: '80 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'aromatico', meses: 30, cut: 'maquina',
@@ -127,7 +156,7 @@ const PRODUCTS = [
     id: 'bel-42-int',
     name: 'Jamón Bellota 100% +42m',
     sub: '★ Producto del Año 2025 · Superior Taste ★★★',
-    icon: A['clean-jamon-bellota'] || A['jamon-bellota'],
+    icon: A['p-lon-bel-42-int'] || A['clean-jamon-bellota'] || A['jamon-bellota'],
     category: 'loncheados', subcat: 'jamon', flag: 'top',
     weight: '80 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
@@ -142,7 +171,7 @@ const PRODUCTS = [
     id: 'sagrada-paleta',
     name: 'Sagrada Paleta',
     sub: '★ Producto del Año 2025 · Edición limitada',
-    icon: A['clean-paleta'] || A['paleta'],
+    icon: A['p-lon-sagrada-paleta'] || A['clean-paleta'] || A['paleta'],
     category: 'loncheados', subcat: 'paleta', flag: 'top',
     weight: '80 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 30,
@@ -157,7 +186,7 @@ const PRODUCTS = [
     id: 'pasion-50',
     name: 'Monjamón Pasión +50m',
     sub: 'Premium · Sin precinto · Oleico ~60%',
-    icon: A['clean-pasion'] || A['pasion'],
+    icon: A['p-lon-pasion-50'] || A['clean-pasion'] || A['pasion'],
     category: 'loncheados', subcat: 'jamon', flag: 'top',
     weight: '80 g/ud',
     calidad: 'premium', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 50, cut: 'cuchillo',
@@ -171,7 +200,7 @@ const PRODUCTS = [
     id: 'choricielo',
     name: 'Choricielo',
     sub: 'Chorizo de Bellota 100% Ibérico',
-    icon: A['clean-choricielo'] || A['choricielo'],
+    icon: A['p-lon-choricielo'] || A['clean-choricielo'] || A['choricielo'],
     category: 'loncheados', subcat: 'embutido', flag: 'novedad',
     weight: '50 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 6, cut: 'maquina',
@@ -185,7 +214,7 @@ const PRODUCTS = [
     id: 'san-chichon',
     name: 'San Chichón',
     sub: 'Salchichón de Bellota 100% Ibérico',
-    icon: A['clean-salchichon'] || A['salchichon'],
+    icon: A['p-lon-san-chichon'] || A['clean-salchichon'] || A['salchichon'],
     category: 'loncheados', subcat: 'embutido', flag: 'novedad',
     weight: '50 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'aromatico', meses: 6, cut: 'maquina',
@@ -199,7 +228,7 @@ const PRODUCTS = [
     id: 'lomonasterio',
     name: 'Lomonasterio',
     sub: 'Lomo de Bellota 100% Ibérico',
-    icon: A['clean-lomonasterio'] || A['lomonasterio'],
+    icon: A['p-lon-lomonasterio'] || A['clean-lomonasterio'] || A['lomonasterio'],
     category: 'loncheados', subcat: 'embutido',
     weight: '50 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 6, cut: 'maquina',
@@ -213,7 +242,7 @@ const PRODUCTS = [
     id: 'divina-coppa',
     name: 'Divina Coppa',
     sub: 'Coppa de Bellota 100% Ibérica',
-    icon: A['clean-lomonasterio'] || A['lomonasterio'],
+    icon: A['p-lon-divina-coppa'] || A['clean-coppa'] || A['coppa'],
     category: 'loncheados', subcat: 'embutido',
     weight: '50 g/ud',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'suave', meses: 6, cut: 'maquina',
@@ -950,12 +979,19 @@ function modifyCart(id, vKey, delta) {
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
   let price, label, sId, sHandle;
+  let bundleItems = null;
+  let packMultiplier = null;
   if (p.variants) {
     const v = p.variants.find(x => x.key === vKey);
     if (!v || v.soldout) return;
     price = v.price; sId = v.shopifyId; sHandle = v.shopifyHandle || p.shopifyHandle;
     const vLabel = (CORTE[vKey] && CORTE[vKey].label) || v.label || vKey;
     label = `${p.name} (${vLabel})`;
+    // Bundle virtual: capturar items + multiplicador
+    if (p.isVirtualBundle && p.bundleItems && v.packMultiplier) {
+      bundleItems = p.bundleItems;
+      packMultiplier = v.packMultiplier;
+    }
   } else {
     price = p.price; sId = p.shopifyId; sHandle = p.shopifyHandle;
     label = p.name;
@@ -964,7 +1000,7 @@ function modifyCart(id, vKey, delta) {
   const existing = state.cart.get(key);
   const newQty = (existing?.qty || 0) + delta;
   if (newQty <= 0) state.cart.delete(key);
-  else state.cart.set(key, { qty: newQty, price, name: label, shopifyId: sId, shopifyHandle: sHandle });
+  else state.cart.set(key, { qty: newQty, price, name: label, shopifyId: sId, shopifyHandle: sHandle, bundleItems, packMultiplier });
   refreshCart();
   refreshBuyControl(id, vKey);
 }
@@ -993,18 +1029,47 @@ function isShopifyHost() {
   return h.includes('shopify') || h.includes('monjamonymas');
 }
 
+// Expande un entry del cart a items individuales para Shopify cart/add.
+// - Items normales → { id, qty } (1 línea)
+// - Bundles virtuales → N líneas (una por cada bundleItem × packMultiplier × qty)
+function expandCartEntry(entry) {
+  // bundle virtual?
+  if (entry.bundleItems && entry.packMultiplier) {
+    return entry.bundleItems.map(bi => ({
+      shopifyId: bi.shopifyId,
+      shopifyHandle: bi.shopifyHandle,
+      quantity: bi.qty * entry.packMultiplier * entry.qty,
+    }));
+  }
+  return [{ shopifyId: entry.shopifyId, shopifyHandle: entry.shopifyHandle, quantity: entry.qty }];
+}
+
 async function checkoutShopify() {
   const entries = [...state.cart.values()];
+  // Expandir cada entry (los bundles virtuales se convierten en sus items individuales)
+  const expanded = entries.flatMap(expandCartEntry);
+  // Mergear duplicados por shopifyHandle (si un item aparece suelto + dentro de un pack, sumar qty)
+  const merged = new Map();
+  for (const it of expanded) {
+    const key = it.shopifyHandle || `id-${it.shopifyId}`;
+    const existing = merged.get(key);
+    if (existing) {
+      existing.quantity += it.quantity;
+    } else {
+      merged.set(key, { ...it });
+    }
+  }
+  const list = [...merged.values()];
   let items;
   if (isShopifyHost()) {
     items = await Promise.all(
-      entries.map(async (item) => ({
+      list.map(async (item) => ({
         id: await resolveVariantId(item.shopifyHandle, item.shopifyId),
-        quantity: item.qty,
+        quantity: item.quantity,
       }))
     );
   } else {
-    items = entries.map(item => ({ id: item.shopifyId, quantity: item.qty, _handle: item.shopifyHandle }));
+    items = list.map(item => ({ id: item.shopifyId, quantity: item.quantity, _handle: item.shopifyHandle }));
   }
   const validItems = items.filter(it => it.id != null);
   if (validItems.length === 0) {
