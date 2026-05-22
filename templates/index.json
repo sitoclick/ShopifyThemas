@@ -350,9 +350,21 @@
     "ss_slideshow_11_T94tfV": {
       "type": "ss-slideshow-11",
       "blocks": {
+        "slide_hpkQ33": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/BANNER_PREMIO.jpg",
+            "heading": "<p>Nueva Mini Web</p>",
+            "typewriter_text": "",
+            "text": "<p>¿cansado de scrollear y navegar entre páginas hechas para google / IA pero sin sentido para el usuario?</p>",
+            "button": "Probar nueva experiencia web",
+            "url": "shopify://pages/mini",
+            "stars_count": 0,
+            "review": ""
+          }
+        },
         "slide_r3dyDm": {
           "type": "slide",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Gemini_Generated_Image_3z8wpd3z8wpd3z8w.png",
             "heading": "<p>Sobres loncheados</p>",
@@ -377,25 +389,12 @@
             "stars_count": 5,
             "review": "<p>Excellent <strong>4.7</strong></p>"
           }
-        },
-        "slide_hpkQ33": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/BANNER_PREMIO.jpg",
-            "heading": "<p>Nueva Mini Web</p>",
-            "typewriter_text": "",
-            "text": "<p>¿harto de scrollear y navegar entre páginas hechas para google / IA pero sin sentido para el usuario?</p>",
-            "button": "Probar nueva experiencia web",
-            "url": "shopify://pages/mini",
-            "stars_count": 5,
-            "review": "<p>Palabra de Fiel</p>"
-          }
         }
       },
       "block_order": [
+        "slide_hpkQ33",
         "slide_r3dyDm",
-        "slide_tcbAqq",
-        "slide_hpkQ33"
+        "slide_tcbAqq"
       ],
       "name": "SS - Slideshow #11",
       "settings": {
