@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="miniweb-layout">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#406ef5">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <style>
+      html, body { margin: 0; padding: 0; background: #ffffff; }
+      body { font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+      .miniweb-layout main { display: block; }
+    </style>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="miniweb-body template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
+    <a class="skip-to-content-link visually-hidden" href="#MainContent">{{ 'accessibility.skip_to_text' | t }}</a>
+
+    <main id="MainContent" class="miniweb-main" role="main">
+      {{ content_for_layout }}
+    </main>
+  </body>
+</html>
