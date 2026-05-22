@@ -14,22 +14,22 @@
 
 <div class="miniweb-app">
 
-  <!-- Mini-header propio -->
+  <!-- Mini-header propio: azul, logo monja + wordmark MONJAMÓN + carrito -->
   <header class="mw-header">
-    <a class="mw-header__brand" href="{{ routes.root_url }}">
-      <span class="mw-header__logo">
-        <span class="mw-header__logo-m">M</span>
+    <a class="mw-header__brand" href="{{ routes.root_url }}" aria-label="Inicio">
+      <span class="mw-header__logo" aria-hidden="true">
+        <img src="https://www.monjamonymas.com/cdn/shop/files/nuevoflavicon_c9223ef1-f146-48a0-8c22-7cb86351b048.svg?v=1753271575&width=180" alt="" loading="eager" />
       </span>
-      <span class="mw-header__name">{{ section.settings.brand_name | default: 'Monjamón y Más' }}</span>
+      <span class="mw-header__name">MONJAMÓN</span>
     </a>
-    <a class="mw-header__cart" href="{{ routes.cart_url }}" aria-label="Ver carrito" id="mwCartLink">
+    <button type="button" class="mw-header__cart" id="mwCartBtn" aria-label="Ver carrito">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="9" cy="21" r="1"/>
         <circle cx="20" cy="21" r="1"/>
         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
       </svg>
       <span class="mw-header__count" id="mwCartCount" hidden>0</span>
-    </a>
+    </button>
   </header>
 
   <div class="app">
@@ -109,17 +109,6 @@
 
       <div class="spacer-cta"></div>
     </main>
-
-    <!-- Botón flotante compacto (FAB) — clica para abrir el drawer -->
-    <button class="cart-fab" id="cartFab" hidden aria-label="Ver carrito" type="button">
-      <span class="cart-fab__badge" id="cartCount">0</span>
-      <svg class="cart-fab__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="9" cy="21" r="1"/>
-        <circle cx="20" cy="21" r="1"/>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-      </svg>
-      <span class="cart-fab__total" id="cartLabel">0,00 €</span>
-    </button>
 
   </div>
 

@@ -44,6 +44,26 @@ const FLAG = {
   regalo:  { label: 'PARA REGALAR',icon: A['regalo'] },
 };
 
+// Tipo de leche (quesos)
+const LECHE = {
+  'oveja':       { label: 'Leche Oveja' },
+  'vaca':        { label: 'Leche Vaca' },
+  'cabra':       { label: 'Leche Cabra' },
+  'vaca-oveja':  { label: 'Vaca + Oveja' },
+};
+
+// Formato (quesos)
+const FORMATO = {
+  'cuna':         { label: 'Formato Cuña' },
+  'cuadraditos':  { label: 'Cuadraditos' },
+};
+
+// Tipo de vino
+const VINO_TIPO = {
+  'tinto':  { label: 'Tinto' },
+  'blanco': { label: 'Blanco' },
+};
+
 // Categorías top-level y sus copys
 const CATEGORIES = {
   'loncheados':       { label: 'Loncheados',         eyebrow: 'Loncheados al instante',    title: 'Cae en la tentación' },
@@ -328,98 +348,121 @@ const PRODUCTS = [
     weight: '~250 g',
     calidad: 'esencial', alimentacion: 'bellota', sabor: 'intenso',
     variants: [
-      { key: 'maquina',  label: 'Normal',   price: 7.95, compare: 12.00, shopifyId: 39488731250769 },
-      { key: 'cuchillo', label: 'Picante',  price: 7.95, compare: 12.00, shopifyId: 40167773110353 },
+      { key: 'dulce',   label: 'Dulce',   price: 7.95, compare: 12.00, shopifyId: 39488731250769 },
+      { key: 'picante', label: 'Picante', price: 7.95, compare: 12.00, shopifyId: 40167773110353 },
     ],
     shopifyHandle: 'longaniza-iberica',
-    pros: ['Oferta especial', '2 tipos: Normal o Picante', 'Ibérica de bellota'],
-    desc: 'Longaniza ibérica al estilo chorizo, en formato alargado. Elige entre versión Normal o Picante. Producto en oferta.',
+    pros: ['Oferta especial', '2 tipos: Dulce o Picante', 'Ibérica de bellota'],
+    desc: 'Longaniza ibérica al estilo chorizo, en formato alargado. Elige entre versión Dulce o Picante. Producto en oferta.',
   },
   {
     id: 'emb-mini-vela-fuet',
     name: 'Vela Ibérica estilo Fuet',
-    sub: 'Mini formato · 3 sabores disponibles',
+    sub: 'Mini formato · Bellota +6 meses',
     icon: A['salchichon'],
     category: 'embutidos', type: 'Fuet',
     weight: '~80 g',
-    calidad: 'esencial', alimentacion: 'pienso', sabor: 'aromatico',
-    price: 7.00,
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'aromatico', meses: 6,
+    variants: [
+      { key: 'salchichon',     label: 'Salchichón',      price: 7.00, shopifyId: 47136359645529 },
+      { key: 'chorizo-dulce',  label: 'Chorizo Dulce',   price: 7.00, shopifyId: 47136359678297 },
+      { key: 'chorizo-picante',label: 'Chorizo Picante', price: 7.00, shopifyId: 47136359711065 },
+    ],
     shopifyHandle: 'mini-vela-fuet',
-    shopifyId: 47136359645529,
-    pros: ['Formato mini', 'Salchichón, Chorizo o Picante', 'Snack ideal'],
-    desc: 'Mini vela ibérica estilo fuet. Variante por defecto: Salchichón. Snack perfecto para llevar o picotear.',
+    pros: ['Bellota 100% Ibérico', '+6 meses de curación', '3 sabores: Salchichón, Chorizo Dulce o Picante'],
+    desc: 'Mini vela ibérica estilo fuet, hecha de bellota 100% ibérica con 6 meses de curación. Tres variantes disponibles: Salchichón, Chorizo Dulce y Chorizo Picante.',
   },
 
-  // ----- QUESOS -----
+  // ----- QUESOS (todos La Antigua salvo indicación) -----
   {
     id: 'q-dop-zamorano',
     name: 'Queso D.O.P Zamorano',
-    sub: 'Oveja añeja con D.O.P',
+    sub: 'La Antigua · Añejo con Denominación de Origen',
     icon: A['premium'],
     category: 'quesos', type: 'D.O.P',
     weight: '~250 g',
-    calidad: 'premium',
+    marca: 'La Antigua', formato: 'cuna', leche: 'oveja',
+    calidad: 'premium', sabor: 'intenso-plus',
     price: 9.50,
     shopifyHandle: 'queso-dop-zamorano',
     shopifyId: 47219826491737,
-    pros: ['Denominación de Origen', 'Oveja añeja', 'Castilla y León'],
-    desc: 'Queso de oveja añejo con Denominación de Origen Protegida Zamorano. Sabor intenso y prolongado en boca.',
+    pros: ['Denominación de Origen', 'Oveja añeja', 'La Antigua · Castilla y León'],
+    desc: 'Queso de oveja añejo con Denominación de Origen Protegida Zamorano. Marca La Antigua. Sabor intenso y prolongado en boca.',
   },
   {
     id: 'q-tartufo',
     name: 'Queso de Oveja al Tartufo',
-    sub: 'Oveja curado con trufa',
+    sub: 'La Antigua · Curado con trufa',
     icon: A['gourmet'],
     category: 'quesos', type: 'Trufado',
     weight: '~250 g',
-    calidad: 'gourmet',
+    marca: 'La Antigua', formato: 'cuna', leche: 'oveja',
+    calidad: 'gourmet', sabor: 'intenso-plus',
     price: 10.00,
     shopifyHandle: 'queso-de-oveja-curado-al-tartufo',
     shopifyId: 47219809517913,
-    pros: ['Trufa real', 'Oveja curado', 'Sabor único'],
-    desc: 'Queso de oveja curado con trufa negra. Maridaje perfecto con vino tinto.',
+    pros: ['Trufa real', 'Oveja curado', 'Maridaje con tinto'],
+    desc: 'Queso de oveja curado con trufa negra. Marca La Antigua. Maridaje perfecto con vino tinto.',
   },
   {
     id: 'q-picanton',
     name: 'Queso PICANTÓN',
-    sub: 'Cuadraditos con escamas de pimentón',
+    sub: 'La Antigua · Cuadraditos con pimentón',
     icon: A['oferta'],
     category: 'quesos', type: 'Picantón',
     weight: '250 g',
-    calidad: 'gourmet',
+    marca: 'La Antigua', formato: 'cuadraditos', leche: 'oveja',
+    calidad: 'gourmet', sabor: 'intenso',
     price: 8.50,
     shopifyHandle: 'queso-curado-de-oveja-con-escamas-de-pimenton-cuadraditos-250gramos',
     shopifyId: 54456248762713,
     pros: ['Listo para picar', 'Escamas de pimentón', 'Curado de oveja'],
-    desc: 'Queso curado de oveja en cuadraditos, recubierto de escamas de pimentón ahumado. Formato listo para aperitivo.',
+    desc: 'Queso curado de oveja en cuadraditos, recubierto de escamas de pimentón ahumado. Marca La Antigua. Formato listo para aperitivo.',
   },
   {
     id: 'q-sin-lactosa',
     name: 'Queso Tierno Sin Lactosa',
-    sub: 'Oveja tierno con pimienta rosa',
+    sub: 'La Antigua · Tierno con pimienta rosa',
     icon: A['esencial'],
     category: 'quesos', type: 'Sin Lactosa', flag: 'novedad',
     weight: '~250 g',
-    calidad: 'esencial',
+    marca: 'La Antigua', formato: 'cuna', leche: 'oveja',
+    calidad: 'esencial', sabor: 'suave',
     price: 8.00,
     shopifyHandle: 'queso-tierno-sin-lactosa-pimienta-rosa',
     shopifyId: 54455924982105,
     pros: ['Sin lactosa', 'Pimienta rosa', 'Tierno y suave'],
-    desc: 'Queso tierno de oveja sin lactosa, aromatizado con pimienta rosa. Apto para intolerantes.',
+    desc: 'Queso tierno de oveja sin lactosa, aromatizado con pimienta rosa. Marca La Antigua. Apto para intolerantes.',
   },
   {
     id: 'q-pimenton',
     name: 'Queso Curado con Pimentón',
-    sub: 'Oveja curado con escamas de pimentón',
+    sub: 'La Antigua · Curado con escamas de pimentón',
     icon: A['gourmet'],
     category: 'quesos', type: 'Pimentón',
     weight: '~250 g',
-    calidad: 'gourmet',
+    marca: 'La Antigua', formato: 'cuna', leche: 'oveja',
+    calidad: 'gourmet', sabor: 'intenso',
     price: 8.50,
     shopifyHandle: 'queso-curado-oveja-escamas-pimenton',
     shopifyId: 48198075351385,
     pros: ['Escamas de pimentón', 'Curado de oveja', 'Picante suave'],
-    desc: 'Queso curado de oveja recubierto en escamas de pimentón. Sabor intenso con un punto picante.',
+    desc: 'Queso curado de oveja recubierto en escamas de pimentón. Marca La Antigua. Sabor intenso con un punto picante.',
+  },
+  {
+    id: 'q-cuna-180',
+    name: 'Cuña Sorpresa 180g',
+    sub: 'La Antigua · Vaca + Oveja Zamorano',
+    icon: A['gourmet'],
+    category: 'quesos', type: 'Cuña 180g',
+    weight: '180 g',
+    marca: 'La Antigua', formato: 'cuna', leche: 'vaca-oveja',
+    calidad: 'gourmet', sabor: 'aromatico',
+    price: 8.08,
+    shopifyHandle: 'cuna-sorpresa-queso-de-oveja-zamorano-la-antigua-cuna-180gramos',
+    shopifyId: 53648312467801,
+    pros: ['Mezcla vaca + oveja', 'Formato cuña 180g', 'La Antigua Zamorano'],
+    desc: 'Cuña sorpresa de 180g elaborada con leche de vaca y oveja. Marca La Antigua, queso Zamorano. Formato ideal para tabla pequeña.',
   },
 
   // ----- VINOS -----
@@ -428,23 +471,23 @@ const PRODUCTS = [
     name: 'Verdejo Frizzante 5.5° (Lata)',
     sub: 'Vino verdejo frizzante · Formato lata',
     icon: A['novedad'],
-    category: 'vinos', type: 'Verdejo Frizzante',
+    category: 'vinos', type: 'Blanco', tipo: 'blanco', zona: 'Salamanca',
     weight: '250 ml',
-    calidad: 'esencial',
+    calidad: 'esencial', sabor: 'aromatico',
     price: 3.50,
     shopifyHandle: 'frizzante',
     shopifyId: 54150874464601,
-    pros: ['Formato lata práctico', 'Bajo en alcohol 5.5°', 'Ideal aperitivo'],
-    desc: 'Verdejo frizzante en lata de 250ml. Fresco, ligero, perfecto para acompañar tablas de ibéricos.',
+    pros: ['Formato lata práctico', 'Bajo en alcohol 5.5°', 'Aromático y fresco'],
+    desc: 'Verdejo frizzante en lata de 250ml. Aromático, ligero, perfecto para acompañar tablas de ibéricos.',
   },
   {
     id: 'v-circe',
     name: 'Circe Verdejo',
     sub: 'D.O. Rueda · Verdejo joven',
     icon: A['gourmet'],
-    category: 'vinos', type: 'Verdejo',
+    category: 'vinos', type: 'Blanco', tipo: 'blanco', zona: 'D.O. Rueda',
     weight: '750 ml',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'aromatico',
     price: 11.99,
     shopifyHandle: 'circe-verdejo',
     shopifyId: 47172699226457,
@@ -454,11 +497,11 @@ const PRODUCTS = [
   {
     id: 'v-fuentespina',
     name: 'Fuentespina Crianza',
-    sub: 'Ribera del Duero · Tinto crianza',
+    sub: 'D.O. Ribera del Duero · Tinto crianza',
     icon: A['gourmet'],
-    category: 'vinos', type: 'Ribera Crianza',
+    category: 'vinos', type: 'Tinto', tipo: 'tinto', zona: 'D.O. Ribera del Duero',
     weight: '750 ml',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'intenso',
     price: 9.99,
     shopifyHandle: 'fuentespina-crianza',
     shopifyId: 47219796607321,
@@ -468,25 +511,25 @@ const PRODUCTS = [
   {
     id: 'v-aureo',
     name: 'Avelino Vegas Áureo',
-    sub: 'Verdejo Roble · RECOMENDADO',
+    sub: 'D.O. Ribera del Duero · RECOMENDADO',
     icon: A['premium'],
-    category: 'vinos', type: 'Verdejo Roble', flag: 'top',
+    category: 'vinos', type: 'Tinto', tipo: 'tinto', zona: 'D.O. Ribera del Duero', flag: 'top',
     weight: '750 ml',
-    calidad: 'premium',
+    calidad: 'premium', sabor: 'intenso-plus',
     price: 23.00,
     shopifyHandle: 'aureo',
     shopifyId: 47172664066393,
-    pros: ['Recomendado de la casa', 'Verdejo fermentado en barrica', 'Notas tostadas'],
-    desc: 'Áureo de Avelino Vegas. Verdejo fermentado en barrica con notas tostadas y vainilla. Recomendado por la casa.',
+    pros: ['Recomendado de la casa', 'Fermentado en barrica', 'Notas tostadas y vainilla'],
+    desc: 'Áureo de Avelino Vegas. Tinto Ribera del Duero fermentado en barrica con notas tostadas y vainilla. Recomendado por la casa.',
   },
   {
     id: 'v-muriel',
     name: 'Viña Muriel Crianza',
     sub: 'D.O.Ca. Rioja · Tinto crianza',
     icon: A['gourmet'],
-    category: 'vinos', type: 'Rioja Crianza',
+    category: 'vinos', type: 'Tinto', tipo: 'tinto', zona: 'D.O.Ca. Rioja',
     weight: '750 ml',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'aromatico',
     price: 8.45,
     shopifyHandle: 'vina-muriel-crianza',
     shopifyId: 49339160887641,
@@ -502,7 +545,7 @@ const PRODUCTS = [
     icon: A['oferta'],
     category: 'otros', type: 'Salsa',
     weight: '~250 g',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'intenso',
     price: 10.95,
     shopifyHandle: 'salsa-2-picor-chile-chipotle-seco-y-pipas',
     shopifyId: 54151859143001,
@@ -516,7 +559,7 @@ const PRODUCTS = [
     icon: A['top'],
     category: 'otros', type: 'Salsa',
     weight: '~250 g',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'intenso-plus',
     price: 10.95,
     shopifyHandle: 'salsa-chile-morita',
     shopifyId: 54151889092953,
@@ -530,11 +573,11 @@ const PRODUCTS = [
     icon: A['premium'],
     category: 'otros', type: 'Aceite',
     weight: '100/250/500 ml',
-    calidad: 'premium',
+    calidad: 'premium', sabor: 'intenso',
     variants: [
-      { key: 'maquina',  label: '100 ml', price: 5.00,  shopifyId: 55620172808537 },
-      { key: 'cuchillo', label: '250 ml', price: 10.00, shopifyId: 55620172841305 },
-      { key: 'xl',       label: '500 ml', price: 17.00, shopifyId: 55620172874073 },
+      { key: '100ml', label: '100 ml', price: 5.00,  shopifyId: 55620172808537 },
+      { key: '250ml', label: '250 ml', price: 10.00, shopifyId: 55620172841305 },
+      { key: '500ml', label: '500 ml', price: 17.00, shopifyId: 55620172874073 },
     ],
     shopifyHandle: 'bravoleum-picual',
     pros: ['AOVE Picual', 'Cosecha 2024-2025', '3 formatos disponibles'],
@@ -547,7 +590,7 @@ const PRODUCTS = [
     icon: A['novedad'],
     category: 'otros', type: 'Cerveza',
     weight: '33 cl',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'aromatico',
     price: 4.50,
     shopifyHandle: 'bestiator-cerveza-charra-con-miel',
     shopifyId: 49239514120537,
@@ -561,7 +604,7 @@ const PRODUCTS = [
     icon: A['gourmet'],
     category: 'otros', type: 'Cerveza',
     weight: '33 cl',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'suave',
     price: 4.00,
     shopifyHandle: 'barbier-pilsner-charra',
     shopifyId: 49239597678937,
@@ -575,7 +618,7 @@ const PRODUCTS = [
     icon: A['gourmet'],
     category: 'otros', type: 'Cerveza',
     weight: '33 cl',
-    calidad: 'gourmet',
+    calidad: 'gourmet', sabor: 'aromatico',
     price: 4.00,
     shopifyHandle: 'verraco-cerveza-de-trigo-charro',
     shopifyId: 49235260965209,
@@ -615,14 +658,13 @@ const refs = {
   soonState: $('#soonState'),
   searchInput: $('#searchInput'),
   searchClear: $('#searchClear'),
-  cartCTA: $('#cartFab'),                 // alias mantenido (era cartCTA)
-  cartCount: $('#cartCount'),
-  cartLabel: $('#cartLabel'),
+  // Botón carrito en el mini-header (sustituye al FAB)
+  mwCartBtn: $('#mwCartBtn'),
+  mwCartCount: $('#mwCartCount'),
   cartDrawer: $('#cartDrawer'),
   cartDrawerList: $('#cartDrawerList'),
   cartDrawerTotal: $('#cartDrawerTotal'),
   cartCheckout: $('#cartCheckout'),
-  mwCartCount: $('#mwCartCount'),
   sheet: $('#sheet'),
   sheetBody: $('#sheetBody'),
   sheetQty: $('#sheetQty'),
@@ -711,9 +753,12 @@ function rowHTML(p) {
   const typeLabel = productTypeLabel(p);
   const typeTag = typeLabel ? `<span class="row__type">${typeLabel}</span>` : '';
   const calidadTag = `<span class="tag tag--calidad tag--calidad--${p.calidad}"><img src="${CALIDAD[p.calidad].icon}" alt=""> ${CALIDAD[p.calidad].label}</span>`;
-  const alimTag    = p.alimentacion ? `<span class="tag"><img src="${ALIM[p.alimentacion].icon}" alt=""> ${ALIM[p.alimentacion].label}</span>` : '';
+  const alimTag    = p.alimentacion && ALIM[p.alimentacion] ? `<span class="tag"><img src="${ALIM[p.alimentacion].icon}" alt=""> ${ALIM[p.alimentacion].label}</span>` : '';
   const mesesTag   = p.meses != null && MESES[p.meses] ? `<span class="tag"><img src="${MESES[p.meses].icon}" alt=""> ${MESES[p.meses].label}</span>` : '';
-  const saborTag   = p.sabor ? `<span class="tag tag--sabor">${velasHTML(SABOR[p.sabor].velas)} <span>${SABOR[p.sabor].label}</span></span>` : '';
+  const saborTag   = p.sabor && SABOR[p.sabor] ? `<span class="tag tag--sabor">${velasHTML(SABOR[p.sabor].velas)} <span>${SABOR[p.sabor].label}</span></span>` : '';
+  const lecheTag   = p.leche && LECHE[p.leche] ? `<span class="tag">${LECHE[p.leche].label}</span>` : '';
+  const formatoTag = p.formato && FORMATO[p.formato] ? `<span class="tag">${FORMATO[p.formato].label}</span>` : '';
+  const zonaTag    = p.zona ? `<span class="tag">${p.zona}</span>` : '';
 
   let buyBlock;
   if (p.variants) {
@@ -765,7 +810,10 @@ function rowHTML(p) {
       <div class="row__tags">
         ${calidadTag}
         ${alimTag}
+        ${lecheTag}
+        ${zonaTag}
         ${mesesTag}
+        ${formatoTag}
         ${saborTag}
       </div>
       ${buyBlock}
@@ -837,17 +885,12 @@ function totalCart() {
 }
 function refreshCart() {
   const { qty, eur } = totalCart();
-  // FAB compacto: badge + total
-  refs.cartCount.textContent = qty;
-  refs.cartLabel.textContent = fmt(eur);
-  refs.cartCTA.hidden = qty === 0;
-  // Contador en mini-header
+  // Badge en mini-header (única indicación visible de carrito)
   refs.mwCartCount.textContent = qty;
   refs.mwCartCount.hidden = qty === 0;
-  // Drawer (re-render si está abierto, mantén actualizado el total siempre)
+  // Drawer (re-render si está abierto, mantén el total actualizado)
   refs.cartDrawerTotal.textContent = fmt(eur);
   if (!refs.cartDrawer.hidden) renderCartDrawer();
-  // Si vaciamos el carrito mientras el drawer está abierto, ciérralo
   if (qty === 0 && !refs.cartDrawer.hidden) closeCartDrawer();
 }
 
@@ -875,7 +918,6 @@ function renderCartDrawer() {
   refs.cartDrawerList.innerHTML = html.join('');
 }
 function openCartDrawer() {
-  if (state.cart.size === 0) return;
   renderCartDrawer();
   refs.cartDrawer.hidden = false;
   document.body.style.overflow = 'hidden';
@@ -1020,9 +1062,12 @@ function openSheet(id) {
 
   const specs = [];
   if (p.calidad)      specs.push(`<div class="spec"><img src="${CALIDAD[p.calidad].icon}" alt=""><div><small>Calidad</small><strong>${CALIDAD[p.calidad].label}</strong></div></div>`);
-  if (p.alimentacion) specs.push(`<div class="spec"><img src="${ALIM[p.alimentacion].icon}" alt=""><div><small>Alimentación</small><strong>${ALIM[p.alimentacion].label}</strong></div></div>`);
+  if (p.alimentacion && ALIM[p.alimentacion]) specs.push(`<div class="spec"><img src="${ALIM[p.alimentacion].icon}" alt=""><div><small>Alimentación</small><strong>${ALIM[p.alimentacion].label}</strong></div></div>`);
+  if (p.leche && LECHE[p.leche])     specs.push(`<div class="spec spec--noicon"><div><small>Leche</small><strong>${LECHE[p.leche].label}</strong></div></div>`);
+  if (p.zona)         specs.push(`<div class="spec spec--noicon"><div><small>Zona</small><strong>${p.zona}</strong></div></div>`);
+  if (p.formato && FORMATO[p.formato]) specs.push(`<div class="spec spec--noicon"><div><small>Formato</small><strong>${FORMATO[p.formato].label}</strong></div></div>`);
   if (p.meses != null && MESES[p.meses]) specs.push(`<div class="spec"><img src="${MESES[p.meses].icon}" alt=""><div><small>Curación</small><strong>${MESES[p.meses].label}</strong></div></div>`);
-  if (p.sabor)        specs.push(`<div class="spec spec--noicon"><div><small>Sabor</small><strong>${velasHTML(SABOR[p.sabor].velas)} ${SABOR[p.sabor].label}</strong></div></div>`);
+  if (p.sabor && SABOR[p.sabor]) specs.push(`<div class="spec spec--noicon"><div><small>Sabor</small><strong>${velasHTML(SABOR[p.sabor].velas)} ${SABOR[p.sabor].label}</strong></div></div>`);
 
   refs.sheetBody.innerHTML = `
     <div class="sheet__gallery" data-gallery>
@@ -1265,8 +1310,8 @@ function wire() {
     }
   });
 
-  // FAB carrito → abre el drawer
-  refs.cartCTA.addEventListener('click', openCartDrawer);
+  // Botón carrito en el mini-header → abre el drawer
+  refs.mwCartBtn.addEventListener('click', openCartDrawer);
 
   // Drawer: cerrar (backdrop / X) y manipular qty / checkout
   refs.cartDrawer.addEventListener('click', (e) => {
