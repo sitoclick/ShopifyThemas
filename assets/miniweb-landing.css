@@ -106,24 +106,36 @@
 }
 .miniweb-app .mw-header__cart {
   position: relative;
-  width: 42px; height: 42px;
-  display: grid; place-items: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px 6px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   color: #fff;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
-  padding: 0;
 }
 .miniweb-app .mw-header__cart:hover {
-  background: rgba(255, 255, 255, 0.22);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(255, 255, 255, 0.55);
 }
-.miniweb-app .mw-header__cart:active { transform: scale(0.94); }
+.miniweb-app .mw-header__cart:active { transform: scale(0.95); }
+.miniweb-app .mw-header__cart-icon {
+  width: 26px; height: 26px;
+  object-fit: contain;
+  /* SVG brand viene en color del CDN; lo dejamos como está */
+}
+.miniweb-app .mw-header__cart-label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
 .miniweb-app .mw-header__count {
   position: absolute;
-  top: -4px; right: -4px;
+  top: -6px; right: -6px;
   min-width: 22px; height: 22px;
   background: var(--naranja); color: #fff;
   border-radius: 11px;
@@ -744,7 +756,12 @@ a.miniweb-app .trust__item:hover,
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
-.miniweb-app .trust__icon { font-size: 28px; line-height: 1; }
+.miniweb-app .trust__icon {
+  width: 56px; height: 56px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 2px;
+}
 .miniweb-app .trust__title {
   font-family: var(--font-display);
   font-size: 16px;
