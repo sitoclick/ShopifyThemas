@@ -8,16 +8,12 @@
  * ------------------------------------------------------------
  */
 {
+  "layout": "miniweb",
   "sections": {
     "main": {
-      "type": "main-page",
-      "settings": {
-        "show_title": true,
-        "page_width": "large"
-      }
+      "type": "miniweb-landing",
+      "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
