@@ -853,8 +853,33 @@ function rowHTML(p) {
   `;
 }
 
+// Productos "gated" por URL — solo visibles si el visitante viene con un param específico.
+// Permite hacer campañas dirigidas (ej: pack-forocochero solo para clicks desde Forocoches).
+// El flag se persiste en sessionStorage para que sobreviva navegación interna.
+function isForocochesVisitor() {
+  try {
+    // Si ya activado en esta sesión, lo está
+    if (sessionStorage.getItem('mw_fc_visitor') === '1') return true;
+    const p = new URLSearchParams(window.location.search);
+    const hit = (p.get('utm_source') || '').toLowerCase().includes('forocoches')
+             || p.get('fc') === '1'
+             || p.get('fc') === 'true';
+    if (hit) {
+      sessionStorage.setItem('mw_fc_visitor', '1');
+      return true;
+    }
+    return false;
+  } catch { return false; }
+}
+
+function isProductVisible(p) {
+  // pack-forocochero: solo si la URL trae el flag forocochero
+  if (p.id === 'pack-forocochero') return isForocochesVisitor();
+  return true;
+}
+
 function categoryHasProducts(catKey) {
-  return PRODUCTS.some(p => p.category === catKey);
+  return PRODUCTS.some(p => p.category === catKey && isProductVisible(p));
 }
 
 function updateSectionHeader() {
@@ -884,7 +909,7 @@ function render() {
   refs.soonState.hidden = true;
 
   const q = state.q.trim().toLowerCase();
-  let list = PRODUCTS.filter(p => p.category === state.category);
+  let list = PRODUCTS.filter(p => p.category === state.category && isProductVisible(p));
 
   // Sub-filtro solo si loncheados
   if (state.category === 'loncheados' && state.sub !== 'all') {
