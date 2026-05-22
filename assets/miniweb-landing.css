@@ -105,8 +105,11 @@
   line-height: 1;
 }
 
-/* ---------- Discount bar contextual (arriba del listado, cambia según categoría) ---------- */
+/* ---------- Discount bar contextual (sticky bajo el header) ---------- */
 .miniweb-app .discount-bar {
+  position: sticky;
+  top: 62px; /* debajo del mw-header sticky */
+  z-index: 48;
   margin: 0 0 14px;
   padding: 10px 14px;
   background: var(--bg-soft);
@@ -116,6 +119,7 @@
   color: var(--ink);
   line-height: 1.35;
   display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 .miniweb-app .discount-bar__icon { font-size: 18px; flex-shrink: 0; line-height: 1; }
 .miniweb-app .discount-bar__text { flex: 1; }
