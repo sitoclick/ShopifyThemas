@@ -394,6 +394,37 @@
 }
 .miniweb-app .row__flag img { width: 14px; height: 14px; filter: brightness(0) invert(1); }
 
+/* Tipo de producto (Jamón / Paleta / Embutido / Queso / Vino / etc.) — mostrado siempre que el contexto lo necesita */
+.miniweb-app .row__type {
+  display: inline-block;
+  margin: 2px 0 2px;
+  padding: 2px 9px;
+  font-size: 9.5px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: var(--bg-soft);
+  color: var(--azul-dark);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+/* Precio comparativo (tachado, pequeño) */
+.miniweb-app .row__price-compare,
+.miniweb-app .vbtn__compare {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--ink-3);
+  letter-spacing: 0;
+  vertical-align: 2px;
+  font-family: var(--font-body);
+}
+.miniweb-app .vbtn__compare { font-size: 11px; margin-left: 4px; vertical-align: 1px; }
+
 .miniweb-app .row__tags {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -203,6 +203,296 @@ const PRODUCTS = [
     pros: ['Cabezada de lomo', '100% Ibérico Bellota', 'Sabor suave'],
     desc: 'Coppa elaborada con la cabezada del cerdo 100% Ibérico de Bellota. Sabor suave y equilibrado.',
   },
+
+  // ----- JAMONES Y PALETAS (piezas enteras) -----
+  {
+    id: 'jp-pasion-50',
+    name: 'Monjamón Pasión +50m',
+    sub: 'Premium · Cerdos viejos · Oleico ~60%',
+    icon: A['pasion'],
+    category: 'jamones-paletas', type: 'Jamón', flag: 'top',
+    weight: '6.5-7 kg',
+    calidad: 'premium', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 50,
+    price: 390.00,
+    shopifyHandle: 'jamon-pasion',
+    shopifyId: 54094875394393,
+    pros: ['Dos montaneras completas', 'Cerdos +2 años en libertad', 'Superior calidad sin precinto', 'Ácidos oleicos ~60%'],
+    desc: 'Nuestro jamón más exclusivo y de mayor curación. Cerdos viejos con dos montaneras, alimentados exclusivamente con bellotas de encina milenaria. Salado y curación tradicional +50 meses. Sabor profundo, persistente y lleno de matices. Sin precinto: la calidad habla por sí sola.',
+  },
+  {
+    id: 'jp-monjamon-42',
+    name: 'Jamón Bellota 100% Ibérico +42m',
+    sub: 'GOURMET · Producto del Año 2025 · Superior Taste ★★★',
+    icon: A['jamon-bellota'],
+    category: 'jamones-paletas', type: 'Jamón', flag: 'top',
+    weight: '6.5-7 kg',
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
+    price: 360.00,
+    shopifyHandle: 'monjamon',
+    shopifyId: 8824574771545,
+    pros: ['Producto del Año 2025', 'Superior Taste Awards ★★★', '+42 meses de curación', 'Cerdos viejos en libertad'],
+    desc: 'El elegido entre los elegidos. Jamón de bellota con más de 42 meses de curación, equilibrado y refinado. Cerdos viejos criados en libertad alimentados con bellotas. Veteado jugoso y textura sedosa. Galardonado Superior Taste Awards ★★★.',
+  },
+  {
+    id: 'jp-gran-reserva',
+    name: 'Jamón Gran Reserva +36m',
+    sub: 'Esencial · Fuera de norma · Criado en libertad',
+    icon: A['gran-reserva'],
+    category: 'jamones-paletas', type: 'Jamón',
+    weight: '7-8 kg',
+    calidad: 'esencial', alimentacion: 'pienso', sabor: 'suave', meses: 30,
+    price: 225.00,
+    shopifyHandle: 'monjamon-gran-reserva',
+    shopifyId: 48268070158681,
+    pros: ['Fuera de la norma ibérica', 'Criado en libertad', 'Piensos y pastos naturales', 'Mejor precio imposible'],
+    desc: 'Al ser un jamón fuera de la norma del ibérico, la calidad la marcamos nosotros. El jamón que recomendamos a todos los fieles: criado en libertad y alimentado de los mejores piensos y pastos. Win-Win de manual que mejora el cebo de campo del mercado.',
+  },
+  {
+    id: 'jp-sagrada-paleta',
+    name: 'Sagrada Paleta de Bellota 100%',
+    sub: 'GOURMET · Producto del Año 2025 · Edición limitada',
+    icon: A['paleta'],
+    category: 'jamones-paletas', type: 'Paleta', flag: 'top',
+    weight: '5-5.5 kg',
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 24,
+    price: 205.00,
+    shopifyHandle: 'sagrada-paleta',
+    shopifyId: 8824615240025,
+    pros: ['Producto muy limitado', 'Sabor más intenso que el jamón', 'Curación 24-30 meses', 'Producto del Año 2025'],
+    desc: 'Al tratarse de otro músculo, es una pieza normalmente más dura y aromática que el jamón, con un sabor más intenso debido a su menor tamaño. Curación 24-30 meses que realza sus notas especiadas y su textura más melosa. Perfecta para quienes buscan una experiencia más potente y directa.',
+  },
+
+  // ----- EMBUTIDOS (piezas enteras o medias piezas) -----
+  {
+    id: 'emb-lomonasterio',
+    name: 'Lomonasterio',
+    sub: 'Lomo de Bellota 100% Ibérico',
+    icon: A['lomonasterio'],
+    category: 'embutidos', type: 'Lomo',
+    weight: '450-500 g',
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 6,
+    price: 45.00,
+    shopifyHandle: 'lomonasterio',
+    shopifyId: 48550028869977,
+    pros: ['Embuchado tradicional', '100% Ibérico Bellota', 'Pieza ~500g'],
+    desc: 'Lomo embuchado de Bellota 100% Ibérico, especiado al estilo tradicional. Media pieza de 450-500g.',
+  },
+  {
+    id: 'emb-san-chichon',
+    name: 'San Chichón',
+    sub: 'Salchichón de Bellota 100% Ibérico',
+    icon: A['salchichon'],
+    category: 'embutidos', type: 'Salchichón',
+    weight: '450-500 g',
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'aromatico', meses: 6,
+    price: 22.00,
+    shopifyHandle: 'san-chichon',
+    shopifyId: 48550032048473,
+    pros: ['Pimienta natural', '100% Ibérico Bellota', 'Curación 6 meses'],
+    desc: 'Salchichón de Bellota 100% Ibérico con pimienta natural en grano. Curación tradicional en bodega 6 meses. Media pieza 450-500g.',
+  },
+  {
+    id: 'emb-choricielo',
+    name: 'Choricielo',
+    sub: 'Chorizo 100% Ibérico de Bellota',
+    icon: A['choricielo'],
+    category: 'embutidos', type: 'Chorizo',
+    weight: '450-500 g',
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 6,
+    price: 22.00,
+    shopifyHandle: 'choricielo',
+    shopifyId: 48550025232729,
+    pros: ['Pimentón ahumado', '100% Ibérico Bellota', 'Curación 6 meses'],
+    desc: 'Chorizo de Bellota 100% Ibérico con pimentón ahumado natural. Curación 6 meses en bodega. Media pieza 450-500g.',
+  },
+  {
+    id: 'emb-divina-coppa',
+    name: 'Divina Coppa (pieza)',
+    sub: 'Coppa de Bellota 100% Ibérica',
+    icon: A['coppa'],
+    category: 'embutidos', type: 'Coppa',
+    weight: '500-550 g',
+    calidad: 'gourmet', alimentacion: 'bellota', sabor: 'suave', meses: 6,
+    price: 35.00,
+    shopifyHandle: 'divina-coppa',
+    shopifyId: 54090108436825,
+    pros: ['Cabezada de lomo', '100% Ibérico Bellota', 'Sabor suave'],
+    desc: 'Coppa elaborada con la cabezada del cerdo 100% Ibérico de Bellota. Sabor suave y equilibrado. Pieza entera 500-550g.',
+  },
+  {
+    id: 'emb-longaniza',
+    name: 'Longaniza Ibérica',
+    sub: 'Chorizo de Bellota Ibérica · Tipo longaniza',
+    icon: A['choricielo'],
+    category: 'embutidos', type: 'Longaniza', flag: 'oferta',
+    weight: '~250 g',
+    calidad: 'esencial', alimentacion: 'bellota', sabor: 'intenso',
+    variants: [
+      { key: 'maquina',  label: 'Normal',   price: 7.95, compare: 12.00, shopifyId: 39488731250769 },
+      { key: 'cuchillo', label: 'Picante',  price: 7.95, compare: 12.00, shopifyId: 40167773110353 },
+    ],
+    shopifyHandle: 'longaniza-iberica',
+    pros: ['Oferta especial', '2 tipos: Normal o Picante', 'Ibérica de bellota'],
+    desc: 'Longaniza ibérica al estilo chorizo, en formato alargado. Elige entre versión Normal o Picante. Producto en oferta.',
+  },
+  {
+    id: 'emb-mini-vela-fuet',
+    name: 'Vela Ibérica estilo Fuet',
+    sub: 'Mini formato · 3 sabores disponibles',
+    icon: A['salchichon'],
+    category: 'embutidos', type: 'Fuet',
+    weight: '~80 g',
+    calidad: 'esencial', alimentacion: 'pienso', sabor: 'aromatico',
+    price: 7.00,
+    shopifyHandle: 'mini-vela-fuet',
+    shopifyId: 47136359645529,
+    pros: ['Formato mini', 'Salchichón, Chorizo o Picante', 'Snack ideal'],
+    desc: 'Mini vela ibérica estilo fuet. Variante por defecto: Salchichón. Snack perfecto para llevar o picotear.',
+  },
+
+  // ----- QUESOS -----
+  {
+    id: 'q-dop-zamorano',
+    name: 'Queso D.O.P Zamorano',
+    sub: 'Oveja añeja con D.O.P',
+    icon: A['premium'],
+    category: 'quesos', type: 'D.O.P',
+    weight: '~250 g',
+    calidad: 'premium',
+    price: 9.50,
+    shopifyHandle: 'queso-dop-zamorano',
+    shopifyId: 47219826491737,
+    pros: ['Denominación de Origen', 'Oveja añeja', 'Castilla y León'],
+    desc: 'Queso de oveja añejo con Denominación de Origen Protegida Zamorano. Sabor intenso y prolongado en boca.',
+  },
+  {
+    id: 'q-tartufo',
+    name: 'Queso de Oveja al Tartufo',
+    sub: 'Oveja curado con trufa',
+    icon: A['gourmet'],
+    category: 'quesos', type: 'Trufado',
+    weight: '~250 g',
+    calidad: 'gourmet',
+    price: 10.00,
+    shopifyHandle: 'queso-de-oveja-curado-al-tartufo',
+    shopifyId: 47219809517913,
+    pros: ['Trufa real', 'Oveja curado', 'Sabor único'],
+    desc: 'Queso de oveja curado con trufa negra. Maridaje perfecto con vino tinto.',
+  },
+  {
+    id: 'q-picanton',
+    name: 'Queso PICANTÓN',
+    sub: 'Cuadraditos con escamas de pimentón',
+    icon: A['oferta'],
+    category: 'quesos', type: 'Picantón',
+    weight: '250 g',
+    calidad: 'gourmet',
+    price: 8.50,
+    shopifyHandle: 'queso-curado-de-oveja-con-escamas-de-pimenton-cuadraditos-250gramos',
+    shopifyId: 54456248762713,
+    pros: ['Listo para picar', 'Escamas de pimentón', 'Curado de oveja'],
+    desc: 'Queso curado de oveja en cuadraditos, recubierto de escamas de pimentón ahumado. Formato listo para aperitivo.',
+  },
+  {
+    id: 'q-sin-lactosa',
+    name: 'Queso Tierno Sin Lactosa',
+    sub: 'Oveja tierno con pimienta rosa',
+    icon: A['esencial'],
+    category: 'quesos', type: 'Sin Lactosa', flag: 'novedad',
+    weight: '~250 g',
+    calidad: 'esencial',
+    price: 8.00,
+    shopifyHandle: 'queso-tierno-sin-lactosa-pimienta-rosa',
+    shopifyId: 54455924982105,
+    pros: ['Sin lactosa', 'Pimienta rosa', 'Tierno y suave'],
+    desc: 'Queso tierno de oveja sin lactosa, aromatizado con pimienta rosa. Apto para intolerantes.',
+  },
+  {
+    id: 'q-pimenton',
+    name: 'Queso Curado con Pimentón',
+    sub: 'Oveja curado con escamas de pimentón',
+    icon: A['gourmet'],
+    category: 'quesos', type: 'Pimentón',
+    weight: '~250 g',
+    calidad: 'gourmet',
+    price: 8.50,
+    shopifyHandle: 'queso-curado-oveja-escamas-pimenton',
+    shopifyId: 48198075351385,
+    pros: ['Escamas de pimentón', 'Curado de oveja', 'Picante suave'],
+    desc: 'Queso curado de oveja recubierto en escamas de pimentón. Sabor intenso con un punto picante.',
+  },
+
+  // ----- VINOS -----
+  {
+    id: 'v-frizzante',
+    name: 'Verdejo Frizzante 5.5° (Lata)',
+    sub: 'Vino verdejo frizzante · Formato lata',
+    icon: A['novedad'],
+    category: 'vinos', type: 'Verdejo Frizzante',
+    weight: '250 ml',
+    calidad: 'esencial',
+    price: 3.50,
+    shopifyHandle: 'frizzante',
+    shopifyId: 54150874464601,
+    pros: ['Formato lata práctico', 'Bajo en alcohol 5.5°', 'Ideal aperitivo'],
+    desc: 'Verdejo frizzante en lata de 250ml. Fresco, ligero, perfecto para acompañar tablas de ibéricos.',
+  },
+  {
+    id: 'v-circe',
+    name: 'Circe Verdejo',
+    sub: 'D.O. Rueda · Verdejo joven',
+    icon: A['gourmet'],
+    category: 'vinos', type: 'Verdejo',
+    weight: '750 ml',
+    calidad: 'gourmet',
+    price: 11.99,
+    shopifyHandle: 'circe-verdejo',
+    shopifyId: 47172699226457,
+    pros: ['D.O. Rueda', 'Verdejo aromático', 'Fresco y equilibrado'],
+    desc: 'Circe Verdejo D.O. Rueda. Vino blanco joven, aromático y fresco. Ideal con quesos y embutidos suaves.',
+  },
+  {
+    id: 'v-fuentespina',
+    name: 'Fuentespina Crianza',
+    sub: 'Ribera del Duero · Tinto crianza',
+    icon: A['gourmet'],
+    category: 'vinos', type: 'Ribera Crianza',
+    weight: '750 ml',
+    calidad: 'gourmet',
+    price: 9.99,
+    shopifyHandle: 'fuentespina-crianza',
+    shopifyId: 47219796607321,
+    pros: ['Ribera del Duero', '12 meses en barrica', 'Maridaje con ibéricos'],
+    desc: 'Fuentespina Crianza, Ribera del Duero. Tinto con 12 meses en barrica de roble. Estructurado y elegante.',
+  },
+  {
+    id: 'v-aureo',
+    name: 'Avelino Vegas Áureo',
+    sub: 'Verdejo Roble · RECOMENDADO',
+    icon: A['premium'],
+    category: 'vinos', type: 'Verdejo Roble', flag: 'top',
+    weight: '750 ml',
+    calidad: 'premium',
+    price: 23.00,
+    shopifyHandle: 'aureo',
+    shopifyId: 47172664066393,
+    pros: ['Recomendado de la casa', 'Verdejo fermentado en barrica', 'Notas tostadas'],
+    desc: 'Áureo de Avelino Vegas. Verdejo fermentado en barrica con notas tostadas y vainilla. Recomendado por la casa.',
+  },
+  {
+    id: 'v-muriel',
+    name: 'Viña Muriel Crianza',
+    sub: 'D.O.Ca. Rioja · Tinto crianza',
+    icon: A['gourmet'],
+    category: 'vinos', type: 'Rioja Crianza',
+    weight: '750 ml',
+    calidad: 'gourmet',
+    price: 8.45,
+    shopifyHandle: 'vina-muriel-crianza',
+    shopifyId: 49339160887641,
+    pros: ['D.O.Ca. Rioja', 'Tinto crianza', 'Maridaje con jamón'],
+    desc: 'Viña Muriel Crianza D.O.Ca. Rioja. Tinto equilibrado con 12 meses en barrica. Maridaje clásico con jamón ibérico.',
+  },
 ];
 
 // ---------- Estado ----------
@@ -300,10 +590,33 @@ function buyControlHTML(id, vKey, price) {
 }
 
 // ---------- Render ----------
+// Devuelve la etiqueta de TIPO del producto a mostrar en la card.
+//  - En loncheados con subfilter='all', usa p.subcat (Jamón/Paleta/Embutido).
+//  - En otras categorías, usa p.type (siempre).
+//  - Si el subfiltro/filtro ya está limitando a un tipo, devuelve null (redundante).
+function productTypeLabel(p) {
+  if (p.category === 'loncheados') {
+    if (state.sub !== 'all') return null;
+    if (!p.subcat) return null;
+    const m = { jamon: 'Jamón', paleta: 'Paleta', embutido: 'Embutido' };
+    return m[p.subcat] || null;
+  }
+  return p.type || null;
+}
+
+// Helper: variant label visible (CORTE estándar para jamones loncheados, o v.label custom)
+function variantHead(p, v) {
+  const corte = CORTE[v.key];
+  if (corte) return { icon: corte.icon, label: corte.label };
+  return { icon: null, label: v.label || v.key };
+}
+
 function rowHTML(p) {
   const flag = p.flag && FLAG[p.flag]
     ? `<span class="row__flag"><img src="${FLAG[p.flag].icon}" alt=""><span>${FLAG[p.flag].label}</span></span>`
     : '';
+  const typeLabel = productTypeLabel(p);
+  const typeTag = typeLabel ? `<span class="row__type">${typeLabel}</span>` : '';
   const calidadTag = `<span class="tag tag--calidad tag--calidad--${p.calidad}"><img src="${CALIDAD[p.calidad].icon}" alt=""> ${CALIDAD[p.calidad].label}</span>`;
   const alimTag    = p.alimentacion ? `<span class="tag"><img src="${ALIM[p.alimentacion].icon}" alt=""> ${ALIM[p.alimentacion].label}</span>` : '';
   const mesesTag   = p.meses != null && MESES[p.meses] ? `<span class="tag"><img src="${MESES[p.meses].icon}" alt=""> ${MESES[p.meses].label}</span>` : '';
@@ -313,27 +626,32 @@ function rowHTML(p) {
   if (p.variants) {
     buyBlock = `
       <div class="row__variants">
-        ${p.variants.map(v => `
-          <div class="vbtn ${v.soldout ? 'is-soldout' : ''}" data-vbtn="${p.id}:${v.key}">
-            <span class="vbtn__head">
-              <img src="${CORTE[v.key].icon}" alt="">
-              <span class="vbtn__label">${CORTE[v.key].label}</span>
-              ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
-            </span>
-            <span class="vbtn__foot">
-              <strong>${fmt(v.price)}</strong>
-              ${v.soldout ? '<span class="vbtn__disabled">—</span>' : `<span class="vbtn__action" data-buy-wrap="${p.id}:${v.key}">${buyControlHTML(p.id, v.key, v.price)}</span>`}
-            </span>
-          </div>
-        `).join('')}
+        ${p.variants.map(v => {
+          const vh = variantHead(p, v);
+          const cmp = v.compare ? `<span class="vbtn__compare">${fmt(v.compare)}</span>` : '';
+          return `
+            <div class="vbtn ${v.soldout ? 'is-soldout' : ''}" data-vbtn="${p.id}:${v.key}">
+              <span class="vbtn__head">
+                ${vh.icon ? `<img src="${vh.icon}" alt="">` : ''}
+                <span class="vbtn__label">${vh.label}</span>
+                ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
+              </span>
+              <span class="vbtn__foot">
+                <strong>${fmt(v.price)}</strong>${cmp}
+                ${v.soldout ? '<span class="vbtn__disabled">—</span>' : `<span class="vbtn__action" data-buy-wrap="${p.id}:${v.key}">${buyControlHTML(p.id, v.key, v.price)}</span>`}
+              </span>
+            </div>
+          `;
+        }).join('')}
       </div>
     `;
   } else {
-    const corteIcon = p.cut ? `<img src="${CORTE[p.cut].icon}" alt=""> ${CORTE[p.cut].label}` : '';
+    const corteIcon = p.cut && CORTE[p.cut] ? `<img src="${CORTE[p.cut].icon}" alt=""> ${CORTE[p.cut].label}` : '';
+    const comparePrice = p.comparePrice ? `<span class="row__price-compare">${fmt(p.comparePrice)}</span>` : '';
     buyBlock = `
       <div class="row__single">
         <span class="row__corte">${corteIcon}</span>
-        <span class="row__price">${fmt(p.price)}</span>
+        <span class="row__price">${fmt(p.price)}${comparePrice}</span>
         <span class="vbtn__action" data-buy-wrap="${p.id}:">${buyControlHTML(p.id, null, p.price)}</span>
       </div>
     `;
@@ -345,6 +663,7 @@ function rowHTML(p) {
         <div class="row__icon"><img src="${p.icon}" alt="${p.name}" /></div>
         <div class="row__info">
           ${flag}
+          ${typeTag}
           <h3 class="row__name">${p.name}</h3>
           <p class="row__sub">${p.sub}</p>
           <p class="row__meta"><span class="meta__weight">${p.weight}</span><span class="meta__sep">·</span><span class="meta__promesa">☘ Natural · ♻ Sostenible · ★ Cashback</span></p>
@@ -423,10 +742,22 @@ function totalCart() {
   for (const item of state.cart.values()) { qty += item.qty; eur += item.qty * item.price; }
   return { qty, eur };
 }
+// Construye el texto rico de la pill del carrito: muestra hasta 2 nombres, luego "+ N más"
+function cartPreviewText() {
+  const items = [...state.cart.values()];
+  if (items.length === 0) return '';
+  // Recoger nombres + qty (ej: "Sacro Puntas ×2")
+  const labels = items.map(it => it.qty > 1 ? `${it.name} ×${it.qty}` : it.name);
+  if (labels.length === 1) return labels[0];
+  if (labels.length === 2) return labels.join(' · ');
+  return `${labels[0]} + ${labels.length - 1} más`;
+}
+
 function refreshCart() {
   const { qty, eur } = totalCart();
   refs.cartCount.textContent = qty;
-  refs.cartLabel.textContent = `${qty} producto${qty === 1 ? '' : 's'} · ${fmt(eur)}`;
+  const preview = cartPreviewText();
+  refs.cartLabel.textContent = preview ? `${preview} · ${fmt(eur)}` : `${qty} producto · ${fmt(eur)}`;
   refs.cartCTA.hidden = qty === 0;
   // Contador en mini-header
   refs.mwCartCount.textContent = qty;
@@ -439,8 +770,9 @@ function modifyCart(id, vKey, delta) {
   if (p.variants) {
     const v = p.variants.find(x => x.key === vKey);
     if (!v || v.soldout) return;
-    price = v.price; sId = v.shopifyId; sHandle = v.shopifyHandle;
-    label = `${p.name} (${CORTE[vKey].label})`;
+    price = v.price; sId = v.shopifyId; sHandle = v.shopifyHandle || p.shopifyHandle;
+    const vLabel = (CORTE[vKey] && CORTE[vKey].label) || v.label || vKey;
+    label = `${p.name} (${vLabel})`;
   } else {
     price = p.price; sId = p.shopifyId; sHandle = p.shopifyHandle;
     label = p.name;
@@ -532,21 +864,25 @@ function openSheet(id) {
 
   const vSection = p.variants
     ? `<div class="sheet__variants">
-        <p class="sheet__vtitle">Elige tu corte</p>
+        <p class="sheet__vtitle">${CORTE[p.variants[0].key] ? 'Elige tu corte' : 'Elige variante'}</p>
         <div class="vrow" data-sheet-vtoggle>
-          ${p.variants.map(v => `
-            <button class="vbtn vbtn--sheet ${v.key === state.sheetVariant ? 'is-active' : ''} ${v.soldout ? 'is-soldout' : ''}" data-v="${v.key}" ${v.soldout ? 'disabled' : ''}>
-              <span class="vbtn__head">
-                <img src="${CORTE[v.key].icon}" alt="">
-                <span class="vbtn__label">${CORTE[v.key].label}</span>
-                ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
-              </span>
-              <span class="vbtn__foot"><strong>${fmt(v.price)}</strong></span>
-            </button>
-          `).join('')}
+          ${p.variants.map(v => {
+            const vh = variantHead(p, v);
+            const cmp = v.compare ? `<span class="vbtn__compare">${fmt(v.compare)}</span>` : '';
+            return `
+              <button class="vbtn vbtn--sheet ${v.key === state.sheetVariant ? 'is-active' : ''} ${v.soldout ? 'is-soldout' : ''}" data-v="${v.key}" ${v.soldout ? 'disabled' : ''}>
+                <span class="vbtn__head">
+                  ${vh.icon ? `<img src="${vh.icon}" alt="">` : ''}
+                  <span class="vbtn__label">${vh.label}</span>
+                  ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
+                </span>
+                <span class="vbtn__foot"><strong>${fmt(v.price)}</strong>${cmp}</span>
+              </button>
+            `;
+          }).join('')}
         </div>
       </div>`
-    : p.cut
+    : p.cut && CORTE[p.cut]
       ? `<div class="sheet__variants">
           <p class="sheet__vtitle">Corte</p>
           <div class="vsingle vsingle--big">
