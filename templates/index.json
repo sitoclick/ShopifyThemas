@@ -208,6 +208,14 @@
     "ss_circle_menu_AxNY8x": {
       "type": "ss-circle-menu",
       "blocks": {
+        "image_LbJ3PD": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/pack_recomendado.svg",
+            "bubble_text": "MINI WEB (nuevo!)",
+            "bubble_link": "shopify://pages/mini"
+          }
+        },
         "image_qQDjnU": {
           "type": "Image",
           "settings": {
@@ -290,6 +298,7 @@
         }
       },
       "block_order": [
+        "image_LbJ3PD",
         "image_qQDjnU",
         "image_KHN43F",
         "image_QeMjFa",
@@ -343,6 +352,7 @@
       "blocks": {
         "slide_r3dyDm": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Gemini_Generated_Image_3z8wpd3z8wpd3z8w.png",
             "heading": "<p>Sobres loncheados</p>",
@@ -370,14 +380,13 @@
         },
         "slide_hpkQ33": {
           "type": "slide",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_PREMIO.jpg",
-            "heading": "<p>ELEGIDOS <br/>Producto del año </p>",
+            "heading": "<p>Nueva Mini Web</p>",
             "typewriter_text": "",
-            "text": "",
-            "button": "Descúbrelos",
-            "url": "shopify://collections/mas-vendidos",
+            "text": "<p>¿harto de scrollear y navegar entre páginas hechas para google / IA pero sin sentido para el usuario?</p>",
+            "button": "Probar nueva experiencia web",
+            "url": "shopify://pages/mini",
             "stars_count": 5,
             "review": "<p>Palabra de Fiel</p>"
           }
