@@ -451,7 +451,7 @@ const PRODUCTS = [
   },
   {
     id: 'q-cuna-180',
-    name: 'Cuña Sorpresa 180g',
+    name: 'Cuña 180g',
     sub: 'La Antigua · Vaca + Oveja Zamorano',
     icon: A['p-q-cuna-180'] || A['queso-cuna'],
     category: 'quesos', type: 'Cuña 180g',
@@ -462,7 +462,7 @@ const PRODUCTS = [
     shopifyHandle: 'cuna-sorpresa-queso-de-oveja-zamorano-la-antigua-cuna-180gramos',
     shopifyId: 53648312467801,
     pros: ['Mezcla vaca + oveja', 'Formato cuña 180g', 'La Antigua Zamorano'],
-    desc: 'Cuña sorpresa de 180g elaborada con leche de vaca y oveja. Marca La Antigua, queso Zamorano. Formato ideal para tabla pequeña.',
+    desc: 'Cuña de 180g elaborada con leche de vaca y oveja. Marca La Antigua, queso Zamorano. Formato ideal para tabla pequeña.',
   },
 
   // ----- VINOS -----
