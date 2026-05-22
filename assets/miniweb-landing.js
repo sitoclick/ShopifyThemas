@@ -830,8 +830,6 @@ function rowHTML(p) {
     `;
   }
 
-  const hintCat = productGroup(p);
-  const hintHTML = hintCat ? `<div class="row__hint" data-hint-cat="${hintCat}" hidden></div>` : '';
   return `
     <article class="row" data-id="${p.id}" tabindex="0">
       <div class="row__top">
@@ -844,7 +842,6 @@ function rowHTML(p) {
           <p class="row__meta"><span class="meta__weight">${p.weight}</span><span class="meta__sep">·</span><span class="meta__promesa">☘ Natural · ♻ Sostenible · ★ Cashback</span></p>
         </div>
       </div>
-      ${hintHTML}
       <div class="row__tags">
         ${calidadTag}
         ${alimTag}
@@ -929,6 +926,8 @@ function render() {
   refs.list.innerHTML = list.map(rowHTML).join('');
   refs.resultCount.textContent = `${list.length} producto${list.length === 1 ? '' : 's'}`;
   refs.emptyState.hidden = list.length > 0;
+  // Refrescar el discount bar — depende de la categoría activa
+  refreshDiscountHints(totalCart());
 }
 
 function refreshBuyControl(id, vKey) {
@@ -1061,25 +1060,55 @@ function productGroup(p) {
   return 'otros';
 }
 
-// Actualiza todos los hints "hazte un pack y ahorra" en las cards (DOM directo)
+// Mapea la categoría top-level activa al group de descuento aplicable
+function activeCategoryToGroup() {
+  if (state.category === 'loncheados') return 'loncheados';
+  // Vinos no entra en "cervezas" pero las cervezas viven en "otros" por category.
+  // Para mostrar el hint correcto, miro si en Vinos o Otros tienen cervezas mezcladas
+  // Pero simplificación: el "Resto" aplica a cualquier categoría no-loncheados
+  return 'otros';
+}
+
+// Etiqueta legible para cada grupo (usada en el discount bar)
+const GROUP_LABEL = {
+  loncheados: 'loncheados',
+  cervezas:   'cervezas',
+  otros:      'productos del catálogo',
+};
+
+// Actualiza el discount-bar (1 sola barra arriba del listado)
 function refreshDiscountHints(cart) {
-  $$('.row__hint').forEach(el => {
-    const cat = el.dataset.hintCat;
-    if (!cat) return;
-    const groupQty = cart.groups[cat]?.qty || 0;
-    const currentPct = cart.pcts[cat] || 0;
-    const next = nextTierHint(cat, groupQty, currentPct);
-    if (next) {
-      el.innerHTML = `<span class="row__hint__icon">🎁</span> Añade <strong>${next.needed}</strong> más y ahorras <strong>${next.pct}%</strong>`;
-      el.hidden = false;
-    } else if (currentPct > 0) {
-      el.innerHTML = `<span class="row__hint__icon">✅</span> Ya ahorras <strong>${currentPct}%</strong> en esta categoría`;
-      el.hidden = false;
-      el.classList.add('row__hint--ok');
+  const bar = document.getElementById('discountBar');
+  if (!bar) return;
+  // El grupo más relevante a mostrar depende de la categoría activa
+  // - Loncheados → group loncheados
+  // - Otras → group otros (escalado 5% con ≥2 productos del catálogo no-loncheados)
+  // - Si están viendo Vinos/Otros y tienen cervezas, mostramos también el de cervezas si hay
+  const group = activeCategoryToGroup();
+  const groupQty = cart.groups[group]?.qty || 0;
+  const currentPct = cart.pcts[group] || 0;
+  const next = nextTierHint(group, groupQty, currentPct);
+
+  // En cervezas y otros, el escalado tiene mensaje diferente
+  let msg = '';
+  let ok = false;
+  if (next) {
+    const label = GROUP_LABEL[group] || 'productos';
+    msg = `<span class="discount-bar__icon">🎁</span><span class="discount-bar__text"><strong>Hazte un pack y ahorra</strong> · Añade <strong>${next.needed}</strong> ${label} más y te llevas <strong>${next.pct}%</strong> de descuento</span>`;
+  } else if (currentPct > 0) {
+    msg = `<span class="discount-bar__icon">✅</span><span class="discount-bar__text">¡Ya tienes <strong>${currentPct}%</strong> de descuento aplicado en esta categoría!</span>`;
+    ok = true;
+  } else {
+    // Sin items relevantes — mostramos el claim genérico
+    if (group === 'loncheados') {
+      msg = `<span class="discount-bar__icon">🎁</span><span class="discount-bar__text"><strong>Compra sin paja</strong> · Junta loncheados y ahorra hasta <strong>15%</strong> (2→5% · 5→10% · 10→15%)</span>`;
     } else {
-      el.hidden = true;
+      msg = `<span class="discount-bar__icon">🎁</span><span class="discount-bar__text"><strong>Hazte un pack y ahorra</strong> · Junta 2+ productos del catálogo = <strong>5%</strong> de descuento</span>`;
     }
-  });
+  }
+  bar.innerHTML = msg;
+  bar.hidden = false;
+  bar.classList.toggle('discount-bar--ok', ok);
 }
 
 // ---------- Cart drawer ----------

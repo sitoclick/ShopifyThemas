@@ -35,14 +35,6 @@
     </button>
   </header>
 
-  <!-- Claim de descuentos por volumen — debajo del header, full-width banner -->
-  <div class="mw-claim" id="mwClaim">
-    <span class="mw-claim__icon" aria-hidden="true">🎁</span>
-    <span class="mw-claim__text">
-      <strong>Compra sin paja</strong> · Ahorra hasta <strong>15%</strong> por volumen
-    </span>
-  </div>
-
   <div class="app">
 
     <!-- Chips top-level (6 categorías) -->
@@ -94,6 +86,8 @@
           </div>
           <span class="section__sub" id="resultCount">— productos</span>
         </header>
+        <!-- Mensaje contextual de descuento — cambia según la categoría activa + cart -->
+        <div class="discount-bar" id="discountBar" hidden></div>
         <div class="list" id="list"></div>
         <div class="empty" id="emptyState" hidden>
           <p class="empty__txt">No hay productos con esos filtros</p>
