@@ -665,6 +665,9 @@ const refs = {
   cartDrawerList: $('#cartDrawerList'),
   cartDrawerTotal: $('#cartDrawerTotal'),
   cartCheckout: $('#cartCheckout'),
+  // Modal de confirmación al salir a la web completa
+  exitModal: $('#exitModal'),
+  exitConfirm: $('#exitConfirm'),
   sheet: $('#sheet'),
   sheetBody: $('#sheetBody'),
   sheetQty: $('#sheetQty'),
@@ -924,6 +927,17 @@ function openCartDrawer() {
 }
 function closeCartDrawer() {
   refs.cartDrawer.hidden = true;
+  document.body.style.overflow = '';
+}
+
+// ---------- Exit modal (confirmación al salir a la web completa) ----------
+function openExitModal(targetUrl) {
+  if (targetUrl) refs.exitConfirm.href = targetUrl;
+  refs.exitModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeExitModal() {
+  refs.exitModal.hidden = true;
   document.body.style.overflow = '';
 }
 // Modifica el carrito por key (id:vKey) — usado dentro del drawer
@@ -1305,6 +1319,7 @@ function wire() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (!refs.sheet.hidden) closeSheet();
+      else if (!refs.exitModal.hidden) closeExitModal();
       else if (!refs.cartDrawer.hidden) closeCartDrawer();
       else if (state.showFilters) toggleFilterPanel(false);
     }
@@ -1312,6 +1327,19 @@ function wire() {
 
   // Botón carrito en el mini-header → abre el drawer
   refs.mwCartBtn.addEventListener('click', openCartDrawer);
+
+  // Interceptor de links con data-confirm-exit → abre modal de confirmación
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[data-confirm-exit]');
+    if (!link) return;
+    e.preventDefault();
+    openExitModal(link.getAttribute('href') || '/');
+  });
+
+  // Cerrar exit modal (backdrop o botón NO) + el SI hace navegación natural via href
+  refs.exitModal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) closeExitModal();
+  });
 
   // Drawer: cerrar (backdrop / X) y manipular qty / checkout
   refs.cartDrawer.addEventListener('click', (e) => {

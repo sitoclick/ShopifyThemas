@@ -16,7 +16,7 @@
 
   <!-- Mini-header propio: azul, logo monja + wordmark MONJAMÓN + carrito -->
   <header class="mw-header">
-    <a class="mw-header__brand" href="{{ routes.root_url }}" aria-label="Inicio">
+    <a class="mw-header__brand" href="{{ routes.root_url }}" aria-label="Inicio" data-confirm-exit="true">
       <span class="mw-header__logo" aria-hidden="true">
         <img src="https://www.monjamonymas.com/cdn/shop/files/nuevoflavicon_c9223ef1-f146-48a0-8c22-7cb86351b048.svg?v=1753271575&width=180" alt="" loading="eager" />
       </span>
@@ -95,21 +95,116 @@
         </div>
       </section>
 
-      <!-- Bloque Sobre Nosotros -->
-      <section class="about" id="aboutBlock">
-        <div class="about__inner">
-          <h3 class="about__title">{{ section.settings.about_title | default: 'Sobre Monjamón' }}</h3>
-          <p class="about__txt">{{ section.settings.about_text | default: 'Selección de ibéricos y embutidos artesanos con calidad de convento. Curaciones largas, raza ibérica, alimentación natural. Te lo enviamos a casa loncheado, listo para disfrutar.' }}</p>
-          <a class="about__link" href="{{ section.settings.about_link | default: '/pages/about' }}">
-            Saber más
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
+      <!-- Acordeones de contenido -->
+      <section class="acc-block">
+        <details class="acc">
+          <summary class="acc__head">
+            <span class="acc__title">🙏 Sobre Monjamón</span>
+            <span class="acc__chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="acc__body">
+            <p><strong>Una marca con +100 años de historia y 0 ganas de aburrirte.</strong></p>
+            <p>Monjamón nace en 2023 de la mano de <strong>Álex Fernández</strong>, 4ª generación de <strong>Don Ibérico</strong>, una familia de Guijuelo (Salamanca, DOP Guijuelo) que lleva más de un siglo elaborando jamón ibérico de bellota.</p>
+            <p>Lo nuestro es <strong>tradición artesanal</strong> hecha desde la dehesa: cerdos en libertad, alimentación natural, curaciones largas (+42 meses) y mimo en cada paso. Pero contado con humor, sin solemnidad ni pijerías 😎.</p>
+            <p>Aquí manda <strong>Sor Ibérica</strong>, nuestra monja virtual: ella escribe, atiende, predica el ibérico y te resuelve dudas con cariño. Es la cara visible del Convento.</p>
+            <p><strong>🏆 Reconocimientos:</strong></p>
+            <ul>
+              <li><strong>Producto del Año 2025</strong> · Gran Premio a la Innovación</li>
+              <li><strong>Superior Taste Award 2023</strong> · 3 estrellas (máxima)</li>
+              <li><strong>4,9 / 5</strong> en +951 reseñas verificadas</li>
+              <li>DOP Guijuelo · Calicer ENAC · Bienestar Animal</li>
+            </ul>
+            <p><strong>📦 Cómo trabajamos:</strong></p>
+            <ul>
+              <li>8.000–10.000 cerdos al año de <strong>ganaderos locales</strong></li>
+              <li>Planta propia de 20.000 m² en Guijuelo</li>
+              <li>Equipo pequeño (8 personas) y atención personal de verdad</li>
+              <li>Envío y devolución <strong>gratis +49€</strong> (Península, Baleares, Portugal)</li>
+            </ul>
+            <p class="acc__claim">«¡A un click del milagro!» 🕯️</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary class="acc__head">
+            <span class="acc__title">✨ El Arte de un Jamón Verdaderamente Artesano</span>
+            <span class="acc__chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="acc__body acc__body--long">
+            <p class="acc__lede"><em>Spoiler: no se hace en dos tardes ni con prisas.</em></p>
+            <p>En Monjamón no hablamos de jamón... <strong>lo veneramos</strong>. Y no, no es exageración. Aquí no hay trucos, ni humos, ni milagros de supermercado. Solo bellotas de las buenas, tiempo sin reloj y un cariño que ni en las bodas gitanas.</p>
+            <p>Porque sí, del cerdo hasta los andares, claro que sí... pero mejor si <strong>anda suelto por la dehesa</strong>, comiendo bellotas como si no hubiera un mañana y sin estrés (que eso da sabor… y seguro que engorda 🐷).</p>
+            <p>Te contamos cómo lo hacemos. Tiene más pasos que la KALLAX que compraste el año pasado, pero todos merecen la pena:</p>
+
+            <h4 class="acc__step">1. Ganaderos centenarios &amp; bellotas que valen oro 🌳</h4>
+            <p>Trabajamos con familias que llevan <strong>más de 100 años</strong> criando cerdos ibéricos. ¡Más experiencia que Sor Amparo dando consejos de amor! Los animales andan sueltos por el campo, se echan sus buenas siestas a la sombra y meriendan bellotas como marqueses.</p>
+            <p>Hacemos <strong>análisis de ácidos oleicos</strong> (que suena a invento del Profesor Bacterio) solo para confirmar que el cerdito ha comido como Dios manda. ¿Resultado? Una grasa infiltrada que se funde en boca más rápido que tú en el sofá después de comer.</p>
+
+            <h4 class="acc__step">2. Salazón tradicional, con vuelta y todo 🧂</h4>
+            <p>Aquí no tiramos el jamón en sal y nos olvidamos. Lo colocamos a mano en pilas de sal marina, como quien mete a su bebé en el agua bendita. Y a mitad de proceso, les damos la vuelta uno por uno (que esto no es el lavavajillas, cariño 😉).</p>
+            <p>¿Para qué? Para que el salado quede parejito, jugoso, ni soso ni salaíllo. Como esa tortilla que te sale perfecta cuando estás de buen humor.</p>
+
+            <h4 class="acc__step">3. Curación natural: abrir, cerrar, oler, bendecir 🍃</h4>
+            <p>¡Ay, este paso! Aquí es donde el jamón se transforma. Nuestros secaderos no son modernos ni tienen botones de colores. Son <strong>salas grandes con ventanas</strong> que abrimos y cerramos a mano para controlar temperatura, humedad y espíritu santo si hace falta.</p>
+            <p>Ni aire acondicionado, ni calorcillos trampa: solo el viento, las estaciones y la intuición del maestro que dice "hoy se abre que no hay mucha humedad". Porque un jamón que no respira, no enamora. Y el nuestro… madre mía, huele que da ganas de escribirle poemas.</p>
+
+            <h4 class="acc__step">4. Mantenimiento semestral, nivel monjil 🕯️</h4>
+            <p>Cada seis meses, venga llueva, truene o haya fiesta patronal, nos metemos en bodega y revisamos los jamones uno a uno. Los hidratamos con una fina capa de aceite y manteca para que respiren con tranquilidad y les revisamos hasta el aura.</p>
+            <p>Porque aquí el jamón no se deja solo a su suerte. Se acompaña como a un buen amigo después de un Sábado Santo.</p>
+
+            <h4 class="acc__step">5. Calado final: aquí solo pasa el que enamora 🎯</h4>
+            <p>Antes de ponerle la vitola Monjamón (esa etiqueta que dice "aquí hay fantasía ibérica"), llega el momento del <strong>calado</strong>. Una aguja de hueso entra en el jamón (suave, sin dolor, como quien reza bajito), y el maestro <em>mira, toca y huele</em>.</p>
+            <p>Si lo que sale de ahí no es gloria bendita... se sigue curando, o se envía al cielo de los jamones si es necesario. <strong>Aquí no hay aprobados por compasión.</strong> O es celestial, o no nos vale.</p>
+
+            <h4 class="acc__step">¿Y qué te llega a ti? 🏆</h4>
+            <p>Un jamón que parece sacado de una novela. Uno de los que ya no quedan. Con historia, con alma, con esa grasa que brilla como la frente de un bebé y ese aroma que te hace cerrar los ojos sin querer.</p>
+            <p><strong>Un jamón ibérico de verdad</strong>, sin fuegos artificiales, pero con todo el sabor del mundo.</p>
+            <p>Porque en Monjamón no nos andamos con tonterías. <strong>Si lo hacemos, lo hacemos bien.</strong> Y si te lo llevas a casa… prepárate para que hasta el perro del vecino venga a pedirte una lonchita 🐕.</p>
+          </div>
+        </details>
+      </section>
+
+      <!-- Trust badges -->
+      <section class="trust">
+        <div class="trust__item">
+          <span class="trust__icon" aria-hidden="true">📦</span>
+          <strong class="trust__title">Envíos Gratis</strong>
+          <span class="trust__sub">Pedidos +49€ · Península, Baleares y Portugal</span>
         </div>
+        <div class="trust__item">
+          <span class="trust__icon" aria-hidden="true">🔒</span>
+          <strong class="trust__title">Pago Seguro</strong>
+          <span class="trust__sub">Tarjeta · Bizum · PayPal · Klarna · Contrareembolso</span>
+        </div>
+        <a class="trust__item" href="https://wa.me/34900433404" target="_blank" rel="noopener">
+          <span class="trust__icon" aria-hidden="true">💬</span>
+          <strong class="trust__title">Atención Personalizada</strong>
+          <span class="trust__sub">WhatsApp 900 433 404</span>
+        </a>
+        <a class="trust__item" href="https://whatsapp.com/channel/0029VaD0L3lIXnllqEES1p3a" target="_blank" rel="noopener">
+          <span class="trust__icon" aria-hidden="true">📢</span>
+          <strong class="trust__title">Síguenos</strong>
+          <span class="trust__sub">Canal WhatsApp · novedades y ofertas</span>
+        </a>
       </section>
 
       <div class="spacer-cta"></div>
     </main>
 
+  </div>
+
+  <!-- Modal: confirmar salida a la web completa -->
+  <div class="exit-modal" id="exitModal" hidden aria-hidden="true">
+    <div class="exit-modal__backdrop" data-close></div>
+    <div class="exit-modal__panel" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+      <span class="exit-modal__icon" aria-hidden="true">🚪</span>
+      <h3 class="exit-modal__title" id="exitModalTitle">¿Quieres visitar la web completa?</h3>
+      <p class="exit-modal__sub">Vas a salir de la Mini-web de Monjamón y abrir el sitio principal.</p>
+      <div class="exit-modal__actions">
+        <button type="button" class="btn btn--ghost" data-close>NO, me quedo aquí</button>
+        <a class="btn btn--primary" id="exitConfirm" href="/" rel="noopener">SÍ, llévame allá</a>
+      </div>
+    </div>
   </div>
 
   <!-- Cart drawer — slide-up con lista de productos + total -->

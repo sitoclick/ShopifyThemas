@@ -633,33 +633,185 @@
 }
 .miniweb-app .soon__txt { font-size: 13px; color: var(--ink-2); margin: 0; }
 
-/* Sobre nosotros */
-.miniweb-app .about {
-  margin: 20px 14px 0;
-  padding: 22px 18px;
+/* ---------- Accordions (Sobre Monjamón + El Arte) ---------- */
+.miniweb-app .acc-block {
+  margin: 16px 14px 0;
+  display: flex; flex-direction: column;
+  gap: 10px;
+}
+.miniweb-app .acc {
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
-.miniweb-app .about__inner { max-width: 460px; }
-.miniweb-app .about__title {
+.miniweb-app .acc[open] {
+  border-color: var(--azul);
+  box-shadow: var(--shadow-md);
+}
+.miniweb-app .acc__head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+.miniweb-app .acc__head::-webkit-details-marker { display: none; }
+.miniweb-app .acc__title {
   font-family: var(--font-display);
-  font-size: 26px; font-weight: 700; color: var(--azul-dark);
-  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+.miniweb-app .acc[open] .acc__title { color: var(--azul-dark); }
+.miniweb-app .acc__chev {
+  color: var(--azul-dark);
+  font-size: 18px; font-weight: 800;
+  transition: transform 0.22s ease;
+  flex-shrink: 0;
+}
+.miniweb-app .acc[open] .acc__chev { transform: rotate(180deg); }
+.miniweb-app .acc__body {
+  padding: 0 16px 18px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  border-top: 1px dashed var(--line);
+  padding-top: 14px;
+}
+.miniweb-app .acc__body p { margin: 0 0 10px; }
+.miniweb-app .acc__body p:last-child { margin-bottom: 0; }
+.miniweb-app .acc__body ul {
+  margin: 4px 0 12px;
+  padding: 0 0 0 18px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.miniweb-app .acc__body li { color: var(--ink-2); }
+.miniweb-app .acc__body strong { color: var(--ink); }
+.miniweb-app .acc__body em { color: var(--azul-dark); font-style: italic; }
+.miniweb-app .acc__claim {
+  margin-top: 14px !important;
+  padding: 10px 14px;
+  background: var(--azul);
+  color: #fff !important;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  text-align: center;
+}
+.miniweb-app .acc__lede {
+  font-size: 14px;
+  color: var(--naranja-dark);
+  margin-bottom: 12px !important;
+}
+.miniweb-app .acc__step {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--naranja);
+  margin: 18px 0 8px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+.miniweb-app .acc__body--long .acc__step:first-of-type { margin-top: 14px; }
+
+/* ---------- Trust badges (4 cards) ---------- */
+.miniweb-app .trust {
+  margin: 18px 14px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.miniweb-app .trust__item {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding: 16px 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+a.miniweb-app .trust__item:hover,
+.miniweb-app a.trust__item:hover {
+  border-color: var(--azul);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.miniweb-app .trust__icon { font-size: 28px; line-height: 1; }
+.miniweb-app .trust__title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--azul-dark);
   letter-spacing: 0;
 }
-.miniweb-app .about__txt {
-  margin: 0 0 12px;
-  font-size: 13px; color: var(--ink-2); line-height: 1.55;
+.miniweb-app .trust__sub {
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.3;
+  font-weight: 500;
 }
-.miniweb-app .about__link {
-  display: inline-flex; align-items: center; gap: 6px;
-  text-decoration: none;
-  font-size: 12.5px; font-weight: 700;
-  color: var(--naranja);
-  text-transform: uppercase; letter-spacing: 0.06em;
+@media (min-width: 480px) {
+  .miniweb-app .trust { grid-template-columns: repeat(4, 1fr); }
+  .miniweb-app .trust__title { font-size: 14px; }
 }
-.miniweb-app .about__link:hover { color: var(--naranja-dark); }
+
+/* ---------- Exit modal (confirmar salida a web completa) ---------- */
+.miniweb-app .exit-modal {
+  position: fixed; inset: 0;
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px;
+}
+.miniweb-app .exit-modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  animation: mw-fade 0.18s ease;
+}
+.miniweb-app .exit-modal__panel {
+  position: relative;
+  width: 100%; max-width: 380px;
+  background: #fff;
+  border-radius: 22px;
+  padding: 26px 22px 22px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: mw-cartPop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.miniweb-app .exit-modal__icon {
+  display: inline-block;
+  font-size: 38px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.miniweb-app .exit-modal__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 8px;
+  line-height: 1.15;
+}
+.miniweb-app .exit-modal__sub {
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 0 0 18px;
+  line-height: 1.4;
+}
+.miniweb-app .exit-modal__actions {
+  display: flex; flex-direction: column;
+  gap: 8px;
+}
+.miniweb-app .exit-modal__actions .btn { width: 100%; padding: 12px 16px; font-size: 13px; }
+.miniweb-app .exit-modal__actions .btn--ghost { order: 2; }
+.miniweb-app .exit-modal__actions .btn--primary { order: 1; }
 
 /* Spacer para que el último contenido no quede tapado por el FAB */
 .miniweb-app .spacer-cta { height: 90px; }
