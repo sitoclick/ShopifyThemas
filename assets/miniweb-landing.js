@@ -1246,7 +1246,10 @@ async function checkoutShopify() {
   if (isShopifyHost()) {
     items = await Promise.all(
       list.map(async (item) => ({
-        id: await resolveVariantId(item.shopifyHandle, item.shopifyId),
+        // CRÍTICO: usar shopifyId directo si lo tenemos (es el variant_id real).
+        // Solo caer a resolveVariantId si por algún motivo no lo tenemos.
+        // resolveVariantId hace fetch del handle y devuelve variants[0] (la 1ª) — eso ROMPÍA productos multi-variant
+        id: item.shopifyId ?? await resolveVariantId(item.shopifyHandle, null),
         quantity: item.quantity,
       }))
     );
