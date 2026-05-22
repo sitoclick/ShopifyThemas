@@ -690,6 +690,9 @@ const refs = {
   // Botón carrito en el mini-header (sustituye al FAB)
   mwCartBtn: $('#mwCartBtn'),
   mwCartCount: $('#mwCartCount'),
+  mwCartPrices: $('#mwCartPrices'),
+  mwCartOld: $('#mwCartOld'),
+  mwCartNew: $('#mwCartNew'),
   cartDrawer: $('#cartDrawer'),
   cartDrawerList: $('#cartDrawerList'),
   cartDrawerTotal: $('#cartDrawerTotal'),
@@ -827,6 +830,8 @@ function rowHTML(p) {
     `;
   }
 
+  const hintCat = productGroup(p);
+  const hintHTML = hintCat ? `<div class="row__hint" data-hint-cat="${hintCat}" hidden></div>` : '';
   return `
     <article class="row" data-id="${p.id}" tabindex="0">
       <div class="row__top">
@@ -839,6 +844,7 @@ function rowHTML(p) {
           <p class="row__meta"><span class="meta__weight">${p.weight}</span><span class="meta__sep">·</span><span class="meta__promesa">☘ Natural · ♻ Sostenible · ★ Cashback</span></p>
         </div>
       </div>
+      ${hintHTML}
       <div class="row__tags">
         ${calidadTag}
         ${alimTag}
@@ -935,20 +941,145 @@ function refreshBuyControl(id, vKey) {
 }
 
 // ---------- Cart ----------
-function totalCart() {
-  let qty = 0, eur = 0;
-  for (const item of state.cart.values()) { qty += item.qty; eur += item.qty * item.price; }
-  return { qty, eur };
+// Clasificar un cart entry en su "discount group"
+function discountGroupOf(item) {
+  // Pack Forocochero: tiene su propio precio bundle, NO entra en escalado
+  if (item.bundleItems && item.packMultiplier) return 'bundle';
+  const p = PRODUCTS.find(x => x.id === item.productId);
+  if (!p) return 'otros';
+  if (p.category === 'loncheados') return 'loncheados';
+  if (p.type === 'Cerveza') return 'cervezas';
+  return 'otros';
 }
+
+// Reglas de descuento por volumen
+function tierLoncheados(qty) {
+  if (qty >= 10) return 15;
+  if (qty >= 5)  return 10;
+  if (qty >= 2)  return 5;
+  return 0;
+}
+function tierCervezas(qty) {
+  if (qty >= 6) return 15;
+  if (qty >= 3) return 10;
+  return 0;
+}
+function tierOtros(qty) {
+  return qty >= 2 ? 5 : 0;
+}
+
+// Devuelve estructura completa de totales y descuentos
+function totalCart() {
+  const groups = {
+    loncheados: { qty: 0, items: [] },
+    cervezas:   { qty: 0, items: [] },
+    otros:      { qty: 0, items: [] },
+    bundle:     { qty: 0, items: [] },
+  };
+  let qtyTotal = 0;
+  for (const item of state.cart.values()) {
+    const g = discountGroupOf(item);
+    groups[g].qty += item.qty;
+    groups[g].items.push(item);
+    qtyTotal += item.qty;
+  }
+  const pcts = {
+    loncheados: tierLoncheados(groups.loncheados.qty),
+    cervezas:   tierCervezas(groups.cervezas.qty),
+    otros:      tierOtros(groups.otros.qty),
+    bundle:     0,
+  };
+  let subtotal = 0;
+  let total = 0;
+  for (const g of Object.keys(groups)) {
+    const pct = pcts[g];
+    for (const it of groups[g].items) {
+      const line = it.price * it.qty;
+      subtotal += line;
+      total    += line * (1 - pct / 100);
+    }
+  }
+  // Redondeo a 2 decimales (céntimos)
+  subtotal = Math.round(subtotal * 100) / 100;
+  total    = Math.round(total * 100) / 100;
+  const discount = Math.round((subtotal - total) * 100) / 100;
+  return { qty: qtyTotal, subtotal, total, discount, eur: total, groups, pcts };
+}
+
 function refreshCart() {
-  const { qty, eur } = totalCart();
-  // Badge en mini-header (única indicación visible de carrito)
-  refs.mwCartCount.textContent = qty;
-  refs.mwCartCount.hidden = qty === 0;
-  // Drawer (re-render si está abierto, mantén el total actualizado)
-  refs.cartDrawerTotal.textContent = fmt(eur);
+  const cart = totalCart();
+  // Badge mini-header
+  refs.mwCartCount.textContent = cart.qty;
+  refs.mwCartCount.hidden = cart.qty === 0;
+  // Precio en mini-header (oculto si carrito vacío)
+  if (cart.qty === 0) {
+    refs.mwCartPrices.hidden = true;
+  } else {
+    refs.mwCartPrices.hidden = false;
+    refs.mwCartNew.textContent = fmt(cart.total);
+    if (cart.discount > 0) {
+      refs.mwCartOld.textContent = fmt(cart.subtotal);
+      refs.mwCartOld.hidden = false;
+    } else {
+      refs.mwCartOld.hidden = true;
+      refs.mwCartOld.textContent = '';
+    }
+  }
+  // Drawer: total visible siempre, re-render si está abierto
+  refs.cartDrawerTotal.textContent = fmt(cart.total);
   if (!refs.cartDrawer.hidden) renderCartDrawer();
-  if (qty === 0 && !refs.cartDrawer.hidden) closeCartDrawer();
+  if (cart.qty === 0 && !refs.cartDrawer.hidden) closeCartDrawer();
+  // Hints en cards
+  refreshDiscountHints(cart);
+}
+
+// Devuelve mensaje de upsell para una categoría dado el qty actual + pct actual
+function nextTierHint(group, currentQty, currentPct) {
+  if (group === 'loncheados') {
+    if (currentQty < 2)  return { needed: 2 - currentQty,  pct: 5  };
+    if (currentQty < 5)  return { needed: 5 - currentQty,  pct: 10 };
+    if (currentQty < 10) return { needed: 10 - currentQty, pct: 15 };
+    return null;
+  }
+  if (group === 'cervezas') {
+    if (currentQty < 3) return { needed: 3 - currentQty, pct: 10 };
+    if (currentQty < 6) return { needed: 6 - currentQty, pct: 15 };
+    return null;
+  }
+  if (group === 'otros') {
+    if (currentQty < 2) return { needed: 2 - currentQty, pct: 5 };
+    return null;
+  }
+  return null;
+}
+
+// Mapea producto → categoría de descuento (para el hint en cada card)
+function productGroup(p) {
+  if (p.isVirtualBundle) return null; // packs no muestran hint
+  if (p.category === 'loncheados') return 'loncheados';
+  if (p.type === 'Cerveza') return 'cervezas';
+  return 'otros';
+}
+
+// Actualiza todos los hints "hazte un pack y ahorra" en las cards (DOM directo)
+function refreshDiscountHints(cart) {
+  $$('.row__hint').forEach(el => {
+    const cat = el.dataset.hintCat;
+    if (!cat) return;
+    const groupQty = cart.groups[cat]?.qty || 0;
+    const currentPct = cart.pcts[cat] || 0;
+    const next = nextTierHint(cat, groupQty, currentPct);
+    if (next) {
+      el.innerHTML = `<span class="row__hint__icon">🎁</span> Añade <strong>${next.needed}</strong> más y ahorras <strong>${next.pct}%</strong>`;
+      el.hidden = false;
+    } else if (currentPct > 0) {
+      el.innerHTML = `<span class="row__hint__icon">✅</span> Ya ahorras <strong>${currentPct}%</strong> en esta categoría`;
+      el.hidden = false;
+      el.classList.add('row__hint--ok');
+    } else {
+      el.hidden = true;
+    }
+  });
 }
 
 // ---------- Cart drawer ----------
@@ -971,6 +1102,32 @@ function renderCartDrawer() {
   const html = [];
   for (const [key, item] of state.cart.entries()) {
     html.push(cartItemHTML(item, key));
+  }
+  // Desglose de descuentos
+  const cart = totalCart();
+  const breakdownParts = [];
+  const labels = { loncheados: 'Loncheados', cervezas: 'Cervezas', otros: 'Resto' };
+  for (const g of ['loncheados','cervezas','otros']) {
+    const pct = cart.pcts[g];
+    if (pct > 0) {
+      breakdownParts.push(`<div class="ci-disc"><span>${labels[g]} ×${cart.groups[g].qty}</span><span class="ci-disc__pct">−${pct}%</span></div>`);
+    }
+  }
+  // Hint del siguiente tier
+  const hints = [];
+  for (const g of ['loncheados','cervezas','otros']) {
+    const next = nextTierHint(g, cart.groups[g].qty, cart.pcts[g]);
+    if (next && cart.groups[g].qty > 0) {
+      hints.push(`<div class="ci-hint">🎁 Añade <strong>${next.needed}</strong> de ${labels[g]} más y ahorras <strong>${next.pct}%</strong></div>`);
+    }
+  }
+  if (breakdownParts.length || hints.length || cart.discount > 0) {
+    html.push(`<div class="cart-drawer__breakdown">
+      <div class="ci-sub"><span>Subtotal</span><span class="ci-sub__val">${fmt(cart.subtotal)}</span></div>
+      ${breakdownParts.join('')}
+      ${cart.discount > 0 ? `<div class="ci-disc-total"><span>Ahorras</span><span class="ci-disc-total__val">−${fmt(cart.discount)}</span></div>` : ''}
+      ${hints.join('')}
+    </div>`);
   }
   refs.cartDrawerList.innerHTML = html.join('');
 }
@@ -1025,7 +1182,7 @@ function modifyCart(id, vKey, delta) {
   const existing = state.cart.get(key);
   const newQty = (existing?.qty || 0) + delta;
   if (newQty <= 0) state.cart.delete(key);
-  else state.cart.set(key, { qty: newQty, price, name: label, shopifyId: sId, shopifyHandle: sHandle, bundleItems, packMultiplier });
+  else state.cart.set(key, { qty: newQty, price, name: label, shopifyId: sId, shopifyHandle: sHandle, bundleItems, packMultiplier, productId: id, variantKey: vKey });
   refreshCart();
   refreshBuyControl(id, vKey);
 }
@@ -1128,7 +1285,12 @@ function openSheet(id) {
   if (!p) return;
   state.sheetId = id;
   state.sheetQty = 1;
-  state.sheetVariant = p.variants ? (p.variants.find(v => !v.soldout) || p.variants[0]).key : null;
+  // No pre-seleccionar variante — fuerza al user a elegir explícitamente.
+  // Si solo hay 1 variante (caso raro), la auto-selecciono.
+  state.sheetVariant = null;
+  if (p.variants && p.variants.length === 1 && !p.variants[0].soldout) {
+    state.sheetVariant = p.variants[0].key;
+  }
 
   const flag = p.flag && FLAG[p.flag]
     ? `<span class="row__flag" style="position:static; margin-bottom:10px;"><img src="${FLAG[p.flag].icon}" alt=""><span>${FLAG[p.flag].label}</span></span>`
@@ -1255,13 +1417,23 @@ function updateSheetTotal() {
   if (!p) return;
   $('.qty__val', refs.sheetQty).textContent = state.sheetQty;
   let price;
+  const addLabelEl = refs.sheetAdd.querySelector('span:first-child');
   if (p.variants) {
+    if (!state.sheetVariant) {
+      // No hay variante elegida → button disabled + texto "Elige opción"
+      refs.sheetAdd.disabled = true;
+      if (addLabelEl) addLabelEl.textContent = 'Elige una opción';
+      refs.sheetTotal.textContent = '';
+      return;
+    }
     const v = p.variants.find(x => x.key === state.sheetVariant);
     price = v?.price ?? 0;
-    refs.sheetAdd.disabled = v?.soldout;
+    refs.sheetAdd.disabled = !!v?.soldout;
+    if (addLabelEl) addLabelEl.textContent = v?.soldout ? 'Agotado' : 'Añadir';
   } else {
     price = p.price;
     refs.sheetAdd.disabled = false;
+    if (addLabelEl) addLabelEl.textContent = 'Añadir';
   }
   refs.sheetTotal.textContent = fmt(price * state.sheetQty);
 }

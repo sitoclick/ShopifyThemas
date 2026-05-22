@@ -96,6 +96,11 @@
   width: 100%; height: 100%;
   object-fit: cover;
 }
+.miniweb-app .mw-header__name-wrap {
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.05;
+}
 .miniweb-app .mw-header__name {
   font-family: var(--font-display);
   font-size: 24px;
@@ -103,6 +108,16 @@
   letter-spacing: 0.02em;
   color: #fff;
   line-height: 1;
+}
+.miniweb-app .mw-header__claim {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 2px;
+  line-height: 1.2;
 }
 .miniweb-app .mw-header__cart {
   position: relative;
@@ -125,6 +140,11 @@
   object-fit: contain;
   /* SVG brand viene en color del CDN; lo dejamos como está */
 }
+.miniweb-app .mw-header__cart-block {
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.05;
+}
 .miniweb-app .mw-header__cart-label {
   font-family: var(--font-display);
   font-size: 15px;
@@ -132,6 +152,22 @@
   color: #fff;
   letter-spacing: 0.02em;
   line-height: 1;
+}
+.miniweb-app .mw-header__cart-prices {
+  display: flex; align-items: baseline; gap: 5px;
+  margin-top: 2px;
+}
+.miniweb-app .mw-header__cart-old {
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: line-through;
+  font-weight: 600;
+}
+.miniweb-app .mw-header__cart-new {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 .miniweb-app .mw-header__count {
   position: absolute;
@@ -947,6 +983,82 @@ a.miniweb-app .trust__item:hover,
   width: 100%;
   padding: 14px 22px;
 }
+
+/* ---------- Cart drawer breakdown (subtotal + descuentos + total) ---------- */
+.miniweb-app .cart-drawer__breakdown {
+  padding: 14px 4px 6px;
+  border-top: 2px dashed var(--line);
+  margin-top: 6px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.miniweb-app .ci-sub {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 13px; color: var(--ink-3);
+}
+.miniweb-app .ci-sub__val {
+  font-weight: 600;
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+.miniweb-app .ci-disc {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 12.5px; color: var(--ink-2);
+}
+.miniweb-app .ci-disc__pct {
+  background: var(--naranja);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+.miniweb-app .ci-disc-total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green);
+  background: rgba(0, 171, 45, 0.08);
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-top: 4px;
+}
+.miniweb-app .ci-disc-total__val {
+  font-size: 15px;
+  font-weight: 800;
+}
+.miniweb-app .ci-hint {
+  font-size: 11.5px;
+  color: var(--azul-dark);
+  background: rgba(64, 110, 245, 0.08);
+  padding: 6px 10px;
+  border-radius: 8px;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+.miniweb-app .ci-hint strong { color: var(--naranja-dark); font-weight: 800; }
+
+/* ---------- Hint "Hazte un pack y ahorra" en cada card ---------- */
+.miniweb-app .row__hint {
+  margin: 4px 0 10px;
+  padding: 8px 12px;
+  background: linear-gradient(to right, rgba(64,110,245,0.08), rgba(235,92,39,0.10));
+  border: 1px dashed var(--naranja);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--ink);
+  font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+  line-height: 1.3;
+}
+.miniweb-app .row__hint strong { color: var(--naranja-dark); font-weight: 800; }
+.miniweb-app .row__hint__icon { font-size: 16px; flex-shrink: 0; }
+.miniweb-app .row__hint--ok {
+  background: rgba(0, 171, 45, 0.08);
+  border-color: var(--green);
+  color: var(--green);
+}
+.miniweb-app .row__hint--ok strong { color: var(--green); }
 
 /* Cart item */
 .miniweb-app .ci {

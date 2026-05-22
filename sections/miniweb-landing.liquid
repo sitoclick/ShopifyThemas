@@ -20,11 +20,20 @@
       <span class="mw-header__logo" aria-hidden="true">
         <img src="https://www.monjamonymas.com/cdn/shop/files/nuevoflavicon_c9223ef1-f146-48a0-8c22-7cb86351b048.svg?v=1753271575&width=180" alt="" loading="eager" />
       </span>
-      <span class="mw-header__name">MONJAMÓN</span>
+      <span class="mw-header__name-wrap">
+        <span class="mw-header__name">MONJAMÓN</span>
+        <span class="mw-header__claim">Compra sin paja · Ahorra por volumen</span>
+      </span>
     </a>
     <button type="button" class="mw-header__cart" id="mwCartBtn" aria-label="Ver cesta">
       <img class="mw-header__cart-icon" src="https://www.monjamonymas.com/cdn/shop/files/cesta.svg" alt="" aria-hidden="true" loading="eager" />
-      <span class="mw-header__cart-label">Cesta</span>
+      <span class="mw-header__cart-block">
+        <span class="mw-header__cart-label">Cesta</span>
+        <span class="mw-header__cart-prices" id="mwCartPrices" hidden>
+          <span class="mw-header__cart-old" id="mwCartOld"></span>
+          <span class="mw-header__cart-new" id="mwCartNew">0,00 €</span>
+        </span>
+      </span>
       <span class="mw-header__count" id="mwCartCount" hidden>0</span>
     </button>
   </header>
