@@ -263,8 +263,8 @@ const PRODUCTS = [
     weight: '8-8,5 kg',
     calidad: 'premium', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 50,
     variants: [
-      { key: 'entero',   label: 'Entero 8-8,5kg',           price: 427.50, shopifyId: 56735632785753 },
-      { key: 'cuchillo', label: 'Cuchillo 28 sobres+puntas', price: 360.00, shopifyId: 54094875427161 },
+      { key: 'entero',   label: 'Entero',   sublabel: '8-8,5 kg',         price: 427.50, shopifyId: 56735632785753 },
+      { key: 'cuchillo', label: 'A cuchillo', sublabel: '28 sobres + puntas', price: 360.00, shopifyId: 54094875427161 },
     ],
     shopifyHandle: 'jamon-pasion',
     pros: ['Dos montaneras completas', 'Cerdos +2 años en libertad', 'Superior calidad sin precinto', 'Ácidos oleicos ~60%'],
@@ -279,8 +279,8 @@ const PRODUCTS = [
     weight: '7-7,5 kg',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
     variants: [
-      { key: 'entero',   label: 'Entero 7-7,5kg',           price: 351.00, shopifyId: 56226683945305 },
-      { key: 'cuchillo', label: 'Cuchillo 28 sobres+puntas', price: 293.40, shopifyId: 48998257885529 },
+      { key: 'entero',   label: 'Entero',   sublabel: '7-7,5 kg',         price: 351.00, shopifyId: 56226683945305 },
+      { key: 'cuchillo', label: 'A cuchillo', sublabel: '28 sobres + puntas', price: 293.40, shopifyId: 48998257885529 },
     ],
     shopifyHandle: 'monjamon',
     pros: ['Producto del Año 2025', 'Superior Taste Awards ★★★', '+42 meses de curación', 'Cerdos viejos en libertad'],
@@ -295,8 +295,8 @@ const PRODUCTS = [
     weight: '8-9 kg',
     calidad: 'esencial', alimentacion: 'pienso', sabor: 'suave', meses: 30,
     variants: [
-      { key: 'entero',   label: 'Entero 8-9kg',             price: 225.00, shopifyId: 56747224105305 },
-      { key: 'cuchillo', label: 'Cuchillo 32 sobres+puntas', price: 207.00, shopifyId: 54381130580313 },
+      { key: 'entero',   label: 'Entero',   sublabel: '8-9 kg',           price: 225.00, shopifyId: 56747224105305 },
+      { key: 'cuchillo', label: 'A cuchillo', sublabel: '32 sobres + puntas', price: 207.00, shopifyId: 54381130580313 },
     ],
     shopifyHandle: 'monjamon-gran-reserva',
     pros: ['Fuera de la norma ibérica', 'Criado en libertad', 'Piensos y pastos naturales', 'Mejor precio imposible'],
@@ -311,8 +311,8 @@ const PRODUCTS = [
     weight: '5.5-6 kg',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso-plus', meses: 24,
     variants: [
-      { key: 'entero',   label: 'Entera 5.5-6kg',           price: 201.60, shopifyId: 56731912175961 },
-      { key: 'cuchillo', label: 'Cuchillo 16 sobres+puntas', price: 157.50, shopifyId: 49379436462425 },
+      { key: 'entero',   label: 'Entera',   sublabel: '5,5-6 kg',         price: 201.60, shopifyId: 56731912175961 },
+      { key: 'cuchillo', label: 'A cuchillo', sublabel: '16 sobres + puntas', price: 157.50, shopifyId: 49379436462425 },
     ],
     shopifyHandle: 'sagrada-paleta',
     pros: ['Producto muy limitado', 'Sabor más intenso que el jamón', 'Curación 24-30 meses', 'Producto del Año 2025'],
@@ -724,6 +724,16 @@ const refs = {
 
 const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
 
+// Descuento automático global aplicado por Shopify storefront (ver handoff §11.5).
+// Los precios del catálogo son los YA descontados; el compare_at se calcula
+// como price / (1 - MW_AUTO_DISCOUNT) para reflejar el PVP "antes del 10%".
+const MW_AUTO_DISCOUNT = 0.10;
+function autoCompare(price, explicit) {
+  if (explicit != null) return explicit;
+  if (price == null) return null;
+  return Math.round((price / (1 - MW_AUTO_DISCOUNT)) * 100) / 100;
+}
+
 // ---------- Carrito ----------
 function cartKey(id, vKey) { return vKey ? `${id}:${vKey}` : id; }
 function getCartQty(id, vKey) { return state.cart.get(cartKey(id, vKey))?.qty || 0; }
@@ -783,9 +793,14 @@ function productTypeLabel(p) {
 }
 
 // Helper: variant label visible (CORTE estándar para jamones loncheados, o v.label custom)
+// En jamones-paletas usamos v.label directo (Entero / A cuchillo) para no perder
+// la distinción con loncheados. El icono de CORTE se aprovecha si la key coincide.
 function variantHead(p, v) {
-  const corte = CORTE[v.key];
-  if (corte) return { icon: corte.icon, label: corte.label };
+  const corteEntry = CORTE[v.key];
+  if (p.category === 'jamones-paletas') {
+    return { icon: corteEntry?.icon || null, label: v.label || v.key };
+  }
+  if (corteEntry) return { icon: corteEntry.icon, label: corteEntry.label };
   return { icon: null, label: v.label || v.key };
 }
 
@@ -809,7 +824,10 @@ function rowHTML(p) {
       <div class="row__variants">
         ${p.variants.map(v => {
           const vh = variantHead(p, v);
-          const cmp = v.compare ? `<span class="vbtn__compare">${fmt(v.compare)}</span>` : '';
+          // Bundles virtuales ya traen su compare explícito; el resto se auto-calcula
+          const compareVal = p.isVirtualBundle ? v.compare : autoCompare(v.price, v.compare);
+          const cmp = compareVal ? `<span class="vbtn__compare">${fmt(compareVal)}</span>` : '';
+          const sub = v.sublabel ? `<span class="vbtn__sublabel">${v.sublabel}</span>` : '';
           return `
             <div class="vbtn ${v.soldout ? 'is-soldout' : ''}" data-vbtn="${p.id}:${v.key}">
               <span class="vbtn__head">
@@ -817,6 +835,7 @@ function rowHTML(p) {
                 <span class="vbtn__label">${vh.label}</span>
                 ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
               </span>
+              ${sub}
               <span class="vbtn__foot">
                 <strong>${fmt(v.price)}</strong>${cmp}
                 ${v.soldout ? '<span class="vbtn__disabled">—</span>' : `<span class="vbtn__action" data-buy-wrap="${p.id}:${v.key}">${buyControlHTML(p.id, v.key, v.price)}</span>`}
@@ -828,7 +847,8 @@ function rowHTML(p) {
     `;
   } else {
     const corteIcon = p.cut && CORTE[p.cut] ? `<img src="${CORTE[p.cut].icon}" alt=""> ${CORTE[p.cut].label}` : '';
-    const comparePrice = p.comparePrice ? `<span class="row__price-compare">${fmt(p.comparePrice)}</span>` : '';
+    const compareVal = autoCompare(p.price, p.compare ?? p.comparePrice);
+    const comparePrice = compareVal ? `<span class="row__price-compare">${fmt(compareVal)}</span>` : '';
     buyBlock = `
       <div class="row__single">
         <span class="row__corte">${corteIcon}</span>
@@ -1309,28 +1329,10 @@ async function checkoutShopify() {
       body: JSON.stringify({ items: validItems }),
     });
     if (res.ok) {
-      // Calcular qué cupón aplicar según los tiers actuales
-      // Estos códigos deben estar creados en Shopify Admin > Discounts
-      const cart = totalCart();
-      const codes = [];
-      if (cart.pcts.loncheados === 5)  codes.push('LONCHE5');
-      if (cart.pcts.loncheados === 10) codes.push('LONCHE10');
-      if (cart.pcts.loncheados === 15) codes.push('LONCHE15');
-      if (cart.pcts.cervezas === 10)   codes.push('CERVEZAS10');
-      if (cart.pcts.cervezas === 15)   codes.push('CERVEZAS15');
-      if (cart.pcts.otros === 5)       codes.push('COMBO5');
-      // Cupón POLE para visitantes Forocochero (10% sobre todo)
-      if (isForocochesVisitor()) codes.push('POLE');
-
-      if (codes.length > 0) {
-        // Shopify cart sólo admite UN discount code aplicado a la vez por sesión
-        // Usamos el primero (el más relevante). Si el user trae POLE, ese tiene prioridad
-        const code = codes[codes.length - 1]; // POLE va último si está, así prevalece
-        // Redirigir vía /discount/<CODE>?redirect=/cart aplica el cupón y va al cart
-        window.location.href = `/discount/${encodeURIComponent(code)}?redirect=/cart`;
-      } else {
-        window.location.href = '/cart';
-      }
+      // Los descuentos están configurados como Discount Automáticos en Shopify Admin,
+      // así que basta con redirigir a /cart — Shopify aplica el % correspondiente
+      // (loncheados / cervezas / resto) detectando los items del carrito.
+      window.location.href = '/cart';
     } else {
       const err = await res.json().catch(() => ({}));
       alert('Error al añadir al carrito:\n' + (err.description || err.message || res.statusText));
@@ -1364,7 +1366,9 @@ function openSheet(id) {
         <div class="vrow" data-sheet-vtoggle>
           ${p.variants.map(v => {
             const vh = variantHead(p, v);
-            const cmp = v.compare ? `<span class="vbtn__compare">${fmt(v.compare)}</span>` : '';
+            const compareVal = p.isVirtualBundle ? v.compare : autoCompare(v.price, v.compare);
+            const cmp = compareVal ? `<span class="vbtn__compare">${fmt(compareVal)}</span>` : '';
+            const sub = v.sublabel ? `<span class="vbtn__sublabel">${v.sublabel}</span>` : '';
             return `
               <button class="vbtn vbtn--sheet ${v.key === state.sheetVariant ? 'is-active' : ''} ${v.soldout ? 'is-soldout' : ''}" data-v="${v.key}" ${v.soldout ? 'disabled' : ''}>
                 <span class="vbtn__head">
@@ -1372,6 +1376,7 @@ function openSheet(id) {
                   <span class="vbtn__label">${vh.label}</span>
                   ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
                 </span>
+                ${sub}
                 <span class="vbtn__foot"><strong>${fmt(v.price)}</strong>${cmp}</span>
               </button>
             `;

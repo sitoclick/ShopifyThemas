@@ -21,22 +21,15 @@
       body { font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
       .miniweb-layout main { display: block; }
 
-      /* Bridge al theme: ocultar TODO del header-group EXCEPTO las secciones USP scrolling features.
-         Solo queremos heredar el banner "10% OFF" / "PAGO SEGURO", no el header principal del theme. */
-      .mw-theme-bridge .shopify-section > *:not([class*="usp" i]),
-      .mw-theme-bridge > .shopify-section:not(:has([class*="usp" i])) {
-        display: none !important;
-      }
-      .mw-theme-bridge [class*="usp" i] {
-        display: block !important;
-        position: relative;
-        z-index: 51;
-      }
-      /* Por si el header del theme inyecta cualquier cosa en body, ocultarla */
+      /* La mini-web tiene su propio USP marquee (.mw-usp) en la section.
+         Ocultamos por completo el header-group y el footer del theme — la mini-web
+         se renderiza standalone. */
       body.miniweb-body > header:not(.mw-header),
       body.miniweb-body > footer,
       body.miniweb-body > .header,
       body.miniweb-body > .footer,
+      body.miniweb-body .shopify-section-header,
+      body.miniweb-body .shopify-section-group-header-group,
       body.miniweb-body .shopify-section-group-footer-group {
         display: none !important;
       }
@@ -170,14 +163,6 @@
   </head>
 
   <body class="miniweb-body template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
-    <!-- Renderizamos el header-group del tema (incluye USP scrolling features bar).
-         El CSS oculta TODO menos las secciones con clase "usp" — así el banner
-         "ANIVERSARIO 10% OFF" sigue visible pero el header normal del theme NO.
-         (Sólo queremos el USP, no el header principal del theme.) -->
-    <div class="mw-theme-bridge">
-      {% sections 'header-group' %}
-    </div>
-
     <main id="MainContent" class="miniweb-main" role="main">
       {{ content_for_layout }}
     </main>

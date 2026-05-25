@@ -1313,6 +1313,63 @@ a.miniweb-app .trust__item:hover,
   font-weight: 700; margin-top: 2px;
 }
 
+/* ---------- USP marquee propio (aniversario) ---------- */
+.miniweb-app .mw-usp {
+  background: var(--naranja);
+  color: #fff;
+  overflow: hidden;
+  padding: 9px 0;
+  max-width: 480px;
+  margin: 0 auto;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+.miniweb-app .mw-usp__track {
+  display: inline-flex;
+  width: max-content;
+  animation: mw-usp-scroll 22s linear infinite;
+  will-change: transform;
+}
+.miniweb-app .mw-usp__item {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  padding: 0 22px 0 0;
+  line-height: 1;
+}
+.miniweb-app .mw-usp__item::before {
+  content: '★';
+  margin-right: 14px;
+  font-size: 11px;
+  opacity: 0.85;
+  font-style: normal;
+}
+@keyframes mw-usp-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .miniweb-app .mw-usp__track { animation: none; }
+}
+
+/* ---------- Sublabel de variant (peso / sobres+puntas para jamones enteros) ---------- */
+.miniweb-app .vbtn__sublabel {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  margin: 2px 0 6px;
+  line-height: 1.2;
+}
+.miniweb-app .vbtn--sheet .vbtn__sublabel { font-size: 11.5px; margin-bottom: 8px; }
+
 .miniweb-app .sheet__foot {
   display: flex; gap: 10px;
   padding-top: 14px; border-top: 1px solid var(--line);

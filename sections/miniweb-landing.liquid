@@ -14,6 +14,22 @@
 
 <div class="miniweb-app">
 
+  <!-- USP marquee propio (sustituye al header-group del theme).
+       Mensajes editables desde el bloque schema (settings) — fallback hardcoded. -->
+  <div class="mw-usp" role="region" aria-label="Promoción de aniversario">
+    <div class="mw-usp__track">
+      {%- assign usp_msgs = section.settings.usp_messages | default: 'HACEMOS 2 AÑOS!|ESTAMOS DE ANIVERSARIO!|10% OFF EN TODA LA PÁGINA!|HASTA EL DÍA 29!' -%}
+      {%- assign usp_list = usp_msgs | split: '|' -%}
+      {%- for msg in usp_list -%}
+        <span class="mw-usp__item">{{ msg | strip }}</span>
+      {%- endfor -%}
+      {%- comment -%}Duplicado para loop seamless del marquee{%- endcomment -%}
+      {%- for msg in usp_list -%}
+        <span class="mw-usp__item" aria-hidden="true">{{ msg | strip }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+
   <!-- Mini-header propio: azul, logo monja + wordmark MONJAMÓN + carrito -->
   <header class="mw-header">
     <a class="mw-header__brand" href="{{ routes.root_url }}" aria-label="Inicio" data-confirm-exit="true">
@@ -370,6 +386,13 @@
       "id": "brand_name",
       "label": "Nombre de marca (mini-header)",
       "default": "Monjamón y Más"
+    },
+    {
+      "type": "textarea",
+      "id": "usp_messages",
+      "label": "Mensajes USP marquee (separados por |)",
+      "info": "Ej: HACEMOS 2 AÑOS!|ESTAMOS DE ANIVERSARIO!|10% OFF EN TODA LA PÁGINA!|HASTA EL DÍA 29!",
+      "default": "HACEMOS 2 AÑOS!|ESTAMOS DE ANIVERSARIO!|10% OFF EN TODA LA PÁGINA!|HASTA EL DÍA 29!"
     },
     {
       "type": "text",
