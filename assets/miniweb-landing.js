@@ -79,10 +79,10 @@ const CATEGORIES = {
 //   category: una de las 6 top-level
 //   sub: solo presente si category === 'loncheados' (jamon|paleta|embutido)
 const PRODUCTS = [
-  // ----- PACK FOROCOCHERO (BUNDLE VIRTUAL) -----
-  // Al añadir al carrito expande a sus bundleItems × packMultiplier.
-  // El descuento se aplica vía Shopify Discount Automático cuando detecta
-  // esta combinación exacta en el carrito (configurar en Shopify admin).
+  // ----- PACK FOROCOCHERO (PRODUCTO REAL Shopify) -----
+  // Producto real creado en admin (id=16320682033497, handle=pack-jamon-forocoches).
+  // Single variant 58133069496665 @ 66,15€. El descuento "Pack Forocoches" es
+  // automático en Shopify Admin — la mini-web solo añade el variant al cart.
   {
     id: 'pack-forocochero',
     name: 'Pack JAMÓN Forocochero',
@@ -91,21 +91,11 @@ const PRODUCTS = [
     category: 'loncheados', subcat: 'jamon', flag: 'top',
     weight: 'Pack 9 sobres',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
-    isVirtualBundle: true,
-    // Items que se añaden al carrito real (por 1 pack)
-    bundleItems: [
-      { shopifyId: 15113115533657, shopifyHandle: 'sobres-jamon-monjamon-bellota-100-fetas', qty: 5, label: 'Jamón Bellota 100% +42m máquina' },
-      { shopifyId: 15112623227225, shopifyHandle: 'sobre-lomonasterio',                       qty: 1, label: 'Lomonasterio' },
-      { shopifyId: 15112646525273, shopifyHandle: 'sobre-divina-coppa-de-bellota-100-iberica',qty: 1, label: 'Divina Coppa' },
-      { shopifyId: 15112615166297, shopifyHandle: 'sobre-choricielo',                          qty: 1, label: 'Choricielo' },
-      { shopifyId: 15112627945817, shopifyHandle: 'sobre-san-chichon',                         qty: 1, label: 'San Chichón' },
-    ],
-    variants: [
-      { key: '1pack',  label: '1 PACK',  price: 56.00, compare: 81.10, packMultiplier: 1 },
-      { key: '2packs', label: '2 PACKS', price: 95.00, compare: 162.20, packMultiplier: 2 },
-    ],
-    pros: ['5 sobres Jamón Bellota 100% +42m a máquina', '1 sobre Lomo + 1 Coppa + 1 Chorizo + 1 Salchichón', 'Producto del Año 2025 · Superior Taste ★★★', 'Ahorras 25,10€ vs comprar suelto'],
-    desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses cortado a máquina + 1 sobre Lomonasterio + 1 sobre Divina Coppa + 1 sobre Choricielo + 1 sobre San Chichón. Producto del Año 2025 y Superior Taste Award ★★★. Sale 25,10€ más barato que comprar los 9 sobres por separado.',
+    price: 66.15,
+    shopifyHandle: 'pack-jamon-forocoches',
+    shopifyId: 58133069496665,
+    pros: ['5 sobres Jamón Bellota 100% +42m a máquina', '1 sobre Lomo + 1 Coppa + 1 Chorizo + 1 Salchichón', 'Producto del Año 2025 · Superior Taste ★★★', 'Pack único con descuento automático aplicado en checkout'],
+    desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses cortado a máquina + 1 sobre Lomonasterio + 1 sobre Divina Coppa + 1 sobre Choricielo + 1 sobre San Chichón. Producto del Año 2025 y Superior Taste Award ★★★. El descuento se aplica automáticamente en el carrito.',
   },
 
   // ----- LONCHEADOS -----
@@ -385,7 +375,7 @@ const PRODUCTS = [
     weight: '~250 g',
     calidad: 'esencial', alimentacion: 'bellota', sabor: 'intenso',
     variants: [
-      { key: 'dulce',   label: 'Dulce',   price: 7.95, compare: 12.00, shopifyId: 39488731250769 },
+      { key: 'normal',  label: 'Normal',  price: 7.95, compare: 12.00, shopifyId: 39488731250769 },
       { key: 'picante', label: 'Picante', price: 7.95, compare: 12.00, shopifyId: 40167773110353 },
     ],
     shopifyHandle: 'longaniza-iberica',
@@ -402,12 +392,12 @@ const PRODUCTS = [
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'aromatico', meses: 6,
     variants: [
       { key: 'salchichon',     label: 'Salchichón',      price: 7.00, shopifyId: 47136359645529 },
-      { key: 'chorizo-dulce',  label: 'Chorizo Dulce',   price: 7.00, shopifyId: 47136359678297 },
+      { key: 'chorizo-normal', label: 'Chorizo Normal',  price: 7.00, shopifyId: 47136359678297 },
       { key: 'chorizo-picante',label: 'Chorizo Picante', price: 7.00, shopifyId: 47136359711065 },
     ],
     shopifyHandle: 'mini-vela-fuet',
-    pros: ['Bellota 100% Ibérico', '+6 meses de curación', '3 sabores: Salchichón, Chorizo Dulce o Picante'],
-    desc: 'Mini vela ibérica estilo fuet, hecha de bellota 100% ibérica con 6 meses de curación. Tres variantes disponibles: Salchichón, Chorizo Dulce y Chorizo Picante.',
+    pros: ['Bellota 100% Ibérico', '+6 meses de curación', '3 sabores: Salchichón, Chorizo Normal o Picante'],
+    desc: 'Mini vela ibérica estilo fuet, hecha de bellota 100% ibérica con 6 meses de curación. Tres variantes disponibles: Salchichón, Chorizo Normal y Chorizo Picante.',
   },
 
   // ----- QUESOS (todos La Antigua salvo indicación) -----

@@ -1401,6 +1401,7 @@ a.miniweb-app .trust__item:hover,
 @media (min-width: 720px) {
   .miniweb-app .app { max-width: 580px; }
   .miniweb-app .mw-header { max-width: 580px; }
+  .miniweb-app .mw-usp { max-width: 580px; }
   .miniweb-app .cart-cta {
     position: fixed;
     bottom: 36px;
