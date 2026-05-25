@@ -353,7 +353,7 @@
         "slide_hpkQ33": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/BANNER_PREMIO.jpg",
+            "image": "shopify://shop_images/3171313143967489387_54325646444.jpg",
             "heading": "<p>Nueva Mini Web</p>",
             "typewriter_text": "",
             "text": "<p>¿cansado de scrollear y navegar entre páginas hechas para google / IA pero sin sentido para el usuario?</p>",
@@ -400,10 +400,10 @@
       "settings": {
         "layout_height": "fixed_height",
         "layout_fixed_height": 310,
-        "layout_fixed_height_mobile": 200,
+        "layout_fixed_height_mobile": 380,
         "autoplay": false,
         "autoplay_delay": 10,
-        "overlay": 0.2,
+        "overlay": 0.4,
         "content_max_width": 100,
         "content_padding_vertical": 20,
         "content_padding_vertical_mobile": 32,
