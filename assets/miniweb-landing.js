@@ -1291,10 +1291,12 @@ async function checkoutShopify() {
   const entries = [...state.cart.values()];
   // Expandir cada entry (los bundles virtuales se convierten en sus items individuales)
   const expanded = entries.flatMap(expandCartEntry);
-  // Mergear duplicados por shopifyHandle (si un item aparece suelto + dentro de un pack, sumar qty)
+  // Mergear duplicados por shopifyId (clave real de variante). Fallback a handle solo si no hay id.
+  // NUNCA usar shopifyHandle como clave principal: variantes del mismo producto (Vela, Bravoleum, Longaniza)
+  // comparten handle y el merge colapsaría todas en la primera variante elegida.
   const merged = new Map();
   for (const it of expanded) {
-    const key = it.shopifyHandle || `id-${it.shopifyId}`;
+    const key = it.shopifyId != null ? `id-${it.shopifyId}` : it.shopifyHandle;
     const existing = merged.get(key);
     if (existing) {
       existing.quantity += it.quantity;
