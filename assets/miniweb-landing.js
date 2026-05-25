@@ -79,10 +79,12 @@ const CATEGORIES = {
 //   category: una de las 6 top-level
 //   sub: solo presente si category === 'loncheados' (jamon|paleta|embutido)
 const PRODUCTS = [
-  // ----- PACK FOROCOCHERO (PRODUCTO REAL Shopify) -----
-  // Producto real creado en admin (id=16320682033497, handle=pack-jamon-forocoches).
-  // Single variant 58133069496665 @ 66,15€. El descuento "Pack Forocoches" es
-  // automático en Shopify Admin — la mini-web solo añade el variant al cart.
+  // ----- PACK FOROCOCHERO (PRODUCTO REAL Shopify + 2 variants visuales) -----
+  // Producto real `pack-jamon-forocoches` con 1 variant Shopify (58133069496665, 66,15€).
+  // En la mini-web mostramos 2 variants: "1 PACK" (qty 1) y "2 PACKS" (qty 2),
+  // ambas apuntan al mismo shopifyId. `qtyMultiplier` se aplica al añadir al cart
+  // (expandCartEntry); Shopify aplica los descuentos automáticos según qty (1 → 56€, 2 → 95€).
+  // noVolumeDiscount evita que el pack entre en el escalado de volumen de loncheados.
   {
     id: 'pack-forocochero',
     name: 'Pack JAMÓN Forocochero',
@@ -91,11 +93,14 @@ const PRODUCTS = [
     category: 'loncheados', subcat: 'jamon', flag: 'top',
     weight: 'Pack 9 sobres',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
-    price: 66.15,
     shopifyHandle: 'pack-jamon-forocoches',
-    shopifyId: 58133069496665,
-    pros: ['5 sobres Jamón Bellota 100% +42m a máquina', '1 sobre Lomo + 1 Coppa + 1 Chorizo + 1 Salchichón', 'Producto del Año 2025 · Superior Taste ★★★', 'Pack único con descuento automático aplicado en checkout'],
-    desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses cortado a máquina + 1 sobre Lomonasterio + 1 sobre Divina Coppa + 1 sobre Choricielo + 1 sobre San Chichón. Producto del Año 2025 y Superior Taste Award ★★★. El descuento se aplica automáticamente en el carrito.',
+    noVolumeDiscount: true,
+    variants: [
+      { key: '1pack',  label: '1 PACK',  sublabel: '9 sobres',  price: 56.00, compare: 81.10,  shopifyId: 58133069496665, qtyMultiplier: 1 },
+      { key: '2packs', label: '2 PACKS', sublabel: '18 sobres', price: 95.00, compare: 162.20, shopifyId: 58133069496665, qtyMultiplier: 2 },
+    ],
+    pros: ['5 sobres Jamón Bellota 100% +42m a máquina', '1 sobre Lomo + 1 Coppa + 1 Chorizo + 1 Salchichón', 'Producto del Año 2025 · Superior Taste ★★★', 'Ahorras 25,10€ vs comprar suelto (1 PACK) — 67,20€ (2 PACKS)'],
+    desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses cortado a máquina + 1 sobre Lomonasterio + 1 sobre Divina Coppa + 1 sobre Choricielo + 1 sobre San Chichón. Producto del Año 2025 y Superior Taste Award ★★★. 1 PACK te ahorra 25,10€ vs sueltos · 2 PACKS te ahorra 67,20€ adicionales.',
   },
 
   // ----- LONCHEADOS -----
@@ -375,8 +380,8 @@ const PRODUCTS = [
     weight: '~250 g',
     calidad: 'esencial', alimentacion: 'bellota', sabor: 'intenso',
     variants: [
-      { key: 'normal',  label: 'Normal',  price: 7.95, compare: 12.00, shopifyId: 39488731250769 },
-      { key: 'picante', label: 'Picante', price: 7.95, compare: 12.00, shopifyId: 40167773110353 },
+      { key: 'normal',  label: 'Normal',  price: 10.80, compare: 12.00, shopifyId: 39488731250769 },
+      { key: 'picante', label: 'Picante', price: 10.80, compare: 12.00, shopifyId: 40167773110353 },
     ],
     shopifyHandle: 'longaniza-iberica',
     pros: ['Oferta especial', '2 tipos: Dulce o Picante', 'Ibérica de bellota'],
@@ -391,9 +396,9 @@ const PRODUCTS = [
     weight: '~80 g',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'aromatico', meses: 6,
     variants: [
-      { key: 'salchichon',     label: 'Salchichón',      price: 7.00, shopifyId: 47136359645529 },
-      { key: 'chorizo-normal', label: 'Chorizo Normal',  price: 7.00, shopifyId: 47136359678297 },
-      { key: 'chorizo-picante',label: 'Chorizo Picante', price: 7.00, shopifyId: 47136359711065 },
+      { key: 'salchichon',     label: 'Salchichón',      price: 6.30, shopifyId: 47136359645529 },
+      { key: 'chorizo-normal', label: 'Chorizo Normal',  price: 6.30, shopifyId: 47136359678297 },
+      { key: 'chorizo-picante',label: 'Chorizo Picante', price: 6.30, shopifyId: 47136359711065 },
     ],
     shopifyHandle: 'mini-vela-fuet',
     pros: ['Bellota 100% Ibérico', '+6 meses de curación', '3 sabores: Salchichón, Chorizo Normal o Picante'],
@@ -516,6 +521,7 @@ const PRODUCTS = [
     weight: '750 ml',
     calidad: 'gourmet', sabor: 'aromatico',
     price: 11.99,
+    compare: null,
     shopifyHandle: 'circe-verdejo',
     shopifyId: 47172699226457,
     pros: ['D.O. Rueda', 'Verdejo aromático', 'Fresco y equilibrado'],
@@ -544,6 +550,7 @@ const PRODUCTS = [
     weight: '750 ml',
     calidad: 'premium', sabor: 'intenso-plus',
     price: 23.00,
+    compare: null,
     shopifyHandle: 'aureo',
     shopifyId: 47172664066393,
     pros: ['Recomendado de la casa', 'Fermentado en barrica', 'Notas tostadas y vainilla'],
@@ -602,9 +609,9 @@ const PRODUCTS = [
     weight: '100/250/500 ml',
     calidad: 'premium', sabor: 'intenso',
     variants: [
-      { key: '100ml', label: '100 ml', price: 5.00,  shopifyId: 55620172808537 },
-      { key: '250ml', label: '250 ml', price: 10.00, shopifyId: 55620172841305 },
-      { key: '500ml', label: '500 ml', price: 17.00, shopifyId: 55620172874073 },
+      { key: '100ml', label: '100 ml', price: 4.50,  shopifyId: 55620172808537 },
+      { key: '250ml', label: '250 ml', price: 9.00,  shopifyId: 55620172841305 },
+      { key: '500ml', label: '500 ml', price: 15.30, shopifyId: 55620172874073 },
     ],
     shopifyHandle: 'bravoleum-picual',
     pros: ['AOVE Picual', 'Cosecha 2024-2025', '3 formatos disponibles'],
@@ -719,7 +726,8 @@ const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
 // como price / (1 - MW_AUTO_DISCOUNT) para reflejar el PVP "antes del 10%".
 const MW_AUTO_DISCOUNT = 0.10;
 function autoCompare(price, explicit) {
-  if (explicit != null) return explicit;
+  if (explicit === null) return null;            // explicit null → sin compare (producto sin oferta)
+  if (explicit !== undefined) return explicit;   // explicit number → usar el dado
   if (price == null) return null;
   return Math.round((price / (1 - MW_AUTO_DISCOUNT)) * 100) / 100;
 }
@@ -960,10 +968,11 @@ function refreshBuyControl(id, vKey) {
 // ---------- Cart ----------
 // Clasificar un cart entry en su "discount group"
 function discountGroupOf(item) {
-  // Pack Forocochero: tiene su propio precio bundle, NO entra en escalado
+  // Bundle virtual o producto con descuento standalone: NO entra en escalado de volumen
   if (item.bundleItems && item.packMultiplier) return 'bundle';
   const p = PRODUCTS.find(x => x.id === item.productId);
   if (!p) return 'otros';
+  if (p.noVolumeDiscount) return 'bundle';
   if (p.category === 'loncheados') return 'loncheados';
   if (p.type === 'Cerveza') return 'cervezas';
   return 'otros';
@@ -1210,6 +1219,7 @@ function modifyCart(id, vKey, delta) {
   let price, label, sId, sHandle;
   let bundleItems = null;
   let packMultiplier = null;
+  let qtyMultiplier = 1;
   if (p.variants) {
     const v = p.variants.find(x => x.key === vKey);
     if (!v || v.soldout) return;
@@ -1221,6 +1231,8 @@ function modifyCart(id, vKey, delta) {
       bundleItems = p.bundleItems;
       packMultiplier = v.packMultiplier;
     }
+    // Variant con qtyMultiplier (e.g. Pack Forocochero "2 PACKS" → multiplica qty al añadir a Shopify)
+    if (v.qtyMultiplier && v.qtyMultiplier > 1) qtyMultiplier = v.qtyMultiplier;
   } else {
     price = p.price; sId = p.shopifyId; sHandle = p.shopifyHandle;
     label = p.name;
@@ -1229,7 +1241,7 @@ function modifyCart(id, vKey, delta) {
   const existing = state.cart.get(key);
   const newQty = (existing?.qty || 0) + delta;
   if (newQty <= 0) state.cart.delete(key);
-  else state.cart.set(key, { qty: newQty, price, name: label, shopifyId: sId, shopifyHandle: sHandle, bundleItems, packMultiplier, productId: id, variantKey: vKey });
+  else state.cart.set(key, { qty: newQty, price, name: label, shopifyId: sId, shopifyHandle: sHandle, bundleItems, packMultiplier, qtyMultiplier, productId: id, variantKey: vKey });
   refreshCart();
   refreshBuyControl(id, vKey);
 }
@@ -1270,7 +1282,9 @@ function expandCartEntry(entry) {
       quantity: bi.qty * entry.packMultiplier * entry.qty,
     }));
   }
-  return [{ shopifyId: entry.shopifyId, shopifyHandle: entry.shopifyHandle, quantity: entry.qty }];
+  // qtyMultiplier (e.g. variant "2 PACKS" envía qty×2 del mismo shopifyId al cart)
+  const mult = entry.qtyMultiplier && entry.qtyMultiplier > 1 ? entry.qtyMultiplier : 1;
+  return [{ shopifyId: entry.shopifyId, shopifyHandle: entry.shopifyHandle, quantity: entry.qty * mult }];
 }
 
 async function checkoutShopify() {
