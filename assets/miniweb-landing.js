@@ -1511,8 +1511,9 @@ function updateSheetTotal() {
 }
 
 // ---------- Panel filtros ----------
-// El filtro de Calidad es el único transversal — siempre visible.
-// El resto (alim/sabor/meses) sólo aplican a Loncheados — los ocultamos en otras categorías.
+// Calidad: siempre visible.
+// Alimentación + Meses: loncheados y jamones-paletas.
+// Sabor: loncheados, embutidos y jamones-paletas.
 function filterPanelHTML() {
   const group = (dim, dict, title, opts = {}) => `
     <div class="fgroup ${opts.compact ? 'fgroup--compact' : ''}">
@@ -1526,11 +1527,16 @@ function filterPanelHTML() {
         `).join('')}
       </div>
     </div>`;
+  const cat = state.category;
   let html = group('calidad', CALIDAD, 'Calidad', { compact: true });
-  if (state.category === 'loncheados') {
-    html += group('alimentacion', ALIM, 'Alimentación')
-         + group('sabor', SABOR, 'Sabor', { compact: true })
-         + group('meses', MESES, 'Meses de curación');
+  if (cat === 'loncheados' || cat === 'jamones-paletas') {
+    html += group('alimentacion', ALIM, 'Alimentación');
+  }
+  if (cat === 'loncheados' || cat === 'embutidos' || cat === 'jamones-paletas') {
+    html += group('sabor', SABOR, 'Sabor', { compact: true });
+  }
+  if (cat === 'loncheados' || cat === 'jamones-paletas') {
+    html += group('meses', MESES, 'Meses de curación');
   }
   return html;
 }
