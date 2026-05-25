@@ -69,7 +69,7 @@
           "type": "item",
           "settings": {
             "icon": "none",
-            "text": "• HACEMOS 1 AÑO!",
+            "text": "• HACEMOS 2 AÑOS!",
             "icon_color": "#ffffff",
             "text_color": "#ffffff"
           }
@@ -87,7 +87,7 @@
           "type": "item",
           "settings": {
             "icon": "none",
-            "text": "•  15% OFF EN TODA LA PÁGINA!",
+            "text": "•  10% OFF EN TODA LA PÁGINA!",
             "icon_color": "#000000",
             "text_color": "#ffffff"
           }
@@ -96,7 +96,7 @@
           "type": "item",
           "settings": {
             "icon": "none",
-            "text": "• HASTA EL DIA 21",
+            "text": "• HASTA EL DIA 29!",
             "icon_color": "#000000",
             "text_color": "#ffffff"
           }
@@ -108,11 +108,10 @@
         "item_hHhnkg",
         "item_MaE4k3"
       ],
-      "disabled": true,
       "settings": {
         "scroll_on_desktop": false,
-        "scroll_speed": 100,
-        "scroll_speed_mobile": 100,
+        "scroll_speed": 35,
+        "scroll_speed_mobile": 91,
         "scroll_direction": "right",
         "scroll_pause": true,
         "items_gap": 6,
