@@ -271,10 +271,10 @@ const PRODUCTS = [
     sub: 'GOURMET · Producto del Año 2025 · Superior Taste ★★★',
     icon: A['clean-jamon-bellota'] || A['jamon-bellota'],
     category: 'jamones-paletas', type: 'Jamón', flag: 'top',
-    weight: '7-7,5 kg',
+    weight: '6,5-7 kg',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
     variants: [
-      { key: 'entero',   label: 'Entero',   sublabel: '7-7,5 kg',         price: 351.00, shopifyId: 56226683945305 },
+      { key: 'entero',   label: 'Entero',   sublabel: '6,5-7 kg',         price: 324.00, shopifyId: 48998257819993 },
       { key: 'cuchillo', label: 'A cuchillo', sublabel: '28 sobres + puntas', price: 293.40, shopifyId: 48998257885529 },
     ],
     shopifyHandle: 'monjamon',
