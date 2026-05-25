@@ -110,7 +110,7 @@
       ],
       "settings": {
         "scroll_on_desktop": true,
-        "scroll_speed": 35,
+        "scroll_speed": 65,
         "scroll_speed_mobile": 66,
         "scroll_direction": "right",
         "scroll_pause": false,
