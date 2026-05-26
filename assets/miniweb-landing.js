@@ -102,8 +102,8 @@ const PRODUCTS = [
     //   Discount Automático "Pack Forocoches Cuchillo": qty=1 → 61€  ·  qty=2 → 105€
     dualAxis: {
       primary:   { key: 'cut',  label: 'Corte', options: [
-        { val: 'maq',  label: 'A máquina',  icon: A['corte-maquina'] },
-        { val: 'cuch', label: 'A cuchillo', icon: A['corte-cuchillo'], badge: '+5€' },
+        { val: 'maq',  label: 'A MÁQUINA',  icon: A['corte-maquina'] },
+        { val: 'cuch', label: 'A CUCHILLO', icon: A['corte-cuchillo'], badge: '+5€' },
       ] },
       secondary: { key: 'pack', label: 'Cantidad', options: [
         { val: '1pack',  label: '1 PACK',  sublabel: '9 sobres' },
@@ -1979,8 +1979,8 @@ function setClaimBannerText() {
   const el = document.getElementById('claimBannerText');
   if (!el) return;
   el.textContent = isForocochesVisitor()
-    ? 'Pedidos +50€ incluyen Detalle Sorpresa e Invitación al Foro'
-    : 'Pedidos +50€ incluyen Detalle Sorpresa';
+    ? 'Pedidos +60€ incluyen Detalle Sorpresa e Invitación al Foro'
+    : 'Pedidos +60€ incluyen Detalle Sorpresa';
 }
 
 render(); refreshCart(); wire(); setClaimBannerText();
