@@ -95,26 +95,43 @@ const PRODUCTS = [
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
     shopifyHandle: 'pack-jamon-forocoches',
     noVolumeDiscount: true,
+    // Producto con 2 ejes de variación (Corte × Cantidad). Las 4 variants son la matriz cartesiana.
+    // - Máquina → producto Shopify pack-jamon-forocoches (variant 58133069496665, base 66,15€)
+    //   Discount Automático "Pack Forocoches": qty=1 → 56€  ·  qty=2 → 95€
+    // - Cuchillo → producto Shopify pack-jamon-forocoches-cuchillo (variant 58138300285273, base 129,15€)
+    //   Discount Automático "Pack Forocoches Cuchillo": qty=1 → 61€  ·  qty=2 → 105€
+    dualAxis: {
+      primary:   { key: 'cut',  label: 'Corte', options: [
+        { val: 'maq',  label: 'A máquina' },
+        { val: 'cuch', label: 'A cuchillo', badge: '+5€' },
+      ] },
+      secondary: { key: 'pack', label: 'Cantidad', options: [
+        { val: '1pack',  label: '1 PACK',  sublabel: '9 sobres' },
+        { val: '2packs', label: '2 PACKS', sublabel: '18 sobres' },
+      ] },
+    },
     variants: [
-      { key: '1pack',  label: '1 PACK',  sublabel: '9 sobres',  price: 56.00, compare: 81.10,  shopifyId: 58133069496665, qtyMultiplier: 1 },
-      { key: '2packs', label: '2 PACKS', sublabel: '18 sobres', price: 95.00, compare: 162.20, shopifyId: 58133069496665, qtyMultiplier: 2 },
+      { key: 'maq-1pack',   cut: 'maq',  pack: '1pack',  label: 'A máquina · 1 PACK',   sublabel: '9 sobres',  price: 56.00,  compare: 81.10,  shopifyId: 58133069496665, shopifyHandle: 'pack-jamon-forocoches',          qtyMultiplier: 1 },
+      { key: 'maq-2packs',  cut: 'maq',  pack: '2packs', label: 'A máquina · 2 PACKS',  sublabel: '18 sobres', price: 95.00,  compare: 162.20, shopifyId: 58133069496665, shopifyHandle: 'pack-jamon-forocoches',          qtyMultiplier: 2 },
+      { key: 'cuch-1pack',  cut: 'cuch', pack: '1pack',  label: 'A cuchillo · 1 PACK',  sublabel: '9 sobres',  price: 61.00,  compare: 81.10,  shopifyId: 58138300285273, shopifyHandle: 'pack-jamon-forocoches-cuchillo', qtyMultiplier: 1 },
+      { key: 'cuch-2packs', cut: 'cuch', pack: '2packs', label: 'A cuchillo · 2 PACKS', sublabel: '18 sobres', price: 105.00, compare: 162.20, shopifyId: 58138300285273, shopifyHandle: 'pack-jamon-forocoches-cuchillo', qtyMultiplier: 2 },
     ],
-    // Upsell a corte cuchillo (mostrado al pulsar IR AL CARRITO). Producto Shopify aparte:
-    // pack-jamon-forocoches-cuchillo (variant_id 58138300285273, base 129,15€).
-    // Requiere Discount Automático "Pack Forocoches Cuchillo" en Shopify Admin que aplique
-    //   qty=1 → 61€ (descuento 68,15€)  ·  qty=2 → 105€ (descuento 153,30€)
-    // (mismo patrón que el pack normal, donde Shopify lleva 66,15€ → 56€ con qty=1 y → 95€ con qty=2).
+    // Upsell modal: solo se dispara si en cart hay una variant 'maq-*' (no si ya están en cuch-*).
+    // Mapea variantKey máquina → variantKey cuchillo + delta de precio para el badge.
     cuchilloUpgrade: {
-      shopifyId: 58138300285273,
-      shopifyHandle: 'pack-jamon-forocoches-cuchillo',
       image: 'https://cdn.shopify.com/s/files/1/0251/6300/6033/files/15.jpg?v=1767688553',
-      variants: {
-        '1pack':  { price: 61.00,  compare: 81.10,  delta: 5  },
-        '2packs': { price: 105.00, compare: 162.20, delta: 10 },
+      swap: {
+        'maq-1pack':  { target: 'cuch-1pack',  delta: 5  },
+        'maq-2packs': { target: 'cuch-2packs', delta: 10 },
       },
     },
-    pros: ['5 sobres Jamón Bellota 100% +42m a máquina', '1 sobre Lomo + 1 Coppa + 1 Chorizo + 1 Salchichón', 'Producto del Año 2025 · Superior Taste ★★★', 'Ahorras 25,10€ vs comprar suelto (1 PACK) — 67,20€ (2 PACKS)'],
-    desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses cortado a máquina + 1 sobre Lomonasterio + 1 sobre Divina Coppa + 1 sobre Choricielo + 1 sobre San Chichón. Producto del Año 2025 y Superior Taste Award ★★★. 1 PACK te ahorra 25,10€ vs sueltos · 2 PACKS te ahorra 67,20€ adicionales.',
+    pros: [
+      '5 sobres Jamón Bellota 100% +42m (80g/ud · ~400g total)',
+      '1 Lomonasterio + 1 Divina Coppa + 1 Choricielo + 1 San Chichón (50g/ud · 200g total)',
+      'Producto del Año 2025 · Superior Taste ★★★',
+      'Ahorras 25,10€ vs suelto (1 PACK) — 67,20€ (2 PACKS)',
+    ],
+    desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses (80g/ud, ~400g total) + 1 sobre Lomonasterio (50g) + 1 sobre Divina Coppa (50g) + 1 sobre Choricielo (50g) + 1 sobre San Chichón (50g). Producto del Año 2025 y Superior Taste Award ★★★. Elige A máquina o A cuchillo (+5€ por pack) y 1 ó 2 packs. 1 PACK te ahorra 25,10€ vs sueltos · 2 PACKS te ahorra 67,20€ adicionales.',
   },
 
   // ----- LONCHEADOS -----
@@ -687,6 +704,9 @@ const state = {
     meses: new Set(),
   },
   cart: new Map(),
+  // Selección activa por productId para productos dualAxis (e.g., pack-forocochero)
+  // → { cut: 'maq'|'cuch', pack: '1pack'|'2packs' }
+  dualSel: new Map(),
   sheetId: null,
   sheetVariant: null,
   sheetQty: 1,
@@ -808,6 +828,78 @@ function productTypeLabel(p) {
   return p.type || null;
 }
 
+// ---------- DualAxis (2 ejes de variación, e.g., pack-forocochero: corte × cantidad) ----------
+// La selección activa por producto vive en state.dualSel; inicializa a la primera opción de cada eje.
+function getDualSel(p) {
+  if (!p.dualAxis) return null;
+  const existing = state.dualSel.get(p.id);
+  if (existing) return existing;
+  const def = {
+    [p.dualAxis.primary.key]:   p.dualAxis.primary.options[0].val,
+    [p.dualAxis.secondary.key]: p.dualAxis.secondary.options[0].val,
+  };
+  state.dualSel.set(p.id, def);
+  return def;
+}
+function setDualSel(p, axisKey, val) {
+  const cur = { ...getDualSel(p) };
+  cur[axisKey] = val;
+  state.dualSel.set(p.id, cur);
+  return cur;
+}
+function dualAxisVariant(p, sel) {
+  if (!p.dualAxis || !sel) return null;
+  const pk = p.dualAxis.primary.key, sk = p.dualAxis.secondary.key;
+  return p.variants.find(v => v[pk] === sel[pk] && v[sk] === sel[sk]);
+}
+function dualAxisChipsHTML(axis, sel, klass = 'dachip') {
+  return axis.options.map(o => `
+    <button type="button" class="${klass} ${sel[axis.key] === o.val ? 'is-active' : ''}" data-val="${o.val}">
+      <span class="dachip__label">${o.label}</span>
+      ${o.sublabel ? `<span class="dachip__sub">${o.sublabel}</span>` : ''}
+      ${o.badge ? `<span class="dachip__badge">${o.badge}</span>` : ''}
+    </button>
+  `).join('');
+}
+function dualAxisFootInnerHTML(p, v) {
+  if (!v) return '';
+  const compareVal = autoCompare(v.price, v.compare);
+  const cmp = compareVal ? `<span class="row__price-compare">${fmt(compareVal)}</span>` : '';
+  return `
+    <span class="row__price">${fmt(v.price)}${cmp}</span>
+    <span class="vbtn__action" data-buy-wrap="${p.id}:${v.key}">${buyControlHTML(p.id, v.key, v.price)}</span>
+  `;
+}
+function dualAxisRowHTML(p) {
+  const sel = getDualSel(p);
+  const v = dualAxisVariant(p, sel);
+  const groupHTML = (axis) => `
+    <div class="dualaxis__group">
+      <p class="dualaxis__label">${axis.label}</p>
+      <div class="dualaxis__chips" data-axis="${axis.key}">${dualAxisChipsHTML(axis, sel)}</div>
+    </div>`;
+  return `
+    <div class="row__dualaxis" data-dualaxis-product="${p.id}">
+      ${groupHTML(p.dualAxis.primary)}
+      ${groupHTML(p.dualAxis.secondary)}
+      <div class="dualaxis__foot" data-dualaxis-foot="${p.id}">
+        ${dualAxisFootInnerHTML(p, v)}
+      </div>
+    </div>`;
+}
+function dualAxisSheetHTML(p) {
+  const sel = getDualSel(p);
+  const groupHTML = (axis) => `
+    <div class="sheet__dualaxis-group">
+      <p class="sheet__vtitle">${axis.label}</p>
+      <div class="vrow" data-sheet-dualaxis="${axis.key}">${dualAxisChipsHTML(axis, sel, 'dachip dachip--sheet')}</div>
+    </div>`;
+  return `<div class="sheet__variants sheet__dualaxis">
+    ${groupHTML(p.dualAxis.primary)}
+    ${groupHTML(p.dualAxis.secondary)}
+  </div>`;
+}
+
 // Helper: variant label visible (CORTE estándar para jamones loncheados, o v.label custom)
 // En jamones-paletas usamos v.label directo (Entero / A cuchillo) para no perder
 // la distinción con loncheados. El icono de CORTE se aprovecha si la key coincide.
@@ -835,7 +927,9 @@ function rowHTML(p) {
   const zonaTag    = p.zona ? `<span class="tag">${p.zona}</span>` : '';
 
   let buyBlock;
-  if (p.variants) {
+  if (p.dualAxis) {
+    buyBlock = dualAxisRowHTML(p);
+  } else if (p.variants) {
     buyBlock = `
       <div class="row__variants">
         ${p.variants.map(v => {
@@ -1276,26 +1370,11 @@ function modifyCart(id, vKey, delta) {
   if (newQty <= 0) {
     state.cart.delete(key);
   } else {
-    // Si la entrada previa ya estaba upgradeada a cuchillo, preservar el upgrade
-    // (de lo contrario, al sumar/restar desde la card del catálogo se perdería el swap).
-    if (existing?.isCuchilloUpgrade && p.cuchilloUpgrade) {
-      const up = p.cuchilloUpgrade.variants[vKey];
-      if (up) {
-        price   = up.price;
-        sId     = p.cuchilloUpgrade.shopifyId;
-        sHandle = p.cuchilloUpgrade.shopifyHandle;
-        const variantLabel = (CORTE[vKey] && CORTE[vKey].label)
-          || p.variants?.find(x => x.key === vKey)?.label
-          || vKey;
-        label = `${p.name} a CUCHILLO (${variantLabel})`;
-      }
-    }
     state.cart.set(key, {
       qty: newQty, price, name: label,
       shopifyId: sId, shopifyHandle: sHandle,
       bundleItems, packMultiplier, qtyMultiplier,
       productId: id, variantKey: vKey,
-      isCuchilloUpgrade: !!existing?.isCuchilloUpgrade,
     });
   }
   refreshCart();
@@ -1303,45 +1382,54 @@ function modifyCart(id, vKey, delta) {
 }
 
 // ---------- Cuchillo upgrade helpers ----------
-// ¿Hay algún Pack Forocochero en el cart que aún no haya sido upgradeado?
+// Modal upsell: se dispara si en el cart hay alguna variant 'maq-*' del Pack Forocochero
+// (la decisión queda implícita en el variantKey; si el user ya eligió 'cuch-*' en la card no se ofrece).
 function cartForococheroNeedsUpgrade() {
+  const p = PRODUCTS.find(x => x.id === 'pack-forocochero');
+  if (!p?.cuchilloUpgrade?.swap) return false;
   for (const it of state.cart.values()) {
-    if (it.productId === 'pack-forocochero' && !it.isCuchilloUpgrade) return true;
+    if (it.productId !== 'pack-forocochero') continue;
+    if (p.cuchilloUpgrade.swap[it.variantKey]) return true;
   }
   return false;
 }
 
-// Suma total de delta (+5€ por 1pack, +10€ por 2packs) considerando qty de cada entrada
+// Suma total de delta (+5€ por 1pack, +10€ por 2packs) considerando qty de cada entrada maq-*
 function totalUpgradeDelta() {
   const p = PRODUCTS.find(x => x.id === 'pack-forocochero');
-  if (!p || !p.cuchilloUpgrade) return 0;
+  if (!p?.cuchilloUpgrade?.swap) return 0;
   let sum = 0;
   for (const it of state.cart.values()) {
-    if (it.productId !== 'pack-forocochero' || it.isCuchilloUpgrade) continue;
-    const up = p.cuchilloUpgrade.variants[it.variantKey];
-    if (up) sum += up.delta * it.qty;
+    if (it.productId !== 'pack-forocochero') continue;
+    const swap = p.cuchilloUpgrade.swap[it.variantKey];
+    if (swap) sum += swap.delta * it.qty;
   }
   return sum;
 }
 
-// Mutates las entradas de pack-forocochero en cart para que apunten al producto cuchillo
+// Swap in-place de cada entry maq-* por su target cuch-*. Re-keys el Map del cart.
 function applyCuchilloUpgrade() {
   const p = PRODUCTS.find(x => x.id === 'pack-forocochero');
-  if (!p || !p.cuchilloUpgrade) return;
+  if (!p?.cuchilloUpgrade?.swap) return;
+  const swaps = [];
   for (const [key, it] of state.cart.entries()) {
-    if (it.productId !== 'pack-forocochero' || it.isCuchilloUpgrade) continue;
-    const up = p.cuchilloUpgrade.variants[it.variantKey];
-    if (!up) continue;
-    const variantLabel = (CORTE[it.variantKey] && CORTE[it.variantKey].label)
-      || p.variants.find(v => v.key === it.variantKey)?.label
-      || it.variantKey;
-    state.cart.set(key, {
-      ...it,
-      price: up.price,
-      shopifyId: p.cuchilloUpgrade.shopifyId,
-      shopifyHandle: p.cuchilloUpgrade.shopifyHandle,
-      name: `${p.name} a CUCHILLO (${variantLabel})`,
-      isCuchilloUpgrade: true,
+    if (it.productId !== 'pack-forocochero') continue;
+    const swap = p.cuchilloUpgrade.swap[it.variantKey];
+    if (!swap) continue;
+    const target = p.variants.find(v => v.key === swap.target);
+    if (!target) continue;
+    swaps.push({ oldKey: key, entry: it, target });
+  }
+  for (const { oldKey, entry, target } of swaps) {
+    state.cart.delete(oldKey);
+    state.cart.set(cartKey(entry.productId, target.key), {
+      ...entry,
+      price: target.price,
+      shopifyId: target.shopifyId,
+      shopifyHandle: target.shopifyHandle,
+      qtyMultiplier: target.qtyMultiplier || 1,
+      name: `${p.name} (${target.label})`,
+      variantKey: target.key,
     });
   }
   refreshCart();
@@ -1456,9 +1544,12 @@ function openSheet(id) {
   state.sheetId = id;
   state.sheetQty = 1;
   // No pre-seleccionar variante — fuerza al user a elegir explícitamente.
-  // Si solo hay 1 variante (caso raro), la auto-selecciono.
+  // Excepción: productos dualAxis (siempre tienen una combinación válida) y los de 1 sola variante.
   state.sheetVariant = null;
-  if (p.variants && p.variants.length === 1 && !p.variants[0].soldout) {
+  if (p.dualAxis) {
+    const dv = dualAxisVariant(p, getDualSel(p));
+    if (dv) state.sheetVariant = dv.key;
+  } else if (p.variants && p.variants.length === 1 && !p.variants[0].soldout) {
     state.sheetVariant = p.variants[0].key;
   }
 
@@ -1467,37 +1558,39 @@ function openSheet(id) {
     : '';
   const pros = (p.pros || []).map(t => `<li>${t}</li>`).join('');
 
-  const vSection = p.variants
-    ? `<div class="sheet__variants">
-        <p class="sheet__vtitle">${CORTE[p.variants[0].key] ? 'Elige tu corte' : 'Elige variante'}</p>
-        <div class="vrow" data-sheet-vtoggle>
-          ${p.variants.map(v => {
-            const vh = variantHead(p, v);
-            const compareVal = p.isVirtualBundle ? v.compare : autoCompare(v.price, v.compare);
-            const cmp = compareVal ? `<span class="vbtn__compare">${fmt(compareVal)}</span>` : '';
-            const sub = v.sublabel ? `<span class="vbtn__sublabel">${v.sublabel}</span>` : '';
-            return `
-              <button class="vbtn vbtn--sheet ${v.key === state.sheetVariant ? 'is-active' : ''} ${v.soldout ? 'is-soldout' : ''}" data-v="${v.key}" ${v.soldout ? 'disabled' : ''}>
-                <span class="vbtn__head">
-                  ${vh.icon ? `<img src="${vh.icon}" alt="">` : ''}
-                  <span class="vbtn__label">${vh.label}</span>
-                  ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
-                </span>
-                ${sub}
-                <span class="vbtn__foot"><strong>${fmt(v.price)}</strong>${cmp}</span>
-              </button>
-            `;
-          }).join('')}
-        </div>
-      </div>`
-    : p.cut && CORTE[p.cut]
+  const vSection = p.dualAxis
+    ? dualAxisSheetHTML(p)
+    : p.variants
       ? `<div class="sheet__variants">
-          <p class="sheet__vtitle">Corte</p>
-          <div class="vsingle vsingle--big">
-            <img src="${CORTE[p.cut].icon}" alt=""><span>${CORTE[p.cut].label}</span>
+          <p class="sheet__vtitle">${CORTE[p.variants[0].key] ? 'Elige tu corte' : 'Elige variante'}</p>
+          <div class="vrow" data-sheet-vtoggle>
+            ${p.variants.map(v => {
+              const vh = variantHead(p, v);
+              const compareVal = p.isVirtualBundle ? v.compare : autoCompare(v.price, v.compare);
+              const cmp = compareVal ? `<span class="vbtn__compare">${fmt(compareVal)}</span>` : '';
+              const sub = v.sublabel ? `<span class="vbtn__sublabel">${v.sublabel}</span>` : '';
+              return `
+                <button class="vbtn vbtn--sheet ${v.key === state.sheetVariant ? 'is-active' : ''} ${v.soldout ? 'is-soldout' : ''}" data-v="${v.key}" ${v.soldout ? 'disabled' : ''}>
+                  <span class="vbtn__head">
+                    ${vh.icon ? `<img src="${vh.icon}" alt="">` : ''}
+                    <span class="vbtn__label">${vh.label}</span>
+                    ${v.soldout ? '<span class="vbtn__sold">Agotado</span>' : ''}
+                  </span>
+                  ${sub}
+                  <span class="vbtn__foot"><strong>${fmt(v.price)}</strong>${cmp}</span>
+                </button>
+              `;
+            }).join('')}
           </div>
         </div>`
-      : '';
+      : p.cut && CORTE[p.cut]
+        ? `<div class="sheet__variants">
+            <p class="sheet__vtitle">Corte</p>
+            <div class="vsingle vsingle--big">
+              <img src="${CORTE[p.cut].icon}" alt=""><span>${CORTE[p.cut].label}</span>
+            </div>
+          </div>`
+        : '';
 
   const specs = [];
   if (p.calidad)      specs.push(`<div class="spec"><img src="${CALIDAD[p.calidad].icon}" alt=""><div><small>Calidad</small><strong>${CALIDAD[p.calidad].label}</strong></div></div>`);
@@ -1684,6 +1777,24 @@ function wire() {
   });
 
   refs.list.addEventListener('click', (e) => {
+    // DualAxis chips en card — actualizan la selección activa y re-renderizan el foot (precio + botón)
+    const daChip = e.target.closest('.row__dualaxis [data-axis] .dachip');
+    if (daChip) {
+      e.stopPropagation();
+      const axisGroup = daChip.closest('[data-axis]');
+      const root      = daChip.closest('.row__dualaxis');
+      const axisKey   = axisGroup.dataset.axis;
+      const val       = daChip.dataset.val;
+      const productId = root.dataset.dualaxisProduct;
+      const p         = PRODUCTS.find(x => x.id === productId);
+      if (!p) return;
+      setDualSel(p, axisKey, val);
+      axisGroup.querySelectorAll('.dachip').forEach(c => c.classList.toggle('is-active', c === daChip));
+      const v   = dualAxisVariant(p, getDualSel(p));
+      const foot = root.querySelector(`[data-dualaxis-foot="${productId}"]`);
+      if (foot) foot.innerHTML = dualAxisFootInnerHTML(p, v);
+      return;
+    }
     const buyBtn = e.target.closest('[data-buy]');
     if (buyBtn) {
       e.stopPropagation();
@@ -1732,6 +1843,33 @@ function wire() {
       const _p = PRODUCTS.find(x => x.id === state.sheetId);
       const _h = _p?.variants?.find(v => v.key === state.sheetVariant)?.shopifyHandle || _p?.shopifyHandle;
       if (_h) loadGallery(_h);
+    }
+    // DualAxis chips en sheet — selecciona valor del eje, recalcula sheetVariant y recarga galería
+    const daChipS = e.target.closest('[data-sheet-dualaxis] .dachip');
+    if (daChipS && !daChipS.disabled) {
+      const axisGroup = daChipS.closest('[data-sheet-dualaxis]');
+      const axisKey   = axisGroup.dataset.sheetDualaxis;
+      const val       = daChipS.dataset.val;
+      const _p = PRODUCTS.find(x => x.id === state.sheetId);
+      if (_p && _p.dualAxis) {
+        setDualSel(_p, axisKey, val);
+        axisGroup.querySelectorAll('.dachip').forEach(c => c.classList.toggle('is-active', c === daChipS));
+        const dv = dualAxisVariant(_p, getDualSel(_p));
+        if (dv) {
+          state.sheetVariant = dv.key;
+          updateSheetTotal();
+          const _h = dv.shopifyHandle || _p.shopifyHandle;
+          if (_h) loadGallery(_h);
+        }
+        // Sincroniza el DOM de la card del catálogo (si está visible) para evitar inconsistencia visual
+        const cardRoot = refs.list.querySelector(`[data-dualaxis-product="${_p.id}"]`);
+        if (cardRoot && dv) {
+          const cardAxis = cardRoot.querySelector(`[data-axis="${axisKey}"]`);
+          if (cardAxis) cardAxis.querySelectorAll('.dachip').forEach(c => c.classList.toggle('is-active', c.dataset.val === val));
+          const foot = cardRoot.querySelector(`[data-dualaxis-foot="${_p.id}"]`);
+          if (foot) foot.innerHTML = dualAxisFootInnerHTML(_p, dv);
+        }
+      }
     }
     const gNav = e.target.closest('[data-gnav]');
     if (gNav) {
@@ -1830,4 +1968,13 @@ function pop(el) {
   );
 }
 
-render(); refreshCart(); wire();
+// Claim banner del toolbar — texto distinto si el visitante viene de Forocoches
+function setClaimBannerText() {
+  const el = document.getElementById('claimBannerText');
+  if (!el) return;
+  el.textContent = isForocochesVisitor()
+    ? 'Pedidos +50€ incluyen Detalle Sorpresa e Invitación al Foro'
+    : 'Pedidos +50€ incluyen Detalle Sorpresa';
+}
+
+render(); refreshCart(); wire(); setClaimBannerText();

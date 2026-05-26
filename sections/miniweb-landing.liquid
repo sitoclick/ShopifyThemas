@@ -71,7 +71,7 @@
       <button class="chip" data-sub="embutido">Embutido</button>
     </nav>
 
-    <!-- Toolbar: Filtros + Lupa -->
+    <!-- Toolbar: Filtros + Claim + Lupa -->
     <div class="toolbar">
       <button class="filterbar__btn" id="filterToggle">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
@@ -79,6 +79,11 @@
         <span class="filterbar__count" id="filterCount" hidden>0</span>
         <svg class="filterbar__chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
+      <!-- Claim "Detalle Sorpresa" — texto se ajusta en JS según ?fc=1 -->
+      <div class="claim-banner" id="claimBanner" role="status" aria-live="polite">
+        <span class="claim-banner__emoji" aria-hidden="true">🎁</span>
+        <span class="claim-banner__text" id="claimBannerText">Pedidos +50€ incluyen Detalle Sorpresa</span>
+      </div>
       <div class="search-pill" id="searchPill">
         <button class="search-pill__toggle" id="searchToggle" aria-label="Buscar">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>

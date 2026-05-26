@@ -1542,6 +1542,124 @@ a.miniweb-app .trust__item:hover,
   .miniweb-app .sheet__panel { max-width: 480px; border-radius: 22px; margin-bottom: 5vh; }
 }
 
+/* ---------- DualAxis selector (Pack Forocochero: Corte × Cantidad) ---------- */
+.miniweb-app .row__dualaxis {
+  display: flex; flex-direction: column;
+  gap: 10px;
+  margin: 0 -14px;
+  padding: 12px 14px 14px;
+  border-top: 1px dashed var(--line);
+}
+.miniweb-app .dualaxis__group { display: flex; flex-direction: column; gap: 6px; }
+.miniweb-app .dualaxis__label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-2);
+}
+.miniweb-app .dualaxis__chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.miniweb-app .dachip {
+  position: relative;
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 48px;
+  font-family: var(--font-body);
+}
+.miniweb-app .dachip:hover { background: #fafafa; border-color: var(--naranja); transform: translateY(-1px); }
+.miniweb-app .dachip.is-active {
+  background: #fff;
+  border-color: var(--naranja);
+  border-width: 2px;
+  padding: 9px 11px;
+}
+.miniweb-app .dachip__label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.miniweb-app .dachip__sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+.miniweb-app .dachip__badge {
+  position: absolute;
+  top: -8px; right: -8px;
+  background: var(--naranja);
+  color: #fff;
+  font-size: 10px; font-weight: 800;
+  padding: 3px 7px;
+  border-radius: 10px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 6px rgba(235, 92, 39, 0.35);
+}
+.miniweb-app .dualaxis__foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+.miniweb-app .dualaxis__foot .row__price {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 700;
+  color: var(--ink); line-height: 1;
+}
+.miniweb-app .dualaxis__foot .row__price-compare { font-size: 14px; }
+
+/* Sheet (detalle) — chips dualaxis algo más grandes */
+.miniweb-app .sheet__dualaxis { display: flex; flex-direction: column; gap: 14px; }
+.miniweb-app .sheet__dualaxis-group { display: flex; flex-direction: column; gap: 8px; }
+.miniweb-app .dachip--sheet { padding: 14px; min-height: 60px; }
+.miniweb-app .dachip--sheet.is-active { padding: 13px; }
+.miniweb-app .dachip--sheet .dachip__label { font-size: 15px; }
+.miniweb-app .dachip--sheet .dachip__sub { font-size: 12px; }
+
+/* ---------- Claim banner (toolbar inline) ---------- */
+.miniweb-app .claim-banner {
+  flex: 1;
+  display: inline-flex; align-items: center; gap: 6px;
+  min-width: 0;
+  height: 36px;
+  padding: 0 12px;
+  background: linear-gradient(135deg, #fff5ec 0%, #ffe6d0 100%);
+  border: 1px solid #f8c79a;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px; font-weight: 600;
+  color: var(--naranja-dark);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.miniweb-app .claim-banner__emoji { font-size: 14px; flex-shrink: 0; }
+.miniweb-app .claim-banner__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* En mobile <380px, ocultar emoji para ganar espacio */
+@media (max-width: 379px) {
+  .miniweb-app .claim-banner { font-size: 10.5px; padding: 0 9px; }
+  .miniweb-app .claim-banner__emoji { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .miniweb-app *, .miniweb-app *::before, .miniweb-app *::after {
     animation-duration: 0.01ms !important;
