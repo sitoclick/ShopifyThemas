@@ -87,9 +87,9 @@ const PRODUCTS = [
   // noVolumeDiscount evita que el pack entre en el escalado de volumen de loncheados.
   {
     id: 'pack-forocochero',
-    name: 'Pack JAMÓN Forocochero',
+    name: 'EL PACK FOROCOCHERO 2026',
     sub: '5×Jamón Bellota 100% +42m + 4 sobres embutidos',
-    icon: A['p-pack-forocochero'] || A['regalo'],
+    icon: A['p-pack-forocochero-2026'] || A['p-pack-forocochero'] || A['regalo'],
     category: 'loncheados', subcat: 'jamon', flag: 'top',
     weight: 'Pack 9 sobres',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
@@ -102,12 +102,12 @@ const PRODUCTS = [
     //   Discount Automático "Pack Forocoches Cuchillo": qty=1 → 61€  ·  qty=2 → 105€
     dualAxis: {
       primary:   { key: 'cut',  label: 'Corte', options: [
-        { val: 'maq',  label: 'A máquina' },
-        { val: 'cuch', label: 'A cuchillo', badge: '+5€' },
+        { val: 'maq',  label: 'A máquina',  icon: A['corte-maquina'] },
+        { val: 'cuch', label: 'A cuchillo', icon: A['corte-cuchillo'], badge: '+5€' },
       ] },
       secondary: { key: 'pack', label: 'Cantidad', options: [
         { val: '1pack',  label: '1 PACK',  sublabel: '9 sobres' },
-        { val: '2packs', label: '2 PACKS', sublabel: '18 sobres' },
+        { val: '2packs', label: '2 PACKS', sublabel: '18 sobres', badge: '+Ahorro', badgeStyle: 'ahorro' },
       ] },
     },
     variants: [
@@ -853,13 +853,19 @@ function dualAxisVariant(p, sel) {
   return p.variants.find(v => v[pk] === sel[pk] && v[sk] === sel[sk]);
 }
 function dualAxisChipsHTML(axis, sel, klass = 'dachip') {
-  return axis.options.map(o => `
-    <button type="button" class="${klass} ${sel[axis.key] === o.val ? 'is-active' : ''}" data-val="${o.val}">
-      <span class="dachip__label">${o.label}</span>
-      ${o.sublabel ? `<span class="dachip__sub">${o.sublabel}</span>` : ''}
-      ${o.badge ? `<span class="dachip__badge">${o.badge}</span>` : ''}
-    </button>
-  `).join('');
+  return axis.options.map(o => {
+    const badgeClass = o.badgeStyle ? `dachip__badge dachip__badge--${o.badgeStyle}` : 'dachip__badge';
+    return `
+      <button type="button" class="${klass} ${sel[axis.key] === o.val ? 'is-active' : ''}" data-val="${o.val}">
+        <span class="dachip__head">
+          ${o.icon ? `<img class="dachip__icon" src="${o.icon}" alt="">` : ''}
+          <span class="dachip__label">${o.label}</span>
+        </span>
+        ${o.sublabel ? `<span class="dachip__sub">${o.sublabel}</span>` : ''}
+        ${o.badge ? `<span class="${badgeClass}">${o.badge}</span>` : ''}
+      </button>
+    `;
+  }).join('');
 }
 function dualAxisFootInnerHTML(p, v) {
   if (!v) return '';
