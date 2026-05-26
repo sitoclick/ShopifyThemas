@@ -245,6 +245,33 @@
     </div>
   </div>
 
+  <!-- Modal upsell: mejora del Pack Forocochero a corte CUCHILLO al pulsar IR AL CARRITO -->
+  <div class="upsell-modal" id="upsellModal" hidden aria-hidden="true">
+    <div class="upsell-modal__backdrop" data-close></div>
+    <div class="upsell-modal__panel" role="dialog" aria-modal="true" aria-labelledby="upsellModalTitle">
+      <button class="upsell-modal__close" data-close aria-label="Cerrar">×</button>
+      <div class="upsell-modal__media">
+        <img id="upsellImage" src="" alt="Pack Jamón Forocoches cortado a cuchillo" loading="lazy" />
+        <span class="upsell-modal__badge" aria-hidden="true">
+          <span class="upsell-modal__badge-label">Por solo</span>
+          <strong id="upsellDelta">+0,00 €</strong>
+        </span>
+      </div>
+      <span class="upsell-modal__eyebrow">¡ÚLTIMA OPORTUNIDAD!</span>
+      <h3 class="upsell-modal__title" id="upsellModalTitle">¿Mejoras tu pack a corte CUCHILLO?</h3>
+      <p class="upsell-modal__sub">Mismo pack, pero con los 5 jamones cortados <strong>a cuchillo</strong> (sobres + puntas) en lugar de a máquina. Sabor más auténtico, tradicional, fiesta gourmet.</p>
+      <ul class="upsell-modal__pros">
+        <li>Lonchas irregulares cortadas a mano</li>
+        <li>Mejor textura y aroma</li>
+        <li>Incluye las puntas (perfectas para guisar)</li>
+      </ul>
+      <div class="upsell-modal__actions">
+        <button type="button" class="btn btn--primary" data-upsell-accept>SÍ, MEJORAR A CUCHILLO</button>
+        <button type="button" class="btn btn--ghost" data-upsell-decline>No, seguir con corte a máquina</button>
+      </div>
+    </div>
+  </div>
+
   <div class="sheet" id="sheet" hidden aria-hidden="true">
     <div class="sheet__backdrop" data-close></div>
     <div class="sheet__panel" role="dialog" aria-modal="true">

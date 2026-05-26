@@ -99,6 +99,20 @@ const PRODUCTS = [
       { key: '1pack',  label: '1 PACK',  sublabel: '9 sobres',  price: 56.00, compare: 81.10,  shopifyId: 58133069496665, qtyMultiplier: 1 },
       { key: '2packs', label: '2 PACKS', sublabel: '18 sobres', price: 95.00, compare: 162.20, shopifyId: 58133069496665, qtyMultiplier: 2 },
     ],
+    // Upsell a corte cuchillo (mostrado al pulsar IR AL CARRITO). Producto Shopify aparte:
+    // pack-jamon-forocoches-cuchillo (variant_id 58138300285273, base 129,15€).
+    // Requiere Discount Automático "Pack Forocoches Cuchillo" en Shopify Admin que aplique
+    //   qty=1 → 61€ (descuento 68,15€)  ·  qty=2 → 105€ (descuento 153,30€)
+    // (mismo patrón que el pack normal, donde Shopify lleva 66,15€ → 56€ con qty=1 y → 95€ con qty=2).
+    cuchilloUpgrade: {
+      shopifyId: 58138300285273,
+      shopifyHandle: 'pack-jamon-forocoches-cuchillo',
+      image: 'https://cdn.shopify.com/s/files/1/0251/6300/6033/files/cata_5_elegidos.png?v=1768220208',
+      variants: {
+        '1pack':  { price: 61.00,  compare: 81.10,  delta: 5  },
+        '2packs': { price: 105.00, compare: 162.20, delta: 10 },
+      },
+    },
     pros: ['5 sobres Jamón Bellota 100% +42m a máquina', '1 sobre Lomo + 1 Coppa + 1 Chorizo + 1 Salchichón', 'Producto del Año 2025 · Superior Taste ★★★', 'Ahorras 25,10€ vs comprar suelto (1 PACK) — 67,20€ (2 PACKS)'],
     desc: 'Pack edición Aniversario para los shures. 5 sobres de Jamón de Bellota 100% Ibérico +42 meses cortado a máquina + 1 sobre Lomonasterio + 1 sobre Divina Coppa + 1 sobre Choricielo + 1 sobre San Chichón. Producto del Año 2025 y Superior Taste Award ★★★. 1 PACK te ahorra 25,10€ vs sueltos · 2 PACKS te ahorra 67,20€ adicionales.',
   },
@@ -705,6 +719,10 @@ const refs = {
   // Modal de confirmación al salir a la web completa
   exitModal: $('#exitModal'),
   exitConfirm: $('#exitConfirm'),
+  // Modal upsell de Pack Forocochero a corte CUCHILLO (al pulsar IR AL CARRITO)
+  upsellModal: $('#upsellModal'),
+  upsellImage: $('#upsellImage'),
+  upsellDelta: $('#upsellDelta'),
   sheet: $('#sheet'),
   sheetBody: $('#sheetBody'),
   sheetQty: $('#sheetQty'),
@@ -970,6 +988,7 @@ function refreshBuyControl(id, vKey) {
 function discountGroupOf(item) {
   // Bundle virtual o producto con descuento standalone: NO entra en escalado de volumen
   if (item.bundleItems && item.packMultiplier) return 'bundle';
+  if (item.noVolumeDiscount) return 'bundle';
   const p = PRODUCTS.find(x => x.id === item.productId);
   if (!p) return 'otros';
   if (p.noVolumeDiscount) return 'bundle';
@@ -1207,6 +1226,20 @@ function closeExitModal() {
   refs.exitModal.hidden = true;
   document.body.style.overflow = '';
 }
+
+// ---------- Upsell modal (Pack Forocochero → corte Cuchillo) ----------
+function openUpsellModal() {
+  const p = PRODUCTS.find(x => x.id === 'pack-forocochero');
+  if (!p || !p.cuchilloUpgrade) return;
+  refs.upsellImage.src = p.cuchilloUpgrade.image;
+  refs.upsellDelta.textContent = '+' + fmt(totalUpgradeDelta());
+  refs.upsellModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeUpsellModal() {
+  refs.upsellModal.hidden = true;
+  document.body.style.overflow = '';
+}
 // Modifica el carrito por key (id:vKey) — usado dentro del drawer
 function modifyCartByKey(key, delta) {
   const [id, vRaw] = key.split(':');
@@ -1240,10 +1273,78 @@ function modifyCart(id, vKey, delta) {
   const key = cartKey(id, vKey);
   const existing = state.cart.get(key);
   const newQty = (existing?.qty || 0) + delta;
-  if (newQty <= 0) state.cart.delete(key);
-  else state.cart.set(key, { qty: newQty, price, name: label, shopifyId: sId, shopifyHandle: sHandle, bundleItems, packMultiplier, qtyMultiplier, productId: id, variantKey: vKey });
+  if (newQty <= 0) {
+    state.cart.delete(key);
+  } else {
+    // Si la entrada previa ya estaba upgradeada a cuchillo, preservar el upgrade
+    // (de lo contrario, al sumar/restar desde la card del catálogo se perdería el swap).
+    if (existing?.isCuchilloUpgrade && p.cuchilloUpgrade) {
+      const up = p.cuchilloUpgrade.variants[vKey];
+      if (up) {
+        price   = up.price;
+        sId     = p.cuchilloUpgrade.shopifyId;
+        sHandle = p.cuchilloUpgrade.shopifyHandle;
+        const variantLabel = (CORTE[vKey] && CORTE[vKey].label)
+          || p.variants?.find(x => x.key === vKey)?.label
+          || vKey;
+        label = `${p.name} a CUCHILLO (${variantLabel})`;
+      }
+    }
+    state.cart.set(key, {
+      qty: newQty, price, name: label,
+      shopifyId: sId, shopifyHandle: sHandle,
+      bundleItems, packMultiplier, qtyMultiplier,
+      productId: id, variantKey: vKey,
+      isCuchilloUpgrade: !!existing?.isCuchilloUpgrade,
+    });
+  }
   refreshCart();
   refreshBuyControl(id, vKey);
+}
+
+// ---------- Cuchillo upgrade helpers ----------
+// ¿Hay algún Pack Forocochero en el cart que aún no haya sido upgradeado?
+function cartForococheroNeedsUpgrade() {
+  for (const it of state.cart.values()) {
+    if (it.productId === 'pack-forocochero' && !it.isCuchilloUpgrade) return true;
+  }
+  return false;
+}
+
+// Suma total de delta (+5€ por 1pack, +10€ por 2packs) considerando qty de cada entrada
+function totalUpgradeDelta() {
+  const p = PRODUCTS.find(x => x.id === 'pack-forocochero');
+  if (!p || !p.cuchilloUpgrade) return 0;
+  let sum = 0;
+  for (const it of state.cart.values()) {
+    if (it.productId !== 'pack-forocochero' || it.isCuchilloUpgrade) continue;
+    const up = p.cuchilloUpgrade.variants[it.variantKey];
+    if (up) sum += up.delta * it.qty;
+  }
+  return sum;
+}
+
+// Mutates las entradas de pack-forocochero en cart para que apunten al producto cuchillo
+function applyCuchilloUpgrade() {
+  const p = PRODUCTS.find(x => x.id === 'pack-forocochero');
+  if (!p || !p.cuchilloUpgrade) return;
+  for (const [key, it] of state.cart.entries()) {
+    if (it.productId !== 'pack-forocochero' || it.isCuchilloUpgrade) continue;
+    const up = p.cuchilloUpgrade.variants[it.variantKey];
+    if (!up) continue;
+    const variantLabel = (CORTE[it.variantKey] && CORTE[it.variantKey].label)
+      || p.variants.find(v => v.key === it.variantKey)?.label
+      || it.variantKey;
+    state.cart.set(key, {
+      ...it,
+      price: up.price,
+      shopifyId: p.cuchilloUpgrade.shopifyId,
+      shopifyHandle: p.cuchilloUpgrade.shopifyHandle,
+      name: `${p.name} a CUCHILLO (${variantLabel})`,
+      isCuchilloUpgrade: true,
+    });
+  }
+  refreshCart();
 }
 
 // ---------- Shopify cart ----------
@@ -1659,6 +1760,7 @@ function wire() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (!refs.sheet.hidden) closeSheet();
+      else if (!refs.upsellModal.hidden) closeUpsellModal();
       else if (!refs.exitModal.hidden) closeExitModal();
       else if (!refs.cartDrawer.hidden) closeCartDrawer();
       else if (state.showFilters) toggleFilterPanel(false);
@@ -1693,7 +1795,33 @@ function wire() {
       pop(qBtn);
     }
   });
-  refs.cartCheckout.addEventListener('click', checkoutShopify);
+  // Click en IR AL CARRITO: si hay Pack Forocochero aún sin upgradear, mostrar modal upsell.
+  // Si el usuario acepta → swap + checkout. Si rechaza → checkout normal.
+  refs.cartCheckout.addEventListener('click', () => {
+    if (cartForococheroNeedsUpgrade()) {
+      openUpsellModal();
+    } else {
+      checkoutShopify();
+    }
+  });
+
+  // Modal upsell: backdrop / × cierran sin acción; aceptar swap-ea, rechazar sigue al cart
+  refs.upsellModal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-upsell-accept]')) {
+      applyCuchilloUpgrade();
+      closeUpsellModal();
+      checkoutShopify();
+      return;
+    }
+    if (e.target.closest('[data-upsell-decline]')) {
+      closeUpsellModal();
+      checkoutShopify();
+      return;
+    }
+    if (e.target.closest('[data-close]')) {
+      closeUpsellModal();
+    }
+  });
 }
 function pop(el) {
   el.animate(

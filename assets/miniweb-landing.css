@@ -877,6 +877,135 @@ a.miniweb-app .trust__item:hover,
 .miniweb-app .exit-modal__actions .btn--ghost { order: 2; }
 .miniweb-app .exit-modal__actions .btn--primary { order: 1; }
 
+/* ---------- Upsell modal (cuchillo upgrade en checkout del Pack Forocochero) ---------- */
+.miniweb-app .upsell-modal {
+  position: fixed; inset: 0;
+  z-index: 10001; /* por encima del cart-drawer */
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+}
+.miniweb-app .upsell-modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  animation: mw-fade 0.18s ease;
+}
+.miniweb-app .upsell-modal__panel {
+  position: relative;
+  width: 100%; max-width: 440px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 24px;
+  padding: 0 0 18px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  animation: mw-cartPop 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.miniweb-app .upsell-modal__close {
+  position: absolute; top: 10px; right: 12px;
+  z-index: 2;
+  width: 32px; height: 32px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 0; border-radius: 50%;
+  font-size: 22px; line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  color: var(--ink);
+}
+.miniweb-app .upsell-modal__media {
+  position: relative;
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-dark) 100%);
+  padding: 18px;
+  border-radius: 24px 24px 0 0;
+}
+.miniweb-app .upsell-modal__media img {
+  display: block;
+  width: 100%; max-width: 260px;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 14px;
+  background: #fff;
+}
+.miniweb-app .upsell-modal__badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: var(--naranja);
+  color: #fff;
+  border-radius: 50%;
+  width: 86px; height: 86px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 6px 14px rgba(235, 92, 39, 0.55);
+  transform: rotate(-10deg);
+  border: 3px solid #fff;
+}
+.miniweb-app .upsell-modal__badge-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  line-height: 1;
+}
+.miniweb-app .upsell-modal__badge strong {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+  margin-top: 4px;
+}
+.miniweb-app .upsell-modal__eyebrow {
+  display: inline-block;
+  margin: 16px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--naranja);
+  text-transform: uppercase;
+}
+.miniweb-app .upsell-modal__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 6px 18px 8px;
+  line-height: 1.15;
+}
+.miniweb-app .upsell-modal__sub {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  margin: 0 22px 14px;
+  line-height: 1.45;
+}
+.miniweb-app .upsell-modal__sub strong { color: var(--ink); }
+.miniweb-app .upsell-modal__pros {
+  list-style: none;
+  padding: 0;
+  margin: 0 22px 18px;
+  text-align: left;
+  font-size: 13px;
+  color: var(--ink);
+}
+.miniweb-app .upsell-modal__pros li {
+  position: relative;
+  padding: 4px 0 4px 24px;
+  line-height: 1.4;
+}
+.miniweb-app .upsell-modal__pros li::before {
+  content: '✓';
+  position: absolute; left: 4px; top: 4px;
+  color: var(--green);
+  font-weight: 800;
+  font-size: 14px;
+}
+.miniweb-app .upsell-modal__actions {
+  display: flex; flex-direction: column;
+  gap: 8px;
+  padding: 0 18px;
+}
+.miniweb-app .upsell-modal__actions .btn {
+  width: 100%; padding: 13px 16px; font-size: 14px;
+  font-weight: 700;
+}
+.miniweb-app .upsell-modal__actions .btn--ghost {
+  font-weight: 500;
+  font-size: 12.5px;
+}
+
 /* Spacer para que el último contenido no quede tapado por el FAB */
 .miniweb-app .spacer-cta { height: 90px; }
 
