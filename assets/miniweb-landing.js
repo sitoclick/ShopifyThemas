@@ -107,7 +107,7 @@ const PRODUCTS = [
     cuchilloUpgrade: {
       shopifyId: 58138300285273,
       shopifyHandle: 'pack-jamon-forocoches-cuchillo',
-      image: 'https://cdn.shopify.com/s/files/1/0251/6300/6033/files/cata_5_elegidos.png?v=1768220208',
+      image: 'https://cdn.shopify.com/s/files/1/0251/6300/6033/files/15.jpg?v=1767688553',
       variants: {
         '1pack':  { price: 61.00,  compare: 81.10,  delta: 5  },
         '2packs': { price: 105.00, compare: 162.20, delta: 10 },
