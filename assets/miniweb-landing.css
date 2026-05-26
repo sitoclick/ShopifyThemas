@@ -1647,17 +1647,14 @@ a.miniweb-app .trust__item:hover,
   overflow: hidden;
   box-shadow: var(--shadow-sm);
 }
-.miniweb-app .claim-banner__emoji { font-size: 14px; flex-shrink: 0; }
 .miniweb-app .claim-banner__text {
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
 }
 
-/* En mobile <380px, ocultar emoji para ganar espacio */
 @media (max-width: 379px) {
   .miniweb-app .claim-banner { font-size: 10.5px; padding: 0 9px; }
-  .miniweb-app .claim-banner__emoji { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

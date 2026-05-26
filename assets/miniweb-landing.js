@@ -1234,16 +1234,16 @@ function refreshDiscountHints(cart) {
   let ok = false;
   if (next) {
     const label = GROUP_LABEL[group] || 'productos';
-    msg = `<span class="discount-bar__icon">🎁</span><span class="discount-bar__text"><strong>Hazte un pack y ahorra</strong> · Añade <strong>${next.needed}</strong> ${label} más y te llevas <strong>${next.pct}%</strong> de descuento</span>`;
+    msg = `<span class="discount-bar__text"><strong>Hazte un pack y ahorra</strong> · Añade <strong>${next.needed}</strong> ${label} más y te llevas <strong>${next.pct}%</strong> de descuento</span>`;
   } else if (currentPct > 0) {
     msg = `<span class="discount-bar__icon">✅</span><span class="discount-bar__text">¡Ya tienes <strong>${currentPct}%</strong> de descuento aplicado en esta categoría!</span>`;
     ok = true;
   } else {
     // Sin items relevantes — mostramos el claim genérico
     if (group === 'loncheados') {
-      msg = `<span class="discount-bar__icon">🎁</span><span class="discount-bar__text"><strong>Compra sin paja</strong> · Junta loncheados y ahorra hasta <strong>15%</strong> (2→5% · 5→10% · 10→15%)</span>`;
+      msg = `<span class="discount-bar__text"><strong>Compra sin paja</strong> · Junta loncheados y ahorra hasta <strong>15%</strong> (2→5% · 5→10% · 10→15%)</span>`;
     } else {
-      msg = `<span class="discount-bar__icon">🎁</span><span class="discount-bar__text"><strong>Hazte un pack y ahorra</strong> · Junta 2+ productos del catálogo = <strong>5%</strong> de descuento</span>`;
+      msg = `<span class="discount-bar__text"><strong>Hazte un pack y ahorra</strong> · Junta 2+ productos del catálogo = <strong>5%</strong> de descuento</span>`;
     }
   }
   bar.innerHTML = msg;
@@ -1287,7 +1287,7 @@ function renderCartDrawer() {
   for (const g of ['loncheados','cervezas','otros']) {
     const next = nextTierHint(g, cart.groups[g].qty, cart.pcts[g]);
     if (next && cart.groups[g].qty > 0) {
-      hints.push(`<div class="ci-hint">🎁 Añade <strong>${next.needed}</strong> de ${labels[g]} más y ahorras <strong>${next.pct}%</strong></div>`);
+      hints.push(`<div class="ci-hint">Añade <strong>${next.needed}</strong> de ${labels[g]} más y ahorras <strong>${next.pct}%</strong></div>`);
     }
   }
   if (breakdownParts.length || hints.length || cart.discount > 0) {
