@@ -1979,8 +1979,8 @@ function setClaimBannerText() {
   const el = document.getElementById('claimBannerText');
   if (!el) return;
   el.textContent = isForocochesVisitor()
-    ? 'Pedidos +60€ incluyen Detalle Sorpresa e Invitación al Foro'
-    : 'Pedidos +60€ incluyen Detalle Sorpresa';
+    ? 'PEDIDOS +60€ | Obsequio Sorpresa + Invitación a Forocoches'
+    : 'PEDIDOS +60€ | Obsequio Sorpresa';
 }
 
 render(); refreshCart(); wire(); setClaimBannerText();
