@@ -89,7 +89,7 @@ const PRODUCTS = [
     id: 'pack-forocochero',
     name: 'EL PACK FOROCOCHERO 2026',
     sub: '5×Jamón Bellota 100% +42m + 4 sobres embutidos',
-    icon: A['p-pack-forocochero-2026'] || A['p-pack-forocochero'] || A['regalo'],
+    icon: 'https://cdn.shopify.com/s/files/1/0251/6300/6033/files/pack_forocoches.png?v=1779791862',
     category: 'loncheados', subcat: 'jamon', flag: 'top',
     weight: 'Pack 9 sobres',
     calidad: 'gourmet', alimentacion: 'bellota', sabor: 'intenso', meses: 40,
