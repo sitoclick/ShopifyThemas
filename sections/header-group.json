@@ -108,6 +108,7 @@
         "item_hHhnkg",
         "item_MaE4k3"
       ],
+      "disabled": true,
       "settings": {
         "scroll_on_desktop": true,
         "scroll_speed": 65,
