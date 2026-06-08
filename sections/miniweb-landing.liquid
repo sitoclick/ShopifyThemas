@@ -436,15 +436,21 @@ window.MW_CATALOG = [
     "desc": {{ mf.desc.value | json }},
     "orden": {{ mf.orden.value | json }},
     "variants": [
+    {%- comment -%}Solo variantes con etiqueta (las elegidas para la miniweb), o la única si el producto tiene 1 sola{%- endcomment -%}
+    {%- assign mwfirst = true -%}
     {%- for v in product.variants -%}
-      {
-        "shopifyId": {{ v.id }},
-        "etiqueta": {{ v.metafields.miniweb.etiqueta.value | json }},
-        "sublabel": {{ v.metafields.miniweb.sublabel.value | json }},
-        "available": {{ v.available | json }},
-        "price": {{ v.price | divided_by: 100.0 }},
-        "compare": {% if v.compare_at_price %}{{ v.compare_at_price | divided_by: 100.0 }}{% else %}null{% endif %}
-      }{%- unless forloop.last -%},{%- endunless -%}
+      {%- assign et = v.metafields.miniweb.etiqueta.value -%}
+      {%- if et != blank or product.variants.size == 1 -%}
+        {%- unless mwfirst -%},{%- endunless -%}{%- assign mwfirst = false -%}
+        {
+          "shopifyId": {{ v.id }},
+          "etiqueta": {{ et | json }},
+          "sublabel": {{ v.metafields.miniweb.sublabel.value | json }},
+          "available": {{ v.available | json }},
+          "price": {{ v.price | divided_by: 100.0 }},
+          "compare": {% if v.compare_at_price %}{{ v.compare_at_price | divided_by: 100.0 }}{% else %}null{% endif %}
+        }
+      {%- endif -%}
     {%- endfor -%}
     ]
   }{%- unless forloop.last -%},{%- endunless -%}
