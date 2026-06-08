@@ -404,6 +404,54 @@
       .observe(fp, { attributes: true, attributeFilter: ['hidden'] });
   })();
 </script>
+
+{%- comment -%}
+  Catálogo generado desde Shopify: collection "miniweb" + metacampos miniweb.* + precios/variantes reales.
+  El JS consume window.MW_CATALOG; si está vacío (p.ej. collection sin productos) cae al catálogo hardcoded.
+  Las "fusiones" (pack, gr-36, bel-42, sagrada-sobre) NO están aquí: las añade el JS (productos Shopify separados).
+{%- endcomment -%}
+<script>
+window.MW_CATALOG = [
+{%- for product in collections.miniweb.products -%}
+  {%- assign mf = product.metafields.miniweb -%}
+  {
+    "handle": {{ product.handle | json }},
+    "nombre": {{ mf.nombre.value | json }},
+    "sub": {{ mf.sub.value | json }},
+    "icono": {% if mf.icono.value %}{{ mf.icono.value | image_url: width: 512 | json }}{% else %}null{% endif %},
+    "categoria": {{ mf.categoria.value | json }},
+    "subcategoria": {{ mf.subcategoria.value | json }},
+    "tipo": {{ mf.tipo.value | json }},
+    "flag": {{ mf.flag.value | json }},
+    "peso": {{ mf.peso.value | json }},
+    "calidad": {{ mf.calidad.value | json }},
+    "alimentacion": {{ mf.alimentacion.value | json }},
+    "sabor": {{ mf.sabor.value | json }},
+    "meses": {{ mf.meses.value | json }},
+    "corte": {{ mf.corte.value | json }},
+    "zona": {{ mf.zona.value | json }},
+    "leche": {{ mf.leche.value | json }},
+    "formato": {{ mf.formato.value | json }},
+    "pros": {% if mf.pros.value %}{{ mf.pros.value | json }}{% else %}[]{% endif %},
+    "desc": {{ mf.desc.value | json }},
+    "orden": {{ mf.orden.value | json }},
+    "variants": [
+    {%- for v in product.variants -%}
+      {
+        "shopifyId": {{ v.id }},
+        "etiqueta": {{ v.metafields.miniweb.etiqueta.value | json }},
+        "sublabel": {{ v.metafields.miniweb.sublabel.value | json }},
+        "available": {{ v.available | json }},
+        "price": {{ v.price | divided_by: 100.0 }},
+        "compare": {% if v.compare_at_price %}{{ v.compare_at_price | divided_by: 100.0 }}{% else %}null{% endif %}
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+    ]
+  }{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+];
+</script>
+
 {{ 'miniweb-landing.js' | asset_url | script_tag }}
 
 {% schema %}

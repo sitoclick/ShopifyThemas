@@ -78,7 +78,8 @@ const CATEGORIES = {
 // Schema: { id, name, category, sub?, ... }
 //   category: una de las 6 top-level
 //   sub: solo presente si category === 'loncheados' (jamon|paleta|embutido)
-const PRODUCTS = [
+// HARDCODED = catálogo de respaldo. La fuente real es window.MW_CATALOG (Shopify) — ver buildCatalog() abajo.
+const HARDCODED = [
   // ----- PACK FOROCOCHERO (PRODUCTO REAL Shopify + 2 variants visuales) -----
   // Producto real `pack-jamon-forocoches` con 1 variant Shopify (58133069496665, 66,15€).
   // En la mini-web mostramos 2 variants: "1 PACK" (qty 1) y "2 PACKS" (qty 2),
@@ -691,6 +692,81 @@ const PRODUCTS = [
     desc: 'Verraco, cerveza de trigo de la marca Charra (Salamanca). Cuerpo cremoso con notas de cereal.',
   },
 ];
+
+// ---------- Catálogo: Shopify (window.MW_CATALOG) + fusiones ----------
+// Las 4 "fusiones" (cards multi-producto) siguen definidas a mano porque agrupan
+// productos Shopify SEPARADOS (máquina/cuchillo) o son dualAxis (pack). El resto
+// viene de Shopify vía window.MW_CATALOG (collection miniweb + metacampos + precios live).
+const FUSION_IDS = ['pack-forocochero', 'gr-36', 'bel-42-int', 'sagrada-paleta'];
+const FUSIONS = HARDCODED.filter(p => FUSION_IDS.includes(p.id));
+// Orden de cada fusión dentro de loncheados (coincide con el metacampo `orden` de los productos sueltos)
+const FUSION_ORDEN = { 'pack-forocochero': 0, 'gr-36': 2, 'bel-42-int': 4, 'sagrada-paleta': 5 };
+
+const CAT_KEY = { 'Loncheados': 'loncheados', 'Jamones y Paletas': 'jamones-paletas', 'Embutidos': 'embutidos', 'Quesos': 'quesos', 'Vinos': 'vinos', 'Otros': 'otros' };
+const SUB_KEY = { 'Jamón': 'jamon', 'Paleta': 'paleta', 'Embutido': 'embutido' };
+const CAT_ORDER = ['loncheados', 'jamones-paletas', 'embutidos', 'quesos', 'vinos', 'otros'];
+
+function normalizeShopifyProduct(r) {
+  const o = {
+    id: r.handle,
+    name: r.nombre || r.handle,
+    sub: r.sub || '',
+    icon: r.icono || '',
+    category: CAT_KEY[r.categoria] || 'otros',
+    weight: r.peso || '',
+    pros: Array.isArray(r.pros) ? r.pros : [],
+    desc: r.desc || '',
+    shopifyHandle: r.handle,
+    _orden: (r.orden != null && r.orden !== '') ? parseInt(r.orden, 10) : 999,
+  };
+  if (r.subcategoria && SUB_KEY[r.subcategoria]) o.subcat = SUB_KEY[r.subcategoria];
+  if (r.tipo) o.type = r.tipo;
+  if (r.flag) o.flag = r.flag;
+  if (r.calidad) o.calidad = r.calidad;
+  if (r.alimentacion) o.alimentacion = r.alimentacion;
+  if (r.sabor) o.sabor = r.sabor;
+  if (r.meses != null && r.meses !== '') o.meses = parseInt(r.meses, 10);
+  if (r.corte) o.cut = r.corte;
+  if (r.zona) o.zona = r.zona;
+  if (r.leche) o.leche = r.leche;
+  if (r.formato) o.formato = r.formato;
+  const vs = (r.variants || []).filter(v => v && v.shopifyId);
+  if (vs.length <= 1) {
+    const v = vs[0];
+    if (v) { o.price = v.price; o.compare = (v.compare != null ? v.compare : null); o.shopifyId = v.shopifyId; o.soldout = v.available === false; }
+  } else {
+    o.variants = vs.map(v => {
+      const vo = { key: String(v.shopifyId), label: v.etiqueta || '', price: v.price, compare: (v.compare != null ? v.compare : null), shopifyId: v.shopifyId };
+      if (v.sublabel) vo.sublabel = v.sublabel;
+      if (v.available === false) vo.soldout = true;
+      return vo;
+    });
+  }
+  return o;
+}
+
+function buildCatalog() {
+  try {
+    // Sin datos de Shopify → fallback al catálogo hardcoded completo
+    if (!Array.isArray(window.MW_CATALOG) || window.MW_CATALOG.length === 0) return HARDCODED;
+    const fromShopify = window.MW_CATALOG.map(normalizeShopifyProduct);
+    // Añadir las fusiones (con su orden) y ordenar todo por categoría + orden
+    const fusions = FUSIONS.map(f => ({ ...f, _orden: FUSION_ORDEN[f.id] != null ? FUSION_ORDEN[f.id] : 999 }));
+    const all = fromShopify.concat(fusions);
+    const ord = (p) => (p._orden != null ? p._orden : 999);
+    all.sort((a, b) => {
+      const ca = CAT_ORDER.indexOf(a.category), cb = CAT_ORDER.indexOf(b.category);
+      if (ca !== cb) return ca - cb;
+      return ord(a) - ord(b);
+    });
+    return all;
+  } catch (e) {
+    console.error('[miniweb] buildCatalog falló, usando catálogo hardcoded:', e);
+    return HARDCODED;
+  }
+}
+
+const PRODUCTS = buildCatalog();
 
 // ---------- Estado ----------
 const state = {
