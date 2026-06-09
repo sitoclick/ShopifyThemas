@@ -195,7 +195,7 @@ const HARDCODED = [
     desc: '¡ELEGIDO PRODUCTO DEL AÑO 2025! El elegido entre los elegidos, el único y verdadero Monjamón. Si quieres alcanzar la plenitud, nuestro Monjamón liberará en ti todas las buenas sensaciones que te llevarán directo al paraíso. Cerdos viejos en libertad alimentados a base de bellotas. Salado y curación tradicional +42 meses. Producto galardonado Superior Taste Awards ★★★.',
   },
   {
-    id: 'sagrada-paleta',
+    id: 'sagrada-paleta-lon',
     name: 'Sagrada Paleta',
     sub: '★ Producto del Año 2025 · Edición limitada',
     icon: A['p-lon-sagrada-paleta'] || A['clean-paleta'] || A['paleta'],
@@ -697,10 +697,10 @@ const HARDCODED = [
 // Las 4 "fusiones" (cards multi-producto) siguen definidas a mano porque agrupan
 // productos Shopify SEPARADOS (máquina/cuchillo) o son dualAxis (pack). El resto
 // viene de Shopify vía window.MW_CATALOG (collection miniweb + metacampos + precios live).
-const FUSION_IDS = ['pack-forocochero', 'gr-36', 'bel-42-int', 'sagrada-paleta'];
+const FUSION_IDS = ['pack-forocochero', 'gr-36', 'bel-42-int', 'sagrada-paleta-lon'];
 const FUSIONS = HARDCODED.filter(p => FUSION_IDS.includes(p.id));
 // Orden de cada fusión dentro de loncheados (coincide con el metacampo `orden` de los productos sueltos)
-const FUSION_ORDEN = { 'pack-forocochero': 0, 'gr-36': 2, 'bel-42-int': 4, 'sagrada-paleta': 5 };
+const FUSION_ORDEN = { 'pack-forocochero': 0, 'gr-36': 2, 'bel-42-int': 4, 'sagrada-paleta-lon': 5 };
 
 const CAT_KEY = { 'Loncheados': 'loncheados', 'Jamones y Paletas': 'jamones-paletas', 'Embutidos': 'embutidos', 'Quesos': 'quesos', 'Vinos': 'vinos', 'Otros': 'otros' };
 const SUB_KEY = { 'Jamón': 'jamon', 'Paleta': 'paleta', 'Embutido': 'embutido' };
@@ -1143,7 +1143,11 @@ function render() {
 
   if (q) list = list.filter(p => (p.name + ' ' + p.sub + ' ' + (p.pros || []).join(' ')).toLowerCase().includes(q));
 
-  refs.list.innerHTML = list.map(rowHTML).join('');
+  // Defensa: un producto con datos incompletos no debe tumbar toda la lista
+  refs.list.innerHTML = list.map(p => {
+    try { return rowHTML(p); }
+    catch (e) { console.error('[miniweb] error renderizando', p && p.id, e); return ''; }
+  }).join('');
   refs.resultCount.textContent = `${list.length} producto${list.length === 1 ? '' : 's'}`;
   refs.emptyState.hidden = list.length > 0;
   // Refrescar el discount bar — depende de la categoría activa

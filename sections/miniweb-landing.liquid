@@ -436,11 +436,13 @@ window.MW_CATALOG = [
     "desc": {{ mf.desc.value | json }},
     "orden": {{ mf.orden.value | json }},
     "variants": [
-    {%- comment -%}Solo variantes con etiqueta (las elegidas para la miniweb), o la única si el producto tiene 1 sola{%- endcomment -%}
+    {%- comment -%}Variantes con etiqueta (las elegidas para la miniweb). Si NINGUNA tiene etiqueta, se usa solo la primera (fallback para que el producto nunca quede sin precio).{%- endcomment -%}
+    {%- assign mwlabeled = 0 -%}
+    {%- for v in product.variants -%}{%- if v.metafields.miniweb.etiqueta.value != blank -%}{%- assign mwlabeled = mwlabeled | plus: 1 -%}{%- endif -%}{%- endfor -%}
     {%- assign mwfirst = true -%}
     {%- for v in product.variants -%}
       {%- assign et = v.metafields.miniweb.etiqueta.value -%}
-      {%- if et != blank or product.variants.size == 1 -%}
+      {%- if et != blank or mwlabeled == 0 -%}
         {%- unless mwfirst -%},{%- endunless -%}{%- assign mwfirst = false -%}
         {
           "shopifyId": {{ v.id }},
@@ -450,6 +452,7 @@ window.MW_CATALOG = [
           "price": {{ v.price | divided_by: 100.0 }},
           "compare": {% if v.compare_at_price %}{{ v.compare_at_price | divided_by: 100.0 }}{% else %}null{% endif %}
         }
+        {%- if mwlabeled == 0 -%}{%- break -%}{%- endif -%}
       {%- endif -%}
     {%- endfor -%}
     ]
