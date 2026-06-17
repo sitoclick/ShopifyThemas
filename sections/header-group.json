@@ -132,9 +132,67 @@
         "padding_bottom": 0
       }
     },
+    "ss_scrolling_features_LkTYb9": {
+      "type": "ss-scrolling-features",
+      "blocks": {
+        "item_dVhV8J": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• GRATIS A PARTIR DE 200€",
+            "icon_color": "#FFFFFF",
+            "text_color": "#FFFFFF"
+          }
+        },
+        "item_QGiKRd": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• RECOMENDAMOS ENVIO REFRIGERADO",
+            "icon_color": "#ffffff",
+            "text_color": "#ffffff"
+          }
+        },
+        "item_Pht9kH": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• DEBIDO A LAS ALTAS TEMPERATURAS",
+            "icon_color": "#ffffff",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "item_dVhV8J",
+        "item_QGiKRd",
+        "item_Pht9kH"
+      ],
+      "settings": {
+        "scroll_on_desktop": true,
+        "scroll_speed": 65,
+        "scroll_speed_mobile": 66,
+        "scroll_direction": "right",
+        "scroll_pause": false,
+        "items_gap": 6,
+        "items_gap_mobile": 6,
+        "border_bottom": false,
+        "border_top": false,
+        "text_custom": true,
+        "text_font": "poppins_i7",
+        "text_size": 16,
+        "text_size_mobile": 16,
+        "text_height": 50,
+        "icon_size": 19,
+        "icon_margin": 8,
+        "background-color": "#eb5c27",
+        "border_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
-      "disabled": true,
       "settings": {
         "announcement_bar_position": "sticky",
         "announcement_text_size": "normal",
@@ -276,6 +334,7 @@
   "order": [
     "ss_scrolling_announcement_bar_dxyUUN",
     "ss_scrolling_features_RCn6V3",
+    "ss_scrolling_features_LkTYb9",
     "announcement-bar",
     "ss_scrolling_features_88UH3x",
     "header",
