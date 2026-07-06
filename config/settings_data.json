@@ -278,11 +278,6 @@
         "disabled": false,
         "settings": {}
       },
-      "8838267387977255474": {
-        "type": "shopify://apps/jotform-ai-chatbot-live-chat/blocks/app-embed/8b752cf5-34d6-4e3e-96cf-8a6ef85fb35a",
-        "disabled": false,
-        "settings": {}
-      },
       "4811963503060929178": {
         "type": "shopify://apps/redeemly/blocks/referral/fe55f451-e553-4131-a946-354ff46f9d85",
         "disabled": false,
@@ -290,11 +285,6 @@
       },
       "409951731435663064": {
         "type": "shopify://apps/dakaas-store-effects/blocks/app-embed/bf1c5ad9-e345-428b-a2e7-cfde42309a53",
-        "disabled": true,
-        "settings": {}
-      },
-      "18408366429334172745": {
-        "type": "shopify://apps/pop-convert-pop-ups-banners/blocks/app-embed/ed587aec-4936-43ae-a1b3-1c9e0d08f185",
         "disabled": true,
         "settings": {}
       },
@@ -429,34 +419,9 @@
         "disabled": false,
         "settings": {}
       },
-      "14348518947459141286": {
-        "type": "shopify://apps/oxilayer-invoice/blocks/order_view_download_invoice/bfc5c46a-c89f-49e7-a859-28fc2c844936",
-        "disabled": false,
-        "settings": {
-          "selector": ".order h2",
-          "custom_selector": "",
-          "vertical_position": "afterend",
-          "horizontal_position": "left",
-          "clear_both": true,
-          "button_label": "Descargar Ticket Venta",
-          "type": "secondary",
-          "button_color": "",
-          "button_color_hover": "",
-          "text_color": "",
-          "margin_top": 15,
-          "margin_bottom": 15,
-          "margin_left": 0,
-          "margin_right": 0
-        }
-      },
       "5163884144194077907": {
         "type": "shopify://apps/sami-b2b-lock/blocks/app-embed/8d86a3b4-97b3-44ab-adc1-ec01c5a89da9",
         "disabled": false,
-        "settings": {}
-      },
-      "6146500278089136509": {
-        "type": "shopify://apps/bm-country-blocker-ip-blocker/blocks/boostmark-blocker/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e",
-        "disabled": true,
         "settings": {}
       },
       "11921513738595253157": {
@@ -467,6 +432,11 @@
           "optimize_replacement_CSSSelector": "",
           "enable_cdn_fallback": false
         }
+      },
+      "8838267387977255474": {
+        "type": "shopify://apps/jotform-ai-chatbot/blocks/app-embed/8b752cf5-34d6-4e3e-96cf-8a6ef85fb35a",
+        "disabled": true,
+        "settings": {}
       }
     }
   },
