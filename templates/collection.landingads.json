@@ -12,10 +12,26 @@
     "ss_circle_menu_LDPFR4": {
       "type": "ss-circle-menu",
       "blocks": {
+        "image_P6h3bV": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/bellota.svg",
+            "bubble_text": "MINI WEB!",
+            "bubble_link": "shopify://pages/mini"
+          }
+        },
+        "image_hpePEx": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/loncheado.svg",
+            "bubble_text": "Loncheados",
+            "bubble_link": "https://www.monjamonymas.com/apps/box-builder/sobres-sueltos"
+          }
+        },
         "image_KHN43F": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_OFER.jpg",
+            "bubble_img": "shopify://shop_images/ofertas.svg",
             "bubble_text": "Ofertas",
             "bubble_link": "shopify://collections/ofertas"
           }
@@ -23,7 +39,7 @@
         "image_QeMjFa": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_SUSC.jpg",
+            "bubble_img": "shopify://shop_images/suscripciones.svg",
             "bubble_text": "Suscripciones",
             "bubble_link": "shopify://collections/suscripciones"
           }
@@ -31,7 +47,7 @@
         "image_acgP76": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_JAMON.png",
+            "bubble_img": "shopify://shop_images/gourmet.svg",
             "bubble_text": "Jamones y Paletas",
             "bubble_link": "shopify://collections/jamon"
           }
@@ -39,7 +55,7 @@
         "image_jDK9rb": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_EMBU.jpg",
+            "bubble_img": "shopify://shop_images/mw-clean-lomonasterio.png",
             "bubble_text": "Embutidos",
             "bubble_link": "shopify://collections/embutido"
           }
@@ -47,7 +63,7 @@
         "image_fntcAT": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_Queso.jpg",
+            "bubble_img": "shopify://shop_images/queso.svg",
             "bubble_text": "Queso curado",
             "bubble_link": "shopify://collections/queso"
           }
@@ -55,7 +71,7 @@
         "image_xqdW8H": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_VINO.jpg",
+            "bubble_img": "shopify://shop_images/vino.svg",
             "bubble_text": "Vinoteca",
             "bubble_link": "shopify://collections/vino"
           }
@@ -63,7 +79,7 @@
         "image_Y7mcYd": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_CERV.jpg",
+            "bubble_img": "shopify://shop_images/Component_2.svg",
             "bubble_text": "Cerveza Artesanal",
             "bubble_link": "shopify://collections/cerveza"
           }
@@ -71,7 +87,7 @@
         "image_4XC7LR": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_ACCESORIOS.jpg",
+            "bubble_img": "shopify://shop_images/cuchillos.svg",
             "bubble_text": "Accesorios y más",
             "bubble_link": "shopify://collections/accesorios"
           }
@@ -79,13 +95,15 @@
         "image_XqrjM7": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/L_PACKS.png",
+            "bubble_img": "shopify://shop_images/pack_forocoches.png",
             "bubble_text": "Packs y Lotes",
             "bubble_link": "shopify://collections/packs-y-cestas-gourmet"
           }
         }
       },
       "block_order": [
+        "image_P6h3bV",
+        "image_hpePEx",
         "image_KHN43F",
         "image_QeMjFa",
         "image_acgP76",
@@ -137,7 +155,7 @@
       "type": "collection-banner",
       "custom_css": [
         ".text-container {margin-top: 0; margin-bottom: 0; padding: 1;}",
-        ".container{margin-top: 0;}"
+        ".container {margin-top: 0;}"
       ],
       "settings": {
         "show_collection_image": false,
