@@ -1,1 +1,375 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"show_title":true,"page_width":"medium"}},"image_with_text_DzXw3J":{"type":"image-with-text","blocks":{"item_Lpd8LC":{"type":"item","settings":{"image":"shopify:\/\/shop_images\/convento_d175d766-60d8-433f-8b0f-97a1d8cf8d88.png","tab_label":"","subheading":"","title":"Empieza a acumular crédito hoy mismo","content":"<p>¿Quieres entrar en la sagrada cofradía del buen jamón sin gastar ni un euroextra? <strong>Tan fácil como registrarte nuestra web,<\/strong> poner tu nombre en el libro de registros y llenar el carrito con tus antojos ibéricos. Con ese sencillo gesto ya luces hábito de <strong>FIEL Monjamón<\/strong>—sin cuotas, sin velas y con toda la bendición de Sor Ibérica.<\/p><p>A partir de ahí, cada compra engorda tu monedero celestial: euros que vuelven a ti como un milagro contante y sonante para gastarlos en próximos pedidos. Y porque la fe hay que premiarla, recibirás tentaciones reservadas solo a los devotos: ofertas secretas, adelantos y sorpresas que no se confiesan en público.<\/p><p>Únete, compra, acumula y date el gusto; no hacerlo… sería casi pecado 🕯️  <\/p>","button_text":"","button_link":""}}},"block_order":["item_Lpd8LC"],"settings":{"reveal_on_scroll":true,"background_type":"full_width","background_overlap":"image","image_position":"left","text_alignment":"left","cycle_speed":3,"accent_background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)"}},"ss_simple_faq_Un9QWa":{"type":"ss-simple-faq","blocks":{"text_DyJRBQ":{"type":"text","settings":{"question":"¿Cómo puedo formar parte del Convento?","answer":"<p>¡Bendito seas, alma jamonera! Solo tienes que registrarte en nuestra sacristía online, llenar el carrito con tus antojos y—¡milagro!—pasas a formar parte del selecto <strong>Convento Monjamón<\/strong>. Sin cuotas, sin penitencia y con todo el caché de Sor Ibérica. Es gratis, es sabroso y, como diría la abuela: “quien no se apunte, que rece por lo que se pierde”.<br\/><br\/><\/p>"}},"text_HP7X7V":{"type":"text","settings":{"question":"¿Pero... qué es eso del CASCHBACK ?","answer":"<p>El famoso “<strong>cashback<\/strong>” es, en román paladino, dinerito que vuelve a tu bolsillo como por arte de jamón. Cada vez que compras, la tienda te guarda un pellizco en forma de crédito para tu siguiente antojo: hoy gastas, mañana te premias y, mientras, tu hucha monjamonera engorda sin que casi te enteres. Así de simple, así de divino<br\/><br\/><\/p>"}},"text_kDqr4A":{"type":"text","disabled":true,"settings":{"question":"¿Qué más ventajas tengo?","answer":"<p>Si todo esto te parece poco, además tendrás acceso a <strong>OFERTAS Mensuales Exclusivas, <\/strong>esto quiere decir que mensualmente algunos productos en vez del 1% de cashback, acumularán porcentajes mayores .<\/p><p>También tendremos campañas especiales para obtener puntos que puedes ver en esta misma página y en la página de tu cuenta una vez estés registrado<\/p>"}},"text_EMJNXJ":{"type":"text","settings":{"question":"¿Cuanto acumulo con cada pedido?","answer":"<p>Por cada compra que hagas, el 5 % del importe salta directo a tu hucha celestial. ¿Gastaste 40 € en embutidos y quesazos? Pues 2 € se convierten en crédito bendito para tu próxima tentación. Si el carrito sube a 100 €, son 5 € que se quedan reservados,<br\/><br\/><\/p>"}},"text_WMNFgA":{"type":"text","settings":{"question":"¿Cómo veo cuanto llevo acumulado?","answer":"<p><br\/>Para comprobar tu crédito, entra en tu cuenta y busca la sección “Mi saldo”. Allí verás, de un vistazo, <strong>cuánto has acumulado con cada pedido y la fecha límite para usarl<\/strong>o. Así sabes exactamente qué descuento tienes listo para tu próximo pedido<br\/><\/p>"}},"text_PJPG7y":{"type":"text","settings":{"question":"¿Cómo canjeo mi crédito?","answer":"<p>Para canjear el dinero, tan solo tienes que hacer tu pedido normal y elegir \"Crédito en tienda\" como parte del pago dentro del checkout<\/p><p>La única condición es que el importe del pedido (descuentos incluidos) en el que vas a canjear el crédito sea al menos de 45€ <\/p>"}},"text_U9BHjV":{"type":"text","settings":{"question":"¿Caduca el crédito en la Tienda?","answer":"<p>Tu “bendito crédito” tiene un año de vida antes de subir al cielo del olvido, así que no lo dejes rezando solo. Tranquilo: cuando quede poco para su ascensión, Sor Ibérica te enviará un correo con campanadas incluidas para que lo gastes a tiempo.<\/p>"}}},"block_order":["text_DyJRBQ","text_HP7X7V","text_kDqr4A","text_EMJNXJ","text_WMNFgA","text_PJPG7y","text_U9BHjV"],"settings":{"heading":"¿De qué va esto?","icon_color":"#ffffff","hover_color":"#efefef","question_color":"#ffffff","background_color":"#406ef5","answer_color":"#000000","answer_bg_color":"#ffffff","questions-font-size":1.5}},"multi_column_JzxDUd":{"type":"multi-column","blocks":{"item_PEjWFL":{"type":"item","settings":{"image":"shopify:\/\/shop_images\/cash.png","image_width":85,"image_border":"rgba(0,0,0,0)","title":"Crédito por Compra","content":"<p>Gana hasta un 5%* en pedidos superiores a 50€ <\/p>","link_text":"","link_url":"","link_style":"link","text_alignment":"center","vertical_alignment":"center"}},"item_rRaCxx":{"type":"item","settings":{"image":"shopify:\/\/shop_images\/insta.png","image_width":100,"image_border":"rgba(0,0,0,0)","title":"Síguenos en Redes","content":"<p><a href=\"https:\/\/www.instagram.com\/monjamonymas\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/monjamonymas\/\">Síguenos en instagram @monjamonymas<\/a> para obtener 3€ de cashback inmediatos!<\/p>","link_text":"","link_url":"","link_style":"link","text_alignment":"center","vertical_alignment":"start"}},"item_WaGGpB":{"type":"item","settings":{"image":"shopify:\/\/shop_images\/amigo.png","image_width":100,"image_border":"rgba(0,0,0,0)","title":"trae a un amigo","content":"<p>Los dos obtendréis 5€ de cashback cuando tu amigo realice el primer pedido<\/p>","link_text":"","link_url":"","link_style":"link","text_alignment":"center","vertical_alignment":"start"}},"item_rXNbHi":{"type":"item","settings":{"image":"shopify:\/\/shop_images\/oferta.png","image_width":100,"image_border":"rgba(0,0,0,0)","title":"ofertas del mes","content":"<p>Cada mes lanzaremos ofertas  para obtener un cashback superior en diferentes productos<\/p>","link_text":"","link_url":"","link_style":"link","text_alignment":"center","vertical_alignment":"start"}}},"block_order":["item_PEjWFL","item_rRaCxx","item_WaGGpB","item_rXNbHi"],"disabled":true,"custom_css":[".container {border: 1px solid grey; padding: 30px; border-radius: 10px; border-color: #406ef5;}"],"settings":{"reveal_on_scroll":true,"stack_items":true,"subheading":"","title":"Campañas Activas","content":"","column_alignment":"center","mobile_item_size":"small","desktop_item_size":"medium","spacing":"tight","background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)"}},"featured_collections_dENYqk":{"type":"featured-collections","blocks":{"collection_wYwdzU":{"type":"collection","settings":{"collection":"ofertas","label":"","button_text":"","button_url":""}}},"block_order":["collection_wYwdzU"],"disabled":true,"settings":{"subheading":"","title":"ofertas del mes","content":"<p>Obten cashback extra!<\/p>","products_count":8,"products_per_row":6,"stack_products":false,"show_cta":false,"background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)"}},"ss_scrolling_images_Ujhmba":{"type":"ss-scrolling-images","blocks":{"image_Vwy486":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/mvip2.png","url":""}},"image_pP7mET":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/mVIP1.png","url":""}}},"block_order":["image_Vwy486","image_pP7mET"],"disabled":true,"settings":{"heading":"","heading_custom":false,"heading_font":"josefin_sans_n4","heading_size":18,"heading_height":130,"heading_align":"center","slider_speed":35,"slider_gap":84,"slider_gap_mobile":34,"slider_mt":50,"slider_direction":"left","pause_hover":false,"image_width_desktop":270,"image_width_mobile":170,"image_height_desktop":260,"image_height_mobile":190,"image_radius":10,"use_content":false,"content_position":"center","content_max_width":50,"content_max_width_mobile":50,"content_padding_vertical":24,"content_padding_horizontal":0,"content_distance":36,"content_radius":10,"content_border_thickness":0,"use_shadow":false,"text":"","text_custom":false,"text_font":"assistant_n4","text_size":0,"text_height":70,"heading_color":"#000000","content_bg":"#ffffff","content_border_color":"#000000","text_color":"#000000","background_color":"#ffffff","background_gradient":"","border_color":"#000000","margin_top":0,"margin_bottom":0,"padding_top":0,"padding_bottom":0,"padding_horizontal":0,"padding_horizontal_mobile":0,"full_width":true,"content_width":50,"border_thickness":0,"lazy":true}},"rich_text_K46hng":{"type":"rich-text","disabled":true,"settings":{"subheading":"¿Todo esto se te queda corto?","title":"Descubre el plan VIP","content":"<p>¿Eres MUY fan de nuestros productos  y el 1% se te queda corto? Puedes hacerte VIP por 50€ anuales para acumular un 5% de cada uno de tus pedidos superiores a los 50€<\/p>","button_text":"SUSCRIBIRME AHORA","button_link":"shopify:\/\/products\/vip","background_type":"full_width","text_width":"medium","text_position":"center","text_alignment":"center","background":"#eb5c27","text_color":"#ffffff","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)"}},"rich_text_bWDEdL":{"type":"rich-text","disabled":true,"settings":{"subheading":"","title":"¿Cuáles son las ventajas de ser miembro vip?","content":"<p>¿Eres un auténtico fanático y un  1% no es mucho para tí? Pues tenemos la solución. Para los más locos del Jamón, hemos preparado una <strong>SUSCRIPCIÓN VIP, <\/strong>por valor de 50€ anuales y que nos permitirá acumular un 5% en todos nuestros pedidos de más de 50€!<\/p>","button_text":"acceso a Ofertas privadas para miembros vip","button_link":"shopify:\/\/collections\/ofertas-vip","background_type":"full_width","text_width":"fill","text_position":"center","text_alignment":"center","background":"#ffffff","text_color":"rgba(0,0,0,0)","button_background":"#eb5c27","button_text_color":"rgba(0,0,0,0)"}}},"order":["main","image_with_text_DzXw3J","ss_simple_faq_Un9QWa","multi_column_JzxDUd","featured_collections_dENYqk","ss_scrolling_images_Ujhmba","rich_text_K46hng","rich_text_bWDEdL"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_title": true,
+        "page_width": "medium"
+      }
+    },
+    "image_with_text_DzXw3J": {
+      "type": "image-with-text",
+      "blocks": {
+        "item_Lpd8LC": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/convento_d175d766-60d8-433f-8b0f-97a1d8cf8d88.png",
+            "tab_label": "",
+            "subheading": "",
+            "title": "Empieza a acumular crédito hoy mismo",
+            "content": "<p>¿Quieres entrar en la sagrada cofradía del buen jamón sin gastar ni un euroextra? <strong>Tan fácil como registrarte nuestra web,</strong> poner tu nombre en el libro de registros y llenar el carrito con tus antojos ibéricos. Con ese sencillo gesto ya luces hábito de <strong>FIEL Monjamón</strong>—sin cuotas, sin velas y con toda la bendición de Sor Ibérica.</p><p>A partir de ahí, cada compra engorda tu monedero celestial: euros que vuelven a ti como un milagro contante y sonante para gastarlos en próximos pedidos. Y porque la fe hay que premiarla, recibirás tentaciones reservadas solo a los devotos: ofertas secretas, adelantos y sorpresas que no se confiesan en público.</p><p>Únete, compra, acumula y date el gusto; no hacerlo… sería casi pecado 🕯️  </p>",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_Lpd8LC"
+      ],
+      "settings": {
+        "reveal_on_scroll": true,
+        "background_type": "full_width",
+        "background_overlap": "image",
+        "image_position": "left",
+        "text_alignment": "left",
+        "cycle_speed": 3,
+        "accent_background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "ss_simple_faq_Un9QWa": {
+      "type": "ss-simple-faq",
+      "blocks": {
+        "text_DyJRBQ": {
+          "type": "text",
+          "settings": {
+            "question": "¿Cómo puedo formar parte del Convento?",
+            "answer": "<p>¡Bendito seas, alma jamonera! Solo tienes que registrarte en nuestra sacristía online, llenar el carrito con tus antojos y—¡milagro!—pasas a formar parte del selecto <strong>Convento Monjamón</strong>. Sin cuotas, sin penitencia y con todo el caché de Sor Ibérica. Es gratis, es sabroso y, como diría la abuela: “quien no se apunte, que rece por lo que se pierde”.<br/><br/></p>"
+          }
+        },
+        "text_HP7X7V": {
+          "type": "text",
+          "settings": {
+            "question": "¿Pero... qué es eso del CASCHBACK ?",
+            "answer": "<p>El famoso “<strong>cashback</strong>” es, en román paladino, dinerito que vuelve a tu bolsillo como por arte de jamón. Cada vez que compras, la tienda te guarda un pellizco en forma de crédito para tu siguiente antojo: hoy gastas, mañana te premias y, mientras, tu hucha monjamonera engorda sin que casi te enteres. Así de simple, así de divino<br/><br/></p>"
+          }
+        },
+        "text_kDqr4A": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "question": "¿Qué más ventajas tengo?",
+            "answer": "<p>Si todo esto te parece poco, además tendrás acceso a <strong>OFERTAS Mensuales Exclusivas, </strong>esto quiere decir que mensualmente algunos productos en vez del 1% de cashback, acumularán porcentajes mayores .</p><p>También tendremos campañas especiales para obtener puntos que puedes ver en esta misma página y en la página de tu cuenta una vez estés registrado</p>"
+          }
+        },
+        "text_EMJNXJ": {
+          "type": "text",
+          "settings": {
+            "question": "¿Cuanto acumulo con cada pedido?",
+            "answer": "<p>Por cada compra que hagas, el 1 % del importe salta directo a tu hucha celestial. ¿Gastaste 40 € en embutidos y quesazos? Pues 0,40 € se convierten en crédito bendito para tu próxima tentación. Y si el carrito sube a 100 €, es 1 € el que se queda reservado, listo para tu próxima ronda de antojos ibéricos.<br/><br/></p>"
+          }
+        },
+        "text_WMNFgA": {
+          "type": "text",
+          "settings": {
+            "question": "¿Cómo veo cuanto llevo acumulado?",
+            "answer": "<p><br/>Para comprobar tu crédito, entra en tu cuenta y busca la sección “Mi saldo”. Allí verás, de un vistazo, <strong>cuánto has acumulado con cada pedido y la fecha límite para usarl</strong>o. Así sabes exactamente qué descuento tienes listo para tu próximo pedido<br/></p>"
+          }
+        },
+        "text_PJPG7y": {
+          "type": "text",
+          "settings": {
+            "question": "¿Cómo canjeo mi crédito?",
+            "answer": "<p>Para canjear el dinero, tan solo tienes que hacer tu pedido normal y elegir \"Crédito en tienda\" como parte del pago dentro del checkout</p><p>La única condición es que el importe del pedido (descuentos incluidos) en el que vas a canjear el crédito sea al menos de 45€ </p>"
+          }
+        },
+        "text_U9BHjV": {
+          "type": "text",
+          "settings": {
+            "question": "¿Caduca el crédito en la Tienda?",
+            "answer": "<p>Tu “bendito crédito” tiene un año de vida antes de subir al cielo del olvido, así que no lo dejes rezando solo. Tranquilo: cuando quede poco para su ascensión, Sor Ibérica te enviará un correo con campanadas incluidas para que lo gastes a tiempo.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_DyJRBQ",
+        "text_HP7X7V",
+        "text_kDqr4A",
+        "text_EMJNXJ",
+        "text_WMNFgA",
+        "text_PJPG7y",
+        "text_U9BHjV"
+      ],
+      "settings": {
+        "heading": "¿De qué va esto?",
+        "open_by_default": true,
+        "bg_color": "#faf9f3",
+        "border_color": "#dcdcdc",
+        "radius": 6,
+        "padding": 24,
+        "enable_shadow": false,
+        "icon_color": "#ffffff",
+        "hover_color": "#efefef",
+        "question_color": "#ffffff",
+        "background_color": "#406ef5",
+        "answer_color": "#000000",
+        "answer_bg_color": "#ffffff",
+        "questions-font-size": 1.5
+      }
+    },
+    "multi_column_JzxDUd": {
+      "type": "multi-column",
+      "blocks": {
+        "item_PEjWFL": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/cash.png",
+            "image_width": 85,
+            "image_border": "rgba(0,0,0,0)",
+            "title": "Crédito por Compra",
+            "content": "<p>Gana hasta un 5%* en pedidos superiores a 50€ </p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "center",
+            "vertical_alignment": "center"
+          }
+        },
+        "item_rRaCxx": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/insta.png",
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "title": "Síguenos en Redes",
+            "content": "<p><a href=\"https://www.instagram.com/monjamonymas/\" target=\"_blank\" title=\"https://www.instagram.com/monjamonymas/\">Síguenos en instagram @monjamonymas</a> para obtener 3€ de cashback inmediatos!</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "center",
+            "vertical_alignment": "start"
+          }
+        },
+        "item_WaGGpB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/amigo.png",
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "title": "trae a un amigo",
+            "content": "<p>Los dos obtendréis 5€ de cashback cuando tu amigo realice el primer pedido</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "center",
+            "vertical_alignment": "start"
+          }
+        },
+        "item_rXNbHi": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/oferta.png",
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "title": "ofertas del mes",
+            "content": "<p>Cada mes lanzaremos ofertas  para obtener un cashback superior en diferentes productos</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "center",
+            "vertical_alignment": "start"
+          }
+        }
+      },
+      "block_order": [
+        "item_PEjWFL",
+        "item_rRaCxx",
+        "item_WaGGpB",
+        "item_rXNbHi"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".container {border: 1px solid grey; padding: 30px; border-radius: 10px; border-color: #406ef5;}"
+      ],
+      "settings": {
+        "reveal_on_scroll": true,
+        "stack_items": true,
+        "subheading": "",
+        "title": "Campañas Activas",
+        "content": "",
+        "column_alignment": "center",
+        "mobile_item_size": "small",
+        "desktop_item_size": "medium",
+        "spacing": "tight",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "featured_collections_dENYqk": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_wYwdzU": {
+          "type": "collection",
+          "settings": {
+            "collection": "ofertas",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_wYwdzU"
+      ],
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "title": "ofertas del mes",
+        "content": "<p>Obten cashback extra!</p>",
+        "products_count": 8,
+        "products_per_row": 6,
+        "stack_products": false,
+        "show_cta": false,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "ss_scrolling_images_Ujhmba": {
+      "type": "ss-scrolling-images",
+      "blocks": {
+        "image_Vwy486": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mvip2.png",
+            "url": ""
+          }
+        },
+        "image_pP7mET": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mVIP1.png",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_Vwy486",
+        "image_pP7mET"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 18,
+        "heading_height": 130,
+        "heading_align": "center",
+        "slider_speed": 35,
+        "slider_gap": 84,
+        "slider_gap_mobile": 34,
+        "slider_mt": 50,
+        "slider_direction": "left",
+        "pause_hover": false,
+        "image_width_desktop": 270,
+        "image_width_mobile": 170,
+        "image_height_desktop": 260,
+        "image_height_mobile": 190,
+        "image_radius": 10,
+        "use_content": false,
+        "content_position": "center",
+        "content_max_width": 50,
+        "content_max_width_mobile": 50,
+        "content_padding_vertical": 24,
+        "content_padding_horizontal": 0,
+        "content_distance": 36,
+        "content_radius": 10,
+        "content_border_thickness": 0,
+        "use_shadow": false,
+        "text": "",
+        "text_custom": false,
+        "text_font": "assistant_n4",
+        "text_size": 0,
+        "text_height": 70,
+        "heading_color": "#000000",
+        "content_bg": "#ffffff",
+        "content_border_color": "#000000",
+        "text_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "full_width": true,
+        "content_width": 50,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "rich_text_K46hng": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "subheading": "¿Todo esto se te queda corto?",
+        "title": "Descubre el plan VIP",
+        "content": "<p>¿Eres MUY fan de nuestros productos  y el 1% se te queda corto? Puedes hacerte VIP por 50€ anuales para acumular un 5% de cada uno de tus pedidos superiores a los 50€</p>",
+        "button_text": "SUSCRIBIRME AHORA",
+        "button_link": "shopify://products/vip",
+        "background_type": "full_width",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "#eb5c27",
+        "text_color": "#ffffff",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "rich_text_bWDEdL": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "title": "¿Cuáles son las ventajas de ser miembro vip?",
+        "content": "<p>¿Eres un auténtico fanático y un  1% no es mucho para tí? Pues tenemos la solución. Para los más locos del Jamón, hemos preparado una <strong>SUSCRIPCIÓN VIP, </strong>por valor de 50€ anuales y que nos permitirá acumular un 5% en todos nuestros pedidos de más de 50€!</p>",
+        "button_text": "acceso a Ofertas privadas para miembros vip",
+        "button_link": "shopify://collections/ofertas-vip",
+        "background_type": "full_width",
+        "text_width": "fill",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "#eb5c27",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_DzXw3J",
+    "ss_simple_faq_Un9QWa",
+    "multi_column_JzxDUd",
+    "featured_collections_dENYqk",
+    "ss_scrolling_images_Ujhmba",
+    "rich_text_K46hng",
+    "rich_text_bWDEdL"
+  ]
+}
