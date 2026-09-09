@@ -137,6 +137,7 @@
       "blocks": {
         "item_dVhV8J": {
           "type": "item",
+          "disabled": true,
           "settings": {
             "icon": "none",
             "text": "• GRATIS A PARTIR DE 400,00€",
@@ -170,6 +171,7 @@
         "item_QGiKRd",
         "item_Pht9kH"
       ],
+      "disabled": true,
       "settings": {
         "scroll_on_desktop": true,
         "scroll_speed": 65,
