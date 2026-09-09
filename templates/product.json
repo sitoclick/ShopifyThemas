@@ -129,8 +129,7 @@
         "92949ed3-76d0-413f-8f37-e46f3566da72"
       ],
       "custom_css": [
-        "/* Botón \"Añadir a la cesta\" más protagonista */.product__info .product-form__add-button {width: 100%; font-size: 20px; font-weight: 800; line-height: 1.2; text-align: center; padding-top: 14px; padding-bottom: 14px; justify-content: center; /* por si el botón usa display:flex */}",
-        ".product__media-wrapper {max-width: 200px; /* ajusta este valor */}"
+        "/* Botón \"Añadir a la cesta\" más protagonista */.product__info .product-form__add-button {width: 100%; font-size: 20px; font-weight: 800; line-height: 1.2; text-align: center; padding-top: 14px; padding-bottom: 14px; justify-content: center; /* por si el botón usa display:flex */}"
       ],
       "settings": {
         "show_vendor": true,
@@ -144,7 +143,7 @@
         "enable_video_looping": true,
         "enable_image_zoom": true,
         "show_thumbnails_on_mobile": false,
-        "desktop_thumbnails_position": "bottom",
+        "desktop_thumbnails_position": "left",
         "transition_effect": "slide"
       }
     },
