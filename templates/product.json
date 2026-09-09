@@ -130,8 +130,8 @@
       ],
       "custom_css": [
         "/* Botón \"Añadir a la cesta\" más protagonista */.product__info .product-form__add-button {width: 100%; font-size: 20px; font-weight: 800; line-height: 1.2; text-align: center; padding-top: 14px; padding-bottom: 14px; justify-content: center; /* por si el botón usa display:flex */}",
-        ".template-product .product__media-image-wrapper.aspect-ratio {padding-bottom: 100% !important;}",
-        ".template-product .product__media-image-wrapper.aspect-ratio img {position: absolute; width: 100%; height: 100%; object-fit: cover;}"
+        ".template-product .product__media-image-wrapper {aspect-ratio: 1 / 1 !important; padding-bottom: unset !important;}",
+        ".template-product .product__media-image-wrapper img {width: 100%; height: 100%; object-fit: cover;}"
       ],
       "settings": {
         "show_vendor": true,
