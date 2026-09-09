@@ -12,6 +12,12 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "822f9081-b870-4c99-957a-f9b05ebc9478": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.copy | metafield_tag }}<ul><li><strong>Intensidad del producto : </strong><strong>{{ product.metafields.custom.intensidad_.value }}</strong><strong> sobre 10</strong></li><li> <a href=\"/pages/sostenibilidad\" target=\"_blank\" title=\"Sostenibilidad\"><strong>Producto Sostenible</strong></a></li><li><em>Este producto </em><a href=\"/pages/vip\" title=\"Únete al convento  - CLUB VIP -DESCUENTOS EXCLUSIVOS\"><em><strong>Acumula cashback </strong></em></a></li></ul>"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -42,12 +48,6 @@
         "redeemly_rewarded_credits_pdp_cBR3pL": {
           "type": "shopify://apps/redeemly/blocks/rewarded_credits_pdp/fe55f451-e553-4131-a946-354ff46f9d85",
           "settings": {}
-        },
-        "822f9081-b870-4c99-957a-f9b05ebc9478": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.metafields.custom.copy | metafield_tag }}<ul><li><strong>Intensidad del producto : </strong><strong>{{ product.metafields.custom.intensidad_.value }}</strong><strong> sobre 10</strong></li><li> <a href=\"/pages/sostenibilidad\" target=\"_blank\" title=\"Sostenibilidad\"><strong>Producto Sostenible</strong></a></li><li><em>Este producto </em><a href=\"/pages/vip\" title=\"Únete al convento  - CLUB VIP -DESCUENTOS EXCLUSIVOS\"><em><strong>Acumula cashback </strong></em></a></li></ul>"
-          }
         },
         "subscriptions_app_block_E4DcqP": {
           "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
@@ -113,12 +113,12 @@
         }
       },
       "block_order": [
+        "822f9081-b870-4c99-957a-f9b05ebc9478",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "rockit_discounts_sales_timer_AF9kNA",
         "redeemly_rewarded_credits_pdp_cBR3pL",
-        "822f9081-b870-4c99-957a-f9b05ebc9478",
         "subscriptions_app_block_E4DcqP",
         "mw_product_bundles_addons_app_block_jA7p4z",
         "mw_product_bundles_bundle_product_app_block_xQqxGz",
