@@ -12,22 +12,42 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "rockit_discounts_sales_timer_AF9kNA": {
-          "type": "shopify://apps/rockit-discounts-sales/blocks/timer/f347a9bf-00bf-4eeb-9f4d-159bb9b1cead",
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
             "hide_sold_out_variants": true,
-            "selector_mode": "dropdown",
-            "color_mode": "block",
+            "selector_mode": "block",
+            "color_mode": "variant_image",
             "size_chart_page": ""
           }
         },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "atc_button_background": "rgba(0,0,0,0)",
+            "atc_button_text_color": "rgba(0,0,0,0)",
+            "buy_now_button_background": "rgba(0,0,0,0)",
+            "buy_now_button_text_color": "rgba(0,0,0,0)"
+          }
+        },
+        "rockit_discounts_sales_timer_AF9kNA": {
+          "type": "shopify://apps/rockit-discounts-sales/blocks/timer/f347a9bf-00bf-4eeb-9f4d-159bb9b1cead",
+          "settings": {}
+        },
+        "redeemly_rewarded_credits_pdp_cBR3pL": {
+          "type": "shopify://apps/redeemly/blocks/rewarded_credits_pdp/fe55f451-e553-4131-a946-354ff46f9d85",
+          "settings": {}
+        },
+        "822f9081-b870-4c99-957a-f9b05ebc9478": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.copy | metafield_tag }}<ul><li><strong>Intensidad del producto : </strong><strong>{{ product.metafields.custom.intensidad_.value }}</strong><strong> sobre 10</strong></li><li> <a href=\"/pages/sostenibilidad\" target=\"_blank\" title=\"Sostenibilidad\"><strong>Producto Sostenible</strong></a></li><li><em>Este producto </em><a href=\"/pages/vip\" title=\"Únete al convento  - CLUB VIP -DESCUENTOS EXCLUSIVOS\"><em><strong>Acumula cashback </strong></em></a></li></ul>"
+          }
         },
         "subscriptions_app_block_E4DcqP": {
           "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
@@ -55,20 +75,6 @@
           "type": "shopify://apps/mw-bundle-builder/blocks/volume-bundle-block/5bcb1a6d-53b5-4d9c-b4f9-19f6620da62b",
           "settings": {}
         },
-        "redeemly_rewarded_credits_pdp_cBR3pL": {
-          "type": "shopify://apps/redeemly/blocks/rewarded_credits_pdp/fe55f451-e553-4131-a946-354ff46f9d85",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_payment_button": false,
-            "atc_button_background": "rgba(0,0,0,0)",
-            "atc_button_text_color": "rgba(0,0,0,0)",
-            "buy_now_button_background": "rgba(0,0,0,0)",
-            "buy_now_button_text_color": "rgba(0,0,0,0)"
-          }
-        },
         "64b64bf4-85c9-4e4c-8a1d-bc9cc66a56da": {
           "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
           "settings": {
@@ -83,12 +89,6 @@
           "type": "text",
           "settings": {
             "text": "{{ product.metafields.custom.infotop | metafield_tag }}"
-          }
-        },
-        "822f9081-b870-4c99-957a-f9b05ebc9478": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.metafields.custom.copy | metafield_tag }}<ul><li><strong>Intensidad del producto : </strong><strong>{{ product.metafields.custom.intensidad_.value }}</strong><strong> sobre 10</strong></li><li> <a href=\"/pages/sostenibilidad\" target=\"_blank\" title=\"Sostenibilidad\"><strong>Producto Sostenible</strong></a></li><li><em>Este producto </em><a href=\"/pages/vip\" title=\"Únete al convento  - CLUB VIP -DESCUENTOS EXCLUSIVOS\"><em><strong>Acumula cashback </strong></em></a></li></ul>"
           }
         },
         "9fae6bed-8f2c-446b-81ce-cb31266247bf": {
@@ -113,18 +113,18 @@
         }
       },
       "block_order": [
-        "rockit_discounts_sales_timer_AF9kNA",
         "variant_picker",
         "quantity_selector",
+        "buy_buttons",
+        "rockit_discounts_sales_timer_AF9kNA",
+        "redeemly_rewarded_credits_pdp_cBR3pL",
+        "822f9081-b870-4c99-957a-f9b05ebc9478",
         "subscriptions_app_block_E4DcqP",
         "mw_product_bundles_addons_app_block_jA7p4z",
         "mw_product_bundles_bundle_product_app_block_xQqxGz",
         "mw_product_bundles_volume_bundle_block_GbjmGB",
-        "redeemly_rewarded_credits_pdp_cBR3pL",
-        "buy_buttons",
         "64b64bf4-85c9-4e4c-8a1d-bc9cc66a56da",
         "text_DQR8Gd",
-        "822f9081-b870-4c99-957a-f9b05ebc9478",
         "9fae6bed-8f2c-446b-81ce-cb31266247bf",
         "92949ed3-76d0-413f-8f37-e46f3566da72"
       ],
@@ -134,7 +134,7 @@
       "settings": {
         "show_vendor": true,
         "show_sku": false,
-        "show_taxes_included": false,
+        "show_taxes_included": true,
         "show_product_rating": true,
         "show_sticky_add_to_cart": true,
         "show_share_buttons": false,

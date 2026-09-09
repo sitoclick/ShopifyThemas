@@ -146,6 +146,7 @@
         },
         "item_QGiKRd": {
           "type": "item",
+          "disabled": true,
           "settings": {
             "icon": "none",
             "text": "• RECOMENDAMOS ENVIO REFRIGERADO",
@@ -155,6 +156,7 @@
         },
         "item_Pht9kH": {
           "type": "item",
+          "disabled": true,
           "settings": {
             "icon": "none",
             "text": "• DEBIDO A LAS ALTAS TEMPERATURAS",
