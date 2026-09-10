@@ -233,7 +233,7 @@
           "type": "item",
           "settings": {
             "icon": "none",
-            "text": "• ¡ELEGIDOS PRODUCTO DEL AÑO 2025!",
+            "text": "• ACUMULA CASHBACK CON TUS PEDIDOS",
             "icon_color": "#000000",
             "text_color": "#ffffff"
           }
@@ -242,16 +242,7 @@
           "type": "item",
           "settings": {
             "icon": "none",
-            "text": "• ATENCIÓN PERSONALIZADA",
-            "icon_color": "#000000",
-            "text_color": "#ffffff"
-          }
-        },
-        "item_GMNKmQ": {
-          "type": "item",
-          "settings": {
-            "icon": "none",
-            "text": "• PAGO SEGURO",
+            "text": "• PRODUCTOS SOSTENIBLES",
             "icon_color": "#000000",
             "text_color": "#ffffff"
           }
@@ -264,6 +255,15 @@
             "icon_color": "#af272f",
             "text_color": "#ffffff"
           }
+        },
+        "item_GMNKmQ": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "text": "• PAGO SEGURO",
+            "icon_color": "#000000",
+            "text_color": "#ffffff"
+          }
         }
       },
       "block_order": [
@@ -271,13 +271,13 @@
         "item_nrDHwb",
         "item_tpK9jG",
         "item_MtwepX",
-        "item_GMNKmQ",
-        "item_rdkxRj"
+        "item_rdkxRj",
+        "item_GMNKmQ"
       ],
       "settings": {
         "scroll_on_desktop": true,
-        "scroll_speed": 100,
-        "scroll_speed_mobile": 100,
+        "scroll_speed": 76,
+        "scroll_speed_mobile": 86,
         "scroll_direction": "left",
         "scroll_pause": true,
         "items_gap": 6,
